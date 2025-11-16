@@ -1,0 +1,82 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="core_utilities"
+version="1.2.1"
+displayName="Core Utilities"
+displayURL="https://www.nightbeam.cloud"
+logoFile="logo.png"
+credits="no credits"
+authors="NAIZO"
+
+# Start of user code block mod configuration
+# End of user code block mod configuration
+
+[[dependencies.core_utilities]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1]"
+ordering="AFTER"
+side="BOTH"
+
+
+[[dependencies.core_utilities]]
+modId="jauml"
+mandatory=false
+versionRange="[0,)"
+ordering="NONE"
+side="BOTH"
+
+
+# Start of user code block dependencies configuration
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+# End of user code block dependencies configuration

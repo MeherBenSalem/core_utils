@@ -1,0 +1,12 @@
+core_utilities.mcreator
+.gradle
+.mcreator
+.eclipse
+.settings
+bin
+elements
+run
+runs
+mcreator.gradle
+/build/
+**/build

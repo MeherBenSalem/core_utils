@@ -1,0 +1,9 @@
+{
+  "parent": "core_utilities:custom/vector_plate",
+  "textures": {
+    "all": "core_utilities:block/speed_plate",
+    "particle": "core_utilities:block/speed_plate",
+    "0": "core_utilities:block/speed_plate"
+  },
+  "render_type": "solid"
+}

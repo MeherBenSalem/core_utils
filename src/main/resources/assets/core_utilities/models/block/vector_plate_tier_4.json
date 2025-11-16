@@ -1,0 +1,9 @@
+{
+  "parent": "core_utilities:custom/vector_plate",
+  "textures": {
+    "all": "core_utilities:block/plate_4",
+    "particle": "core_utilities:block/plate_4",
+    "0": "core_utilities:block/plate_4"
+  },
+  "render_type": "solid"
+}

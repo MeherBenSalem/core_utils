@@ -1,0 +1,126 @@
+/*
+ *    MCreator note: This file will be REGENERATED on each build.
+ */
+package com.nightbeam.core_utilities.init;
+
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.DeferredRegister;
+
+import net.minecraft.world.level.block.Block;
+
+import com.nightbeam.core_utilities.block.WitherPlateBlock;
+import com.nightbeam.core_utilities.block.WeaknessPlateBlock;
+import com.nightbeam.core_utilities.block.VectorPlateTier4Block;
+import com.nightbeam.core_utilities.block.VectorPlateTier3Block;
+import com.nightbeam.core_utilities.block.VectorPlateTier2Block;
+import com.nightbeam.core_utilities.block.VectorPlateTier1Block;
+import com.nightbeam.core_utilities.block.StrengthPlateBlock;
+import com.nightbeam.core_utilities.block.SpeedPlateBlock;
+import com.nightbeam.core_utilities.block.SolarPanelBlock;
+import com.nightbeam.core_utilities.block.SolarPanel2Block;
+import com.nightbeam.core_utilities.block.SolarPanel1Block;
+import com.nightbeam.core_utilities.block.SlownessPlateBlock;
+import com.nightbeam.core_utilities.block.ProjectileFilterBlock;
+import com.nightbeam.core_utilities.block.PoisonPlateBlock;
+import com.nightbeam.core_utilities.block.PlayerFilterBlock;
+import com.nightbeam.core_utilities.block.NeutralFilterBlock;
+import com.nightbeam.core_utilities.block.MobFilterBlock;
+import com.nightbeam.core_utilities.block.HealingPlateBlock;
+import com.nightbeam.core_utilities.block.FloatingBlockBlock;
+import com.nightbeam.core_utilities.block.FireResPlateBlock;
+import com.nightbeam.core_utilities.block.FilterZombieBlock;
+import com.nightbeam.core_utilities.block.FilterVillagerBlock;
+import com.nightbeam.core_utilities.block.FilterSpiderBlock;
+import com.nightbeam.core_utilities.block.FilterSkeletonBlock;
+import com.nightbeam.core_utilities.block.FilterPetBlock;
+import com.nightbeam.core_utilities.block.FilterAnimalBlock;
+import com.nightbeam.core_utilities.block.DenyProjectileFilterBlock;
+import com.nightbeam.core_utilities.block.DenyPlayerFilterBlock;
+import com.nightbeam.core_utilities.block.DenyNeutralFilterBlock;
+import com.nightbeam.core_utilities.block.DenyMobFilterBlock;
+import com.nightbeam.core_utilities.block.DenyFilterZombieBlock;
+import com.nightbeam.core_utilities.block.DenyFilterVillagerBlock;
+import com.nightbeam.core_utilities.block.DenyFilterSpiderBlock;
+import com.nightbeam.core_utilities.block.DenyFilterSkeletonBlock;
+import com.nightbeam.core_utilities.block.DenyFilterPetBlock;
+import com.nightbeam.core_utilities.block.DenyFilterAnimalBlock;
+import com.nightbeam.core_utilities.block.CableXCBlock;
+import com.nightbeam.core_utilities.block.CableXBlock;
+import com.nightbeam.core_utilities.block.CableTXCCBlock;
+import com.nightbeam.core_utilities.block.CableTXCBlock;
+import com.nightbeam.core_utilities.block.CableTXBlock;
+import com.nightbeam.core_utilities.block.CableTCBlock;
+import com.nightbeam.core_utilities.block.CableTBlock;
+import com.nightbeam.core_utilities.block.CableSBlock;
+import com.nightbeam.core_utilities.block.CableLTCBlock;
+import com.nightbeam.core_utilities.block.CableLTBlock;
+import com.nightbeam.core_utilities.block.CableLCCBlock;
+import com.nightbeam.core_utilities.block.CableLCBlock;
+import com.nightbeam.core_utilities.block.CableLBlock;
+import com.nightbeam.core_utilities.block.CableIBlock;
+import com.nightbeam.core_utilities.block.CableFBlock;
+import com.nightbeam.core_utilities.block.CableEBlock;
+import com.nightbeam.core_utilities.block.CableBlock;
+import com.nightbeam.core_utilities.block.BasicMachineFrameBlock;
+import com.nightbeam.core_utilities.CoreUtilitiesMod;
+
+public class CoreUtilitiesModBlocks {
+	public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, CoreUtilitiesMod.MODID);
+	public static final RegistryObject<Block> VECTOR_PLATE_TIER_1 = REGISTRY.register("vector_plate_tier_1", () -> new VectorPlateTier1Block());
+	public static final RegistryObject<Block> VECTOR_PLATE_TIER_2 = REGISTRY.register("vector_plate_tier_2", () -> new VectorPlateTier2Block());
+	public static final RegistryObject<Block> VECTOR_PLATE_TIER_3 = REGISTRY.register("vector_plate_tier_3", () -> new VectorPlateTier3Block());
+	public static final RegistryObject<Block> VECTOR_PLATE_TIER_4 = REGISTRY.register("vector_plate_tier_4", () -> new VectorPlateTier4Block());
+	public static final RegistryObject<Block> HEALING_PLATE = REGISTRY.register("healing_plate", () -> new HealingPlateBlock());
+	public static final RegistryObject<Block> SPEED_PLATE = REGISTRY.register("speed_plate", () -> new SpeedPlateBlock());
+	public static final RegistryObject<Block> FIRE_RES_PLATE = REGISTRY.register("fire_res_plate", () -> new FireResPlateBlock());
+	public static final RegistryObject<Block> STRENGTH_PLATE = REGISTRY.register("strength_plate", () -> new StrengthPlateBlock());
+	public static final RegistryObject<Block> POISON_PLATE = REGISTRY.register("poison_plate", () -> new PoisonPlateBlock());
+	public static final RegistryObject<Block> WEAKNESS_PLATE = REGISTRY.register("weakness_plate", () -> new WeaknessPlateBlock());
+	public static final RegistryObject<Block> SLOWNESS_PLATE = REGISTRY.register("slowness_plate", () -> new SlownessPlateBlock());
+	public static final RegistryObject<Block> WITHER_PLATE = REGISTRY.register("wither_plate", () -> new WitherPlateBlock());
+	public static final RegistryObject<Block> PLAYER_FILTER = REGISTRY.register("player_filter", () -> new PlayerFilterBlock());
+	public static final RegistryObject<Block> MOB_FILTER = REGISTRY.register("mob_filter", () -> new MobFilterBlock());
+	public static final RegistryObject<Block> NEUTRAL_FILTER = REGISTRY.register("neutral_filter", () -> new NeutralFilterBlock());
+	public static final RegistryObject<Block> PROJECTILE_FILTER = REGISTRY.register("projectile_filter", () -> new ProjectileFilterBlock());
+	public static final RegistryObject<Block> FILTER_ZOMBIE = REGISTRY.register("filter_zombie", () -> new FilterZombieBlock());
+	public static final RegistryObject<Block> FILTER_SKELETON = REGISTRY.register("filter_skeleton", () -> new FilterSkeletonBlock());
+	public static final RegistryObject<Block> FILTER_SPIDER = REGISTRY.register("filter_spider", () -> new FilterSpiderBlock());
+	public static final RegistryObject<Block> FILTER_VILLAGER = REGISTRY.register("filter_villager", () -> new FilterVillagerBlock());
+	public static final RegistryObject<Block> FILTER_PET = REGISTRY.register("filter_pet", () -> new FilterPetBlock());
+	public static final RegistryObject<Block> FILTER_ANIMAL = REGISTRY.register("filter_animal", () -> new FilterAnimalBlock());
+	public static final RegistryObject<Block> DENY_PLAYER_FILTER = REGISTRY.register("deny_player_filter", () -> new DenyPlayerFilterBlock());
+	public static final RegistryObject<Block> DENY_MOB_FILTER = REGISTRY.register("deny_mob_filter", () -> new DenyMobFilterBlock());
+	public static final RegistryObject<Block> DENY_NEUTRAL_FILTER = REGISTRY.register("deny_neutral_filter", () -> new DenyNeutralFilterBlock());
+	public static final RegistryObject<Block> DENY_PROJECTILE_FILTER = REGISTRY.register("deny_projectile_filter", () -> new DenyProjectileFilterBlock());
+	public static final RegistryObject<Block> DENY_FILTER_ZOMBIE = REGISTRY.register("deny_filter_zombie", () -> new DenyFilterZombieBlock());
+	public static final RegistryObject<Block> DENY_FILTER_SKELETON = REGISTRY.register("deny_filter_skeleton", () -> new DenyFilterSkeletonBlock());
+	public static final RegistryObject<Block> DENY_FILTER_SPIDER = REGISTRY.register("deny_filter_spider", () -> new DenyFilterSpiderBlock());
+	public static final RegistryObject<Block> DENY_FILTER_VILLAGER = REGISTRY.register("deny_filter_villager", () -> new DenyFilterVillagerBlock());
+	public static final RegistryObject<Block> DENY_FILTER_PET = REGISTRY.register("deny_filter_pet", () -> new DenyFilterPetBlock());
+	public static final RegistryObject<Block> DENY_FILTER_ANIMAL = REGISTRY.register("deny_filter_animal", () -> new DenyFilterAnimalBlock());
+	public static final RegistryObject<Block> FLOATING_BLOCK = REGISTRY.register("floating_block", () -> new FloatingBlockBlock());
+	public static final RegistryObject<Block> CABLE = REGISTRY.register("cable", () -> new CableBlock());
+	public static final RegistryObject<Block> CABLE_E = REGISTRY.register("cable_e", () -> new CableEBlock());
+	public static final RegistryObject<Block> CABLE_I = REGISTRY.register("cable_i", () -> new CableIBlock());
+	public static final RegistryObject<Block> CABLE_L = REGISTRY.register("cable_l", () -> new CableLBlock());
+	public static final RegistryObject<Block> CABLE_LC = REGISTRY.register("cable_lc", () -> new CableLCBlock());
+	public static final RegistryObject<Block> CABLE_LCC = REGISTRY.register("cable_lcc", () -> new CableLCCBlock());
+	public static final RegistryObject<Block> CABLE_LT = REGISTRY.register("cable_lt", () -> new CableLTBlock());
+	public static final RegistryObject<Block> CABLE_LTC = REGISTRY.register("cable_ltc", () -> new CableLTCBlock());
+	public static final RegistryObject<Block> CABLE_T = REGISTRY.register("cable_t", () -> new CableTBlock());
+	public static final RegistryObject<Block> CABLE_TC = REGISTRY.register("cable_tc", () -> new CableTCBlock());
+	public static final RegistryObject<Block> CABLE_TX = REGISTRY.register("cable_tx", () -> new CableTXBlock());
+	public static final RegistryObject<Block> CABLE_TXC = REGISTRY.register("cable_txc", () -> new CableTXCBlock());
+	public static final RegistryObject<Block> CABLE_TXCC = REGISTRY.register("cable_txcc", () -> new CableTXCCBlock());
+	public static final RegistryObject<Block> CABLE_X = REGISTRY.register("cable_x", () -> new CableXBlock());
+	public static final RegistryObject<Block> CABLE_XC = REGISTRY.register("cable_xc", () -> new CableXCBlock());
+	public static final RegistryObject<Block> CABLE_F = REGISTRY.register("cable_f", () -> new CableFBlock());
+	public static final RegistryObject<Block> CABLE_S = REGISTRY.register("cable_s", () -> new CableSBlock());
+	public static final RegistryObject<Block> SOLAR_PANEL = REGISTRY.register("solar_panel", () -> new SolarPanelBlock());
+	public static final RegistryObject<Block> SOLAR_PANEL_1 = REGISTRY.register("solar_panel_1", () -> new SolarPanel1Block());
+	public static final RegistryObject<Block> SOLAR_PANEL_2 = REGISTRY.register("solar_panel_2", () -> new SolarPanel2Block());
+	public static final RegistryObject<Block> BASIC_MACHINE_FRAME = REGISTRY.register("basic_machine_frame", () -> new BasicMachineFrameBlock());
+	// Start of user code block custom blocks
+	// End of user code block custom blocks
+}

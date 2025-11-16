@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "core_utilities:solar_panel",
+    "core_utilities:solar_panel_2",
+    "core_utilities:solar_panel_1"
+  ]
+}

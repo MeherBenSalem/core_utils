@@ -1,0 +1,16 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "cable": "electrical_cable"
+      },
+      "name": "default"
+    },
+    "pipe": {
+      "map": {
+        "cable": "liquid_pipe"
+      },
+      "name": "pipe"
+    }
+  }
+}

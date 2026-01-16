@@ -17,6 +17,15 @@ import com.nightbeam.core_utilities.block.VectorPlateTier2Block;
 import com.nightbeam.core_utilities.block.VectorPlateTier1Block;
 import com.nightbeam.core_utilities.block.StrengthPlateBlock;
 import com.nightbeam.core_utilities.block.SpeedPlateBlock;
+import com.nightbeam.core_utilities.block.SolarPanelTier43Block;
+import com.nightbeam.core_utilities.block.SolarPanelTier42Block;
+import com.nightbeam.core_utilities.block.SolarPanelTier41Block;
+import com.nightbeam.core_utilities.block.SolarPanelTier33Block;
+import com.nightbeam.core_utilities.block.SolarPanelTier32Block;
+import com.nightbeam.core_utilities.block.SolarPanelTier31Block;
+import com.nightbeam.core_utilities.block.SolarPanelTier23Block;
+import com.nightbeam.core_utilities.block.SolarPanelTier22Block;
+import com.nightbeam.core_utilities.block.SolarPanelTier21Block;
 import com.nightbeam.core_utilities.block.SolarPanelBlock;
 import com.nightbeam.core_utilities.block.SolarPanel2Block;
 import com.nightbeam.core_utilities.block.SolarPanel1Block;
@@ -121,6 +130,15 @@ public class CoreUtilitiesModBlocks {
 	public static final RegistryObject<Block> SOLAR_PANEL_1 = REGISTRY.register("solar_panel_1", () -> new SolarPanel1Block());
 	public static final RegistryObject<Block> SOLAR_PANEL_2 = REGISTRY.register("solar_panel_2", () -> new SolarPanel2Block());
 	public static final RegistryObject<Block> BASIC_MACHINE_FRAME = REGISTRY.register("basic_machine_frame", () -> new BasicMachineFrameBlock());
+	public static final RegistryObject<Block> SOLAR_PANEL_TIER_21 = REGISTRY.register("solar_panel_tier_21", () -> new SolarPanelTier21Block());
+	public static final RegistryObject<Block> SOLAR_PANEL_TIER_22 = REGISTRY.register("solar_panel_tier_22", () -> new SolarPanelTier22Block());
+	public static final RegistryObject<Block> SOLAR_PANEL_TIER_23 = REGISTRY.register("solar_panel_tier_23", () -> new SolarPanelTier23Block());
+	public static final RegistryObject<Block> SOLAR_PANEL_TIER_31 = REGISTRY.register("solar_panel_tier_31", () -> new SolarPanelTier31Block());
+	public static final RegistryObject<Block> SOLAR_PANEL_TIER_32 = REGISTRY.register("solar_panel_tier_32", () -> new SolarPanelTier32Block());
+	public static final RegistryObject<Block> SOLAR_PANEL_TIER_33 = REGISTRY.register("solar_panel_tier_33", () -> new SolarPanelTier33Block());
+	public static final RegistryObject<Block> SOLAR_PANEL_TIER_41 = REGISTRY.register("solar_panel_tier_41", () -> new SolarPanelTier41Block());
+	public static final RegistryObject<Block> SOLAR_PANEL_TIER_42 = REGISTRY.register("solar_panel_tier_42", () -> new SolarPanelTier42Block());
+	public static final RegistryObject<Block> SOLAR_PANEL_TIER_43 = REGISTRY.register("solar_panel_tier_43", () -> new SolarPanelTier43Block());
 	// Start of user code block custom blocks
 	// End of user code block custom blocks
 }

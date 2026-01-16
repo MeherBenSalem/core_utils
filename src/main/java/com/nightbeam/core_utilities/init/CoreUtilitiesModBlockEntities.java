@@ -11,6 +11,15 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.Block;
 
+import com.nightbeam.core_utilities.block.entity.SolarPanelTier43BlockEntity;
+import com.nightbeam.core_utilities.block.entity.SolarPanelTier42BlockEntity;
+import com.nightbeam.core_utilities.block.entity.SolarPanelTier41BlockEntity;
+import com.nightbeam.core_utilities.block.entity.SolarPanelTier33BlockEntity;
+import com.nightbeam.core_utilities.block.entity.SolarPanelTier32BlockEntity;
+import com.nightbeam.core_utilities.block.entity.SolarPanelTier31BlockEntity;
+import com.nightbeam.core_utilities.block.entity.SolarPanelTier23BlockEntity;
+import com.nightbeam.core_utilities.block.entity.SolarPanelTier22BlockEntity;
+import com.nightbeam.core_utilities.block.entity.SolarPanelTier21BlockEntity;
 import com.nightbeam.core_utilities.block.entity.SolarPanelBlockEntity;
 import com.nightbeam.core_utilities.block.entity.SolarPanel2BlockEntity;
 import com.nightbeam.core_utilities.block.entity.SolarPanel1BlockEntity;
@@ -55,6 +64,15 @@ public class CoreUtilitiesModBlockEntities {
 	public static final RegistryObject<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL = register("solar_panel", CoreUtilitiesModBlocks.SOLAR_PANEL, SolarPanelBlockEntity::new);
 	public static final RegistryObject<BlockEntityType<SolarPanel1BlockEntity>> SOLAR_PANEL_1 = register("solar_panel_1", CoreUtilitiesModBlocks.SOLAR_PANEL_1, SolarPanel1BlockEntity::new);
 	public static final RegistryObject<BlockEntityType<SolarPanel2BlockEntity>> SOLAR_PANEL_2 = register("solar_panel_2", CoreUtilitiesModBlocks.SOLAR_PANEL_2, SolarPanel2BlockEntity::new);
+	public static final RegistryObject<BlockEntityType<SolarPanelTier21BlockEntity>> SOLAR_PANEL_TIER_21 = register("solar_panel_tier_21", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_21, SolarPanelTier21BlockEntity::new);
+	public static final RegistryObject<BlockEntityType<SolarPanelTier22BlockEntity>> SOLAR_PANEL_TIER_22 = register("solar_panel_tier_22", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_22, SolarPanelTier22BlockEntity::new);
+	public static final RegistryObject<BlockEntityType<SolarPanelTier23BlockEntity>> SOLAR_PANEL_TIER_23 = register("solar_panel_tier_23", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_23, SolarPanelTier23BlockEntity::new);
+	public static final RegistryObject<BlockEntityType<SolarPanelTier31BlockEntity>> SOLAR_PANEL_TIER_31 = register("solar_panel_tier_31", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_31, SolarPanelTier31BlockEntity::new);
+	public static final RegistryObject<BlockEntityType<SolarPanelTier32BlockEntity>> SOLAR_PANEL_TIER_32 = register("solar_panel_tier_32", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_32, SolarPanelTier32BlockEntity::new);
+	public static final RegistryObject<BlockEntityType<SolarPanelTier33BlockEntity>> SOLAR_PANEL_TIER_33 = register("solar_panel_tier_33", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_33, SolarPanelTier33BlockEntity::new);
+	public static final RegistryObject<BlockEntityType<SolarPanelTier41BlockEntity>> SOLAR_PANEL_TIER_41 = register("solar_panel_tier_41", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_41, SolarPanelTier41BlockEntity::new);
+	public static final RegistryObject<BlockEntityType<SolarPanelTier42BlockEntity>> SOLAR_PANEL_TIER_42 = register("solar_panel_tier_42", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_42, SolarPanelTier42BlockEntity::new);
+	public static final RegistryObject<BlockEntityType<SolarPanelTier43BlockEntity>> SOLAR_PANEL_TIER_43 = register("solar_panel_tier_43", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_43, SolarPanelTier43BlockEntity::new);
 
 	// Start of user code block custom block entities
 	// End of user code block custom block entities

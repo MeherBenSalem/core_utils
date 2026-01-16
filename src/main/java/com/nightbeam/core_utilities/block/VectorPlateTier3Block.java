@@ -89,6 +89,6 @@ public class VectorPlateTier3Block extends Block {
 	@Override
 	public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
 		super.entityInside(blockstate, world, pos, entity);
-		VectorPlateTier3EntityCollidesInTheBlockProcedure.execute(blockstate, entity);
+		VectorPlateTier3EntityCollidesInTheBlockProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), blockstate, entity);
 	}
 }

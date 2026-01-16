@@ -81,6 +81,15 @@ public class CoreUtilitiesModItems {
 	public static final RegistryObject<Item> SOLAR_PANEL_1 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_1);
 	public static final RegistryObject<Item> SOLAR_PANEL_2 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_2);
 	public static final RegistryObject<Item> BASIC_MACHINE_FRAME = block(CoreUtilitiesModBlocks.BASIC_MACHINE_FRAME);
+	public static final RegistryObject<Item> SOLAR_PANEL_TIER_21 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_21);
+	public static final RegistryObject<Item> SOLAR_PANEL_TIER_22 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_22);
+	public static final RegistryObject<Item> SOLAR_PANEL_TIER_23 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_23);
+	public static final RegistryObject<Item> SOLAR_PANEL_TIER_31 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_31);
+	public static final RegistryObject<Item> SOLAR_PANEL_TIER_32 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_32);
+	public static final RegistryObject<Item> SOLAR_PANEL_TIER_33 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_33);
+	public static final RegistryObject<Item> SOLAR_PANEL_TIER_41 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_41);
+	public static final RegistryObject<Item> SOLAR_PANEL_TIER_42 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_42);
+	public static final RegistryObject<Item> SOLAR_PANEL_TIER_43 = block(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_43);
 
 	// Start of user code block custom items
 	// End of user code block custom items

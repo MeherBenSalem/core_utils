@@ -2,11 +2,11 @@
   "parent": "block/cube",
   "textures": {
     "down": "core_utilities:block/machine_base_bottom",
-    "up": "core_utilities:block/machine_base_bottom",
-    "north": "core_utilities:block/solar_panel_sides",
-    "east": "core_utilities:block/solar_panel_sides",
-    "south": "core_utilities:block/solar_panel_sides",
-    "west": "core_utilities:block/solar_panel_sides",
+    "up": "core_utilities:block/machine_base_white",
+    "north": "core_utilities:block/machine_base_white_side",
+    "east": "core_utilities:block/machine_base_white_side",
+    "south": "core_utilities:block/machine_base_white_side",
+    "west": "core_utilities:block/machine_base_white_side",
     "particle": "core_utilities:block/machine_base_bottom"
   },
   "render_type": "solid"

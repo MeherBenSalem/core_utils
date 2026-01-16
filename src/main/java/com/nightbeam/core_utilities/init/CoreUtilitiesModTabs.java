@@ -16,7 +16,7 @@ import com.nightbeam.core_utilities.CoreUtilitiesMod;
 public class CoreUtilitiesModTabs {
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CoreUtilitiesMod.MODID);
 	public static final RegistryObject<CreativeModeTab> ESSENTIAL_UTILITIES_CREATIVE_TAB = REGISTRY.register("essential_utilities_creative_tab", () -> CreativeModeTab.builder()
-			.title(Component.translatable("item_group.core_utilities.essential_utilities_creative_tab")).icon(() -> new ItemStack(CoreUtilitiesModBlocks.VECTOR_PLATE_TIER_1.get())).displayItems((parameters, tabData) -> {
+			.title(Component.translatable("item_group.core_utilities.essential_utilities_creative_tab")).icon(() -> new ItemStack(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_41.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(CoreUtilitiesModItems.BLANK_PLATE.get());
 				tabData.accept(CoreUtilitiesModBlocks.VECTOR_PLATE_TIER_1.get().asItem());
 				tabData.accept(CoreUtilitiesModBlocks.VECTOR_PLATE_TIER_2.get().asItem());
@@ -59,5 +59,8 @@ public class CoreUtilitiesModTabs {
 				tabData.accept(CoreUtilitiesModBlocks.SOLAR_PANEL.get().asItem());
 				tabData.accept(CoreUtilitiesModBlocks.CABLE.get().asItem());
 				tabData.accept(CoreUtilitiesModBlocks.BASIC_MACHINE_FRAME.get().asItem());
+				tabData.accept(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_21.get().asItem());
+				tabData.accept(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_31.get().asItem());
+				tabData.accept(CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_41.get().asItem());
 			}).build());
 }

@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "core_utilities:cable_t",
+    "core_utilities:cable_txc",
+    "core_utilities:cable_x",
+    "core_utilities:cable_tx",
+    "core_utilities:cable_xc",
+    "core_utilities:cable_lt",
+    "core_utilities:cable_ltc",
+    "core_utilities:cable_lcc",
+    "core_utilities:cable_e",
+    "core_utilities:cable_tc",
+    "core_utilities:cable",
+    "core_utilities:cable_f",
+    "core_utilities:cable_i",
+    "core_utilities:cable_txcc",
+    "core_utilities:cable_lc",
+    "core_utilities:cable_l",
+    "core_utilities:cable_s"
+  ]
+}

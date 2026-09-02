@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "core_utilities:item/healing_plate"
+  },
+  "render_type": "translucent"
+}

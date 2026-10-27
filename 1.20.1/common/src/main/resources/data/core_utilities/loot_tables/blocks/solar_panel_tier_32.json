@@ -1,18 +1,17 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "core_utilities:blocks/solar_panel_tier_32",
   "pools": [
     {
       "rolls": 1.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "core_utilities:solar_panel"
+          "name": "core_utilities:solar_panel_tier_31"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }

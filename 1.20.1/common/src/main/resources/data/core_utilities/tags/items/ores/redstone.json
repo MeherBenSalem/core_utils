@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:redstone_ores",
+    {
+      "id": "#c:ores/redstone",
+      "required": false
+    },
+    {
+      "id": "#forge:ores/redstone",
+      "required": false
+    },
+    {
+      "id": "#c:redstone_ores",
+      "required": false
+    }
+  ]
+}

@@ -1,18 +1,17 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "core_utilities:blocks/weakness_plate",
   "pools": [
     {
       "rolls": 1.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
           "name": "core_utilities:weakness_plate"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }

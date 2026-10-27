@@ -1,9 +1,0 @@
-{
-  "parent": "core_utilities:custom/electrical_cable_ltc",
-  "textures": {
-    "all": "core_utilities:block/electrical_cable",
-    "particle": "core_utilities:block/electrical_cable",
-    "cable": "core_utilities:block/electrical_cable"
-  },
-  "render_type": "cutout"
-}

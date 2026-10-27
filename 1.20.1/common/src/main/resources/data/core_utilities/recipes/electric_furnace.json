@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IRI",
+    "FMF",
+    "ICI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "M": {
+      "item": "core_utilities:basic_machine_frame"
+    },
+    "C": {
+      "item": "core_utilities:basic_circuit"
+    }
+  },
+  "result": {
+    "item": "core_utilities:electric_furnace"
+  }
+}

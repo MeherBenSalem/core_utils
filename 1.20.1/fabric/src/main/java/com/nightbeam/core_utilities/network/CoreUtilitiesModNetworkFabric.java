@@ -34,6 +34,22 @@ public final class CoreUtilitiesModNetworkFabric {
 				}
 			});
 		});
+		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+			ServerPlayer player = handler.player;
+			SavedData mapdata = CoreUtilitiesModVariables.MapVariables.get(player.level());
+			SavedData worlddata = CoreUtilitiesModVariables.WorldVariables.get(player.level());
+			if (mapdata instanceof CoreUtilitiesModVariables.MapVariables mapVars) {
+				sendSavedData(player, 0, mapVars.save(new CompoundTag()));
+			}
+			if (worlddata instanceof CoreUtilitiesModVariables.WorldVariables worldVars) {
+				sendSavedData(player, 1, worldVars.save(new CompoundTag()));
+			}
+		});
+	}
+
+	/** Client receivers; only called from the client initializer (ClientPlayNetworking does not exist on a dedicated server). */
+	public static void registerClient() {
+		FabricMenuStateUpdatePacket.registerClient();
 		ClientPlayNetworking.registerGlobalReceiver(SAVED_DATA_SYNC_ID, (client, handler, buf, responseSender) -> {
 			int type = buf.readInt();
 			CompoundTag nbt = buf.readNbt();
@@ -47,17 +63,6 @@ public final class CoreUtilitiesModNetworkFabric {
 					CoreUtilitiesModVariables.setClientWorldVariables(CoreUtilitiesModVariables.WorldVariables.load(nbt));
 				}
 			});
-		});
-		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-			ServerPlayer player = handler.player;
-			SavedData mapdata = CoreUtilitiesModVariables.MapVariables.get(player.level());
-			SavedData worlddata = CoreUtilitiesModVariables.WorldVariables.get(player.level());
-			if (mapdata instanceof CoreUtilitiesModVariables.MapVariables mapVars) {
-				sendSavedData(player, 0, mapVars.save(new CompoundTag()));
-			}
-			if (worlddata instanceof CoreUtilitiesModVariables.WorldVariables worldVars) {
-				sendSavedData(player, 1, worldVars.save(new CompoundTag()));
-			}
 		});
 	}
 

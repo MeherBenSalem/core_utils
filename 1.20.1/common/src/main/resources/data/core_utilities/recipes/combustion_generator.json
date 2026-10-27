@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "III",
+    "IFI",
+    "CMC"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "C": {
+      "item": "core_utilities:basic_circuit"
+    },
+    "M": {
+      "item": "core_utilities:basic_machine_frame"
+    }
+  },
+  "result": {
+    "item": "core_utilities:combustion_generator"
+  }
+}

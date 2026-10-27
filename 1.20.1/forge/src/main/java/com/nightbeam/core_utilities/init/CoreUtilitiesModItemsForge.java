@@ -2,164 +2,21 @@ package com.nightbeam.core_utilities.init;
 
 import com.nightbeam.core_utilities.CoreUtilitiesMod;
 import com.nightbeam.core_utilities.item.*;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+/** Loader specific items (the backpacks use Forge item capabilities). Everything else is registered in common. */
 public class CoreUtilitiesModItemsForge {
 	public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, CoreUtilitiesMod.MOD_ID);
-	public static final RegistryObject<Item> VECTOR_PLATE_TIER_1 = block(CoreUtilitiesModBlocksForge.VECTOR_PLATE_TIER_1);
-	public static final RegistryObject<Item> VECTOR_PLATE_TIER_2 = block(CoreUtilitiesModBlocksForge.VECTOR_PLATE_TIER_2);
-	public static final RegistryObject<Item> VECTOR_PLATE_TIER_3 = block(CoreUtilitiesModBlocksForge.VECTOR_PLATE_TIER_3);
-	public static final RegistryObject<Item> VECTOR_PLATE_TIER_4 = block(CoreUtilitiesModBlocksForge.VECTOR_PLATE_TIER_4);
-	public static final RegistryObject<Item> BLANK_PLATE = REGISTRY.register("blank_plate", () -> new BlankPlateItem());
-	public static final RegistryObject<Item> HEALING_PLATE = block(CoreUtilitiesModBlocksForge.HEALING_PLATE);
-	public static final RegistryObject<Item> SPEED_PLATE = block(CoreUtilitiesModBlocksForge.SPEED_PLATE);
-	public static final RegistryObject<Item> FIRE_RES_PLATE = block(CoreUtilitiesModBlocksForge.FIRE_RES_PLATE);
-	public static final RegistryObject<Item> STRENGTH_PLATE = block(CoreUtilitiesModBlocksForge.STRENGTH_PLATE);
-	public static final RegistryObject<Item> POISON_PLATE = block(CoreUtilitiesModBlocksForge.POISON_PLATE);
-	public static final RegistryObject<Item> WEAKNESS_PLATE = block(CoreUtilitiesModBlocksForge.WEAKNESS_PLATE);
-	public static final RegistryObject<Item> SLOWNESS_PLATE = block(CoreUtilitiesModBlocksForge.SLOWNESS_PLATE);
-	public static final RegistryObject<Item> WITHER_PLATE = block(CoreUtilitiesModBlocksForge.WITHER_PLATE);
-	public static final RegistryObject<Item> PLAYER_FILTER = block(CoreUtilitiesModBlocksForge.PLAYER_FILTER);
-	public static final RegistryObject<Item> MOB_FILTER = block(CoreUtilitiesModBlocksForge.MOB_FILTER);
-	public static final RegistryObject<Item> NEUTRAL_FILTER = block(CoreUtilitiesModBlocksForge.NEUTRAL_FILTER);
-	public static final RegistryObject<Item> PROJECTILE_FILTER = block(CoreUtilitiesModBlocksForge.PROJECTILE_FILTER);
-	public static final RegistryObject<Item> FILTER_ZOMBIE = block(CoreUtilitiesModBlocksForge.FILTER_ZOMBIE);
-	public static final RegistryObject<Item> FILTER_SKELETON = block(CoreUtilitiesModBlocksForge.FILTER_SKELETON);
-	public static final RegistryObject<Item> FILTER_SPIDER = block(CoreUtilitiesModBlocksForge.FILTER_SPIDER);
-	public static final RegistryObject<Item> FILTER_VILLAGER = block(CoreUtilitiesModBlocksForge.FILTER_VILLAGER);
-	public static final RegistryObject<Item> FILTER_PET = block(CoreUtilitiesModBlocksForge.FILTER_PET);
-	public static final RegistryObject<Item> FILTER_ANIMAL = block(CoreUtilitiesModBlocksForge.FILTER_ANIMAL);
-	public static final RegistryObject<Item> DENY_PLAYER_FILTER = block(CoreUtilitiesModBlocksForge.DENY_PLAYER_FILTER);
-	public static final RegistryObject<Item> DENY_MOB_FILTER = block(CoreUtilitiesModBlocksForge.DENY_MOB_FILTER);
-	public static final RegistryObject<Item> DENY_NEUTRAL_FILTER = block(CoreUtilitiesModBlocksForge.DENY_NEUTRAL_FILTER);
-	public static final RegistryObject<Item> DENY_PROJECTILE_FILTER = block(CoreUtilitiesModBlocksForge.DENY_PROJECTILE_FILTER);
-	public static final RegistryObject<Item> DENY_FILTER_ZOMBIE = block(CoreUtilitiesModBlocksForge.DENY_FILTER_ZOMBIE);
-	public static final RegistryObject<Item> DENY_FILTER_SKELETON = block(CoreUtilitiesModBlocksForge.DENY_FILTER_SKELETON);
-	public static final RegistryObject<Item> DENY_FILTER_SPIDER = block(CoreUtilitiesModBlocksForge.DENY_FILTER_SPIDER);
-	public static final RegistryObject<Item> DENY_FILTER_VILLAGER = block(CoreUtilitiesModBlocksForge.DENY_FILTER_VILLAGER);
-	public static final RegistryObject<Item> DENY_FILTER_PET = block(CoreUtilitiesModBlocksForge.DENY_FILTER_PET);
-	public static final RegistryObject<Item> DENY_FILTER_ANIMAL = block(CoreUtilitiesModBlocksForge.DENY_FILTER_ANIMAL);
-	public static final RegistryObject<Item> CONFIGURATION_WRENCH = REGISTRY.register("configuration_wrench", () -> new ConfigurationWrenchItem());
 	public static final RegistryObject<Item> SMALL_BACKPACK = REGISTRY.register("small_backpack", () -> new SmallBackpackItem());
 	public static final RegistryObject<Item> MEDIUM_BACKPACK = REGISTRY.register("medium_backpack", () -> new MediumBackpackItem());
 	public static final RegistryObject<Item> BIG_BACKPACK = REGISTRY.register("big_backpack", () -> new BigBackpackItem());
-	public static final RegistryObject<Item> MOB_NET = REGISTRY.register("mob_net", () -> new MobNetItem());
-	public static final RegistryObject<Item> FLOATING_BLOCK = block(CoreUtilitiesModBlocksForge.FLOATING_BLOCK);
-	public static final RegistryObject<Item> CABLE = block(CoreUtilitiesModBlocksForge.CABLE);
-	public static final RegistryObject<Item> CABLE_E = block(CoreUtilitiesModBlocksForge.CABLE_E);
-	public static final RegistryObject<Item> CABLE_I = block(CoreUtilitiesModBlocksForge.CABLE_I);
-	public static final RegistryObject<Item> CABLE_L = block(CoreUtilitiesModBlocksForge.CABLE_L);
-	public static final RegistryObject<Item> CABLE_LC = block(CoreUtilitiesModBlocksForge.CABLE_LC);
-	public static final RegistryObject<Item> CABLE_LCC = block(CoreUtilitiesModBlocksForge.CABLE_LCC);
-	public static final RegistryObject<Item> CABLE_LT = block(CoreUtilitiesModBlocksForge.CABLE_LT);
-	public static final RegistryObject<Item> CABLE_LTC = block(CoreUtilitiesModBlocksForge.CABLE_LTC);
-	public static final RegistryObject<Item> CABLE_T = block(CoreUtilitiesModBlocksForge.CABLE_T);
-	public static final RegistryObject<Item> CABLE_TC = block(CoreUtilitiesModBlocksForge.CABLE_TC);
-	public static final RegistryObject<Item> CABLE_TX = block(CoreUtilitiesModBlocksForge.CABLE_TX);
-	public static final RegistryObject<Item> CABLE_TXC = block(CoreUtilitiesModBlocksForge.CABLE_TXC);
-	public static final RegistryObject<Item> CABLE_TXCC = block(CoreUtilitiesModBlocksForge.CABLE_TXCC);
-	public static final RegistryObject<Item> CABLE_X = block(CoreUtilitiesModBlocksForge.CABLE_X);
-	public static final RegistryObject<Item> CABLE_XC = block(CoreUtilitiesModBlocksForge.CABLE_XC);
-	public static final RegistryObject<Item> CABLE_F = block(CoreUtilitiesModBlocksForge.CABLE_F);
-	public static final RegistryObject<Item> CABLE_S = block(CoreUtilitiesModBlocksForge.CABLE_S);
-	public static final RegistryObject<Item> SOLAR_PANEL = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL);
-	public static final RegistryObject<Item> SOLAR_PANEL_1 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_1);
-	public static final RegistryObject<Item> SOLAR_PANEL_2 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_2);
-	public static final RegistryObject<Item> BASIC_MACHINE_FRAME = block(CoreUtilitiesModBlocksForge.BASIC_MACHINE_FRAME);
-	public static final RegistryObject<Item> SOLAR_PANEL_TIER_21 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_TIER_21);
-	public static final RegistryObject<Item> SOLAR_PANEL_TIER_22 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_TIER_22);
-	public static final RegistryObject<Item> SOLAR_PANEL_TIER_23 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_TIER_23);
-	public static final RegistryObject<Item> SOLAR_PANEL_TIER_31 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_TIER_31);
-	public static final RegistryObject<Item> SOLAR_PANEL_TIER_32 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_TIER_32);
-	public static final RegistryObject<Item> SOLAR_PANEL_TIER_33 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_TIER_33);
-	public static final RegistryObject<Item> SOLAR_PANEL_TIER_41 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_TIER_41);
-	public static final RegistryObject<Item> SOLAR_PANEL_TIER_42 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_TIER_42);
-	public static final RegistryObject<Item> SOLAR_PANEL_TIER_43 = block(CoreUtilitiesModBlocksForge.SOLAR_PANEL_TIER_43);
-	private static RegistryObject<Item> block(RegistryObject<Block> block) {
-		return block(block, new Item.Properties());
-	}
-
-	private static RegistryObject<Item> block(RegistryObject<Block> block, Item.Properties properties) {
-		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), properties));
-	}
 
 	static {
-		CoreUtilitiesModItems.VECTOR_PLATE_TIER_1 = () -> VECTOR_PLATE_TIER_1.get();
-		CoreUtilitiesModItems.VECTOR_PLATE_TIER_2 = () -> VECTOR_PLATE_TIER_2.get();
-		CoreUtilitiesModItems.VECTOR_PLATE_TIER_3 = () -> VECTOR_PLATE_TIER_3.get();
-		CoreUtilitiesModItems.VECTOR_PLATE_TIER_4 = () -> VECTOR_PLATE_TIER_4.get();
-		CoreUtilitiesModItems.BLANK_PLATE = () -> BLANK_PLATE.get();
-		CoreUtilitiesModItems.HEALING_PLATE = () -> HEALING_PLATE.get();
-		CoreUtilitiesModItems.SPEED_PLATE = () -> SPEED_PLATE.get();
-		CoreUtilitiesModItems.FIRE_RES_PLATE = () -> FIRE_RES_PLATE.get();
-		CoreUtilitiesModItems.STRENGTH_PLATE = () -> STRENGTH_PLATE.get();
-		CoreUtilitiesModItems.POISON_PLATE = () -> POISON_PLATE.get();
-		CoreUtilitiesModItems.WEAKNESS_PLATE = () -> WEAKNESS_PLATE.get();
-		CoreUtilitiesModItems.SLOWNESS_PLATE = () -> SLOWNESS_PLATE.get();
-		CoreUtilitiesModItems.WITHER_PLATE = () -> WITHER_PLATE.get();
-		CoreUtilitiesModItems.PLAYER_FILTER = () -> PLAYER_FILTER.get();
-		CoreUtilitiesModItems.MOB_FILTER = () -> MOB_FILTER.get();
-		CoreUtilitiesModItems.NEUTRAL_FILTER = () -> NEUTRAL_FILTER.get();
-		CoreUtilitiesModItems.PROJECTILE_FILTER = () -> PROJECTILE_FILTER.get();
-		CoreUtilitiesModItems.FILTER_ZOMBIE = () -> FILTER_ZOMBIE.get();
-		CoreUtilitiesModItems.FILTER_SKELETON = () -> FILTER_SKELETON.get();
-		CoreUtilitiesModItems.FILTER_SPIDER = () -> FILTER_SPIDER.get();
-		CoreUtilitiesModItems.FILTER_VILLAGER = () -> FILTER_VILLAGER.get();
-		CoreUtilitiesModItems.FILTER_PET = () -> FILTER_PET.get();
-		CoreUtilitiesModItems.FILTER_ANIMAL = () -> FILTER_ANIMAL.get();
-		CoreUtilitiesModItems.DENY_PLAYER_FILTER = () -> DENY_PLAYER_FILTER.get();
-		CoreUtilitiesModItems.DENY_MOB_FILTER = () -> DENY_MOB_FILTER.get();
-		CoreUtilitiesModItems.DENY_NEUTRAL_FILTER = () -> DENY_NEUTRAL_FILTER.get();
-		CoreUtilitiesModItems.DENY_PROJECTILE_FILTER = () -> DENY_PROJECTILE_FILTER.get();
-		CoreUtilitiesModItems.DENY_FILTER_ZOMBIE = () -> DENY_FILTER_ZOMBIE.get();
-		CoreUtilitiesModItems.DENY_FILTER_SKELETON = () -> DENY_FILTER_SKELETON.get();
-		CoreUtilitiesModItems.DENY_FILTER_SPIDER = () -> DENY_FILTER_SPIDER.get();
-		CoreUtilitiesModItems.DENY_FILTER_VILLAGER = () -> DENY_FILTER_VILLAGER.get();
-		CoreUtilitiesModItems.DENY_FILTER_PET = () -> DENY_FILTER_PET.get();
-		CoreUtilitiesModItems.DENY_FILTER_ANIMAL = () -> DENY_FILTER_ANIMAL.get();
-		CoreUtilitiesModItems.CONFIGURATION_WRENCH = () -> CONFIGURATION_WRENCH.get();
 		CoreUtilitiesModItems.SMALL_BACKPACK = () -> SMALL_BACKPACK.get();
 		CoreUtilitiesModItems.MEDIUM_BACKPACK = () -> MEDIUM_BACKPACK.get();
 		CoreUtilitiesModItems.BIG_BACKPACK = () -> BIG_BACKPACK.get();
-		CoreUtilitiesModItems.MOB_NET = () -> MOB_NET.get();
-		CoreUtilitiesModItems.FLOATING_BLOCK = () -> FLOATING_BLOCK.get();
-		CoreUtilitiesModItems.CABLE = () -> CABLE.get();
-		CoreUtilitiesModItems.CABLE_E = () -> CABLE_E.get();
-		CoreUtilitiesModItems.CABLE_I = () -> CABLE_I.get();
-		CoreUtilitiesModItems.CABLE_L = () -> CABLE_L.get();
-		CoreUtilitiesModItems.CABLE_LC = () -> CABLE_LC.get();
-		CoreUtilitiesModItems.CABLE_LCC = () -> CABLE_LCC.get();
-		CoreUtilitiesModItems.CABLE_LT = () -> CABLE_LT.get();
-		CoreUtilitiesModItems.CABLE_LTC = () -> CABLE_LTC.get();
-		CoreUtilitiesModItems.CABLE_T = () -> CABLE_T.get();
-		CoreUtilitiesModItems.CABLE_TC = () -> CABLE_TC.get();
-		CoreUtilitiesModItems.CABLE_TX = () -> CABLE_TX.get();
-		CoreUtilitiesModItems.CABLE_TXC = () -> CABLE_TXC.get();
-		CoreUtilitiesModItems.CABLE_TXCC = () -> CABLE_TXCC.get();
-		CoreUtilitiesModItems.CABLE_X = () -> CABLE_X.get();
-		CoreUtilitiesModItems.CABLE_XC = () -> CABLE_XC.get();
-		CoreUtilitiesModItems.CABLE_F = () -> CABLE_F.get();
-		CoreUtilitiesModItems.CABLE_S = () -> CABLE_S.get();
-		CoreUtilitiesModItems.SOLAR_PANEL = () -> SOLAR_PANEL.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_1 = () -> SOLAR_PANEL_1.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_2 = () -> SOLAR_PANEL_2.get();
-		CoreUtilitiesModItems.BASIC_MACHINE_FRAME = () -> BASIC_MACHINE_FRAME.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_TIER_21 = () -> SOLAR_PANEL_TIER_21.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_TIER_22 = () -> SOLAR_PANEL_TIER_22.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_TIER_23 = () -> SOLAR_PANEL_TIER_23.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_TIER_31 = () -> SOLAR_PANEL_TIER_31.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_TIER_32 = () -> SOLAR_PANEL_TIER_32.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_TIER_33 = () -> SOLAR_PANEL_TIER_33.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_TIER_41 = () -> SOLAR_PANEL_TIER_41.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_TIER_42 = () -> SOLAR_PANEL_TIER_42.get();
-		CoreUtilitiesModItems.SOLAR_PANEL_TIER_43 = () -> SOLAR_PANEL_TIER_43.get();
 	}
 }
-
-
-

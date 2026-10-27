@@ -41,6 +41,13 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 dependencies {
     compileOnly project(":common")
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
+    // Common code uses JetBrains annotations, which Forge 1.20.1 does not put on the compile classpath
+    compileOnly 'org.jetbrains:annotations:24.1.0'
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    modCompileOnly "mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"
+    if (project.hasProperty('withJei')) {
+        modRuntimeOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
+    }
 }
 
 jar {

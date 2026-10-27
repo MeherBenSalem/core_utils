@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "core_utilities:iron_dust"
+  },
+  "result": "minecraft:iron_ingot",
+  "experience": 0.4,
+  "cookingtime": 200
+}

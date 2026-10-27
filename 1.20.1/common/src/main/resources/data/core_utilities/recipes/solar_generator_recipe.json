@@ -27,7 +27,6 @@
     }
   },
   "result": {
-    "item": "core_utilities:solar_panel",
-    "count": 1
+    "item": "core_utilities:solar_panel"
   }
 }

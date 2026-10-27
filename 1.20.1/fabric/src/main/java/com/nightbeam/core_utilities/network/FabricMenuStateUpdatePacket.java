@@ -50,6 +50,10 @@ public final class FabricMenuStateUpdatePacket {
 				}
 			});
 		});
+	}
+
+	/** Client receivers; only called from the client initializer (ClientPlayNetworking does not exist on a dedicated server). */
+	public static void registerClient() {
 		ClientPlayNetworking.registerGlobalReceiver(ID, (client, handler, buf, responseSender) -> {
 			final int elementType = buf.readInt();
 			final String name = buf.readUtf();

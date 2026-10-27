@@ -1,18 +1,17 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "core_utilities:blocks/mob_filter",
   "pools": [
     {
       "rolls": 1.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
           "name": "core_utilities:mob_filter"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }

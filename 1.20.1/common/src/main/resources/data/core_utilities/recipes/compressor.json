@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IPI",
+    "PMP",
+    "ICI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "M": {
+      "item": "core_utilities:basic_machine_frame"
+    },
+    "C": {
+      "item": "core_utilities:basic_circuit"
+    }
+  },
+  "result": {
+    "item": "core_utilities:compressor"
+  }
+}

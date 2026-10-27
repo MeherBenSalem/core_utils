@@ -17,6 +17,9 @@ public class CoreUtilitiesModScreens {
 			MenuScreens.register(CoreUtilitiesModMenusForge.SMALL_BACKPACK_GUI.get(), SmallBackpackGUIScreen::new);
 			MenuScreens.register(CoreUtilitiesModMenusForge.BIG_BACKPACK_GUI.get(), BigBackpackGUIScreen::new);
 			MenuScreens.register(CoreUtilitiesModMenusForge.MEDIUM_BACKPACK_GUI.get(), MediumBackpackGUIScreen::new);
+			for (com.nightbeam.core_utilities.machine.MachineSpec spec : com.nightbeam.core_utilities.machine.MachineSpecs.ALL) {
+				MenuScreens.register(spec.menuType(), com.nightbeam.core_utilities.client.MachineScreen::new);
+			}
 		});
 	}
 }

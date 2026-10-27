@@ -21,7 +21,6 @@
     }
   },
   "result": {
-    "item": "core_utilities:mob_filter",
-    "count": 1
+    "item": "core_utilities:mob_filter"
   }
 }

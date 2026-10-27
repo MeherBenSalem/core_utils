@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " G ",
+    "BEB",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "core_utilities:gold_plate"
+    },
+    "B": {
+      "item": "core_utilities:basic_circuit"
+    },
+    "E": {
+      "item": "core_utilities:energized_ingot"
+    }
+  },
+  "result": {
+    "item": "core_utilities:advanced_circuit"
+  }
+}

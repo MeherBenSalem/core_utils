@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:copper_ores",
+    {
+      "id": "#c:ores/copper",
+      "required": false
+    },
+    {
+      "id": "#forge:ores/copper",
+      "required": false
+    },
+    {
+      "id": "#c:copper_ores",
+      "required": false
+    }
+  ]
+}

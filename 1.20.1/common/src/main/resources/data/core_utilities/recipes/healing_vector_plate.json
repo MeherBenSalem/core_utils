@@ -16,7 +16,6 @@
     }
   ],
   "result": {
-    "item": "core_utilities:healing_plate",
-    "count": 1
+    "item": "core_utilities:healing_plate"
   }
 }

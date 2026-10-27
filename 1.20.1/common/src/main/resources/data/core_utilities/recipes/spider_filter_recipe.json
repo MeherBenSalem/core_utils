@@ -21,7 +21,6 @@
     }
   },
   "result": {
-    "item": "core_utilities:filter_spider",
-    "count": 1
+    "item": "core_utilities:filter_spider"
   }
 }

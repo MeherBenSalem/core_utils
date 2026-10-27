@@ -1,0 +1,78 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "core_utilities:block/cable_basic",
+    "core": "core_utilities:block/cable_basic",
+    "conn": "core_utilities:block/cable_basic_connector"
+  },
+  "elements": [
+    {
+      "from": [
+        5,
+        5,
+        0
+      ],
+      "to": [
+        11,
+        11,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#conn",
+          "uv": [
+            5,
+            5,
+            11,
+            11
+          ]
+        },
+        "south": {
+          "texture": "#conn",
+          "uv": [
+            5,
+            5,
+            11,
+            11
+          ]
+        },
+        "east": {
+          "texture": "#core",
+          "uv": [
+            0,
+            5,
+            16,
+            11
+          ]
+        },
+        "west": {
+          "texture": "#core",
+          "uv": [
+            0,
+            5,
+            16,
+            11
+          ]
+        },
+        "up": {
+          "texture": "#core",
+          "uv": [
+            5,
+            0,
+            11,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#core",
+          "uv": [
+            5,
+            0,
+            11,
+            16
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,18 +1,17 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "core_utilities:blocks/deny_filter_animal",
   "pools": [
     {
       "rolls": 1.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "core_utilities:deny_filter_animal"
+          "name": "core_utilities:filter_animal"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SGS",
+    "GCG",
+    "SGS"
+  ],
+  "key": {
+    "S": {
+      "item": "core_utilities:steel_ingot"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "C": {
+      "item": "core_utilities:basic_circuit"
+    }
+  },
+  "result": {
+    "item": "core_utilities:energy_upgrade"
+  }
+}

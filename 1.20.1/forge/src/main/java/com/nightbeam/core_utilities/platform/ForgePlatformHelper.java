@@ -82,6 +82,53 @@ public class ForgePlatformHelper implements IPlatformHelper {
 		com.nightbeam.core_utilities.network.CoreUtilitiesModNetwork.syncMapData(world, data);
 	}
 
+	private static final java.util.Map<net.minecraft.resources.ResourceKey<?>, net.minecraftforge.registries.DeferredRegister<?>> REGISTERS = new java.util.LinkedHashMap<>();
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public <R, T extends R> java.util.function.Supplier<T> register(net.minecraft.core.Registry<R> registry, String name, java.util.function.Supplier<T> factory) {
+		net.minecraftforge.registries.DeferredRegister<R> register = (net.minecraftforge.registries.DeferredRegister<R>) REGISTERS.computeIfAbsent(registry.key(),
+				key -> net.minecraftforge.registries.DeferredRegister.create(registry.key(), com.nightbeam.core_utilities.CoreUtilitiesMod.MOD_ID));
+		return register.register(name, factory);
+	}
+
+	/** Attaches every deferred register created through {@link #register} to the mod event bus. */
+	public static void attachRegisters(net.minecraftforge.eventbus.api.IEventBus bus) {
+		REGISTERS.values().forEach(register -> register.register(bus));
+	}
+
+	@Override
+	public void invalidateCapabilities(net.minecraft.world.level.Level level, net.minecraft.core.BlockPos pos) {
+		BlockEntity blockEntity = level.getBlockEntity(pos);
+		if (blockEntity != null) {
+			// Invalidates the cached LazyOptionals handed to neighbours; the provider rebuilds them on the next query
+			blockEntity.invalidateCaps();
+			blockEntity.reviveCaps();
+		}
+	}
+
+	@Override
+	public <T extends BlockEntity> net.minecraft.world.level.block.entity.BlockEntityType<T> createBlockEntityType(
+			java.util.function.BiFunction<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, T> factory, net.minecraft.world.level.block.Block... blocks) {
+		return net.minecraft.world.level.block.entity.BlockEntityType.Builder.of(factory::apply, blocks).build(null);
+	}
+
+	@Override
+	public <M extends net.minecraft.world.inventory.AbstractContainerMenu> net.minecraft.world.inventory.MenuType<M> createMenuType(
+			java.util.function.BiFunction<Integer, net.minecraft.world.entity.player.Inventory, M> factory) {
+		return new net.minecraft.world.inventory.MenuType<>(factory::apply, net.minecraft.world.flag.FeatureFlags.VANILLA_SET);
+	}
+
+	@Override
+	public java.nio.file.Path getConfigDir() {
+		return net.minecraftforge.fml.loading.FMLPaths.CONFIGDIR.get();
+	}
+
+	@Override
+	public int getBurnTime(ItemStack stack) {
+		return stack.isEmpty() ? 0 : net.minecraftforge.common.ForgeHooks.getBurnTime(stack, net.minecraft.world.item.crafting.RecipeType.SMELTING);
+	}
+
 	@Override
 	public ItemStackHandlerAccess getBackpackInventory(ItemStack stack) {
 		IItemHandler handler = stack.getCapability(ForgeCapabilities.ITEM_HANDLER).orElseGet(() -> new ItemStackHandler(27));

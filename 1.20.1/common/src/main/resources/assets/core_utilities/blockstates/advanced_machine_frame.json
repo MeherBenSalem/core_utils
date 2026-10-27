@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "core_utilities:block/advanced_machine_frame"
+    }
+  }
+}

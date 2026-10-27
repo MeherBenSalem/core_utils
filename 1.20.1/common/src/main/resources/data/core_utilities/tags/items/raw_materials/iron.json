@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:raw_iron",
+    {
+      "id": "#c:raw_materials/iron",
+      "required": false
+    },
+    {
+      "id": "#forge:raw_materials/iron",
+      "required": false
+    },
+    {
+      "id": "#c:iron_raw_materials",
+      "required": false
+    }
+  ]
+}

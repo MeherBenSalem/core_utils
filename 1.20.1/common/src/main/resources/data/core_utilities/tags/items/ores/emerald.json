@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:emerald_ores",
+    {
+      "id": "#c:ores/emerald",
+      "required": false
+    },
+    {
+      "id": "#forge:ores/emerald",
+      "required": false
+    },
+    {
+      "id": "#c:emerald_ores",
+      "required": false
+    }
+  ]
+}

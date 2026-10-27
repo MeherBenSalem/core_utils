@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SPS",
+    "PCP",
+    "SPS"
+  ],
+  "key": {
+    "S": {
+      "item": "core_utilities:steel_ingot"
+    },
+    "P": {
+      "item": "minecraft:ender_pearl"
+    },
+    "C": {
+      "item": "core_utilities:advanced_circuit"
+    }
+  },
+  "result": {
+    "item": "core_utilities:range_upgrade"
+  }
+}

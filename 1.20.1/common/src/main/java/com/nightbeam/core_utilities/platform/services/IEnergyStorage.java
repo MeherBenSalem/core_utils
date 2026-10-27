@@ -1,23 +1,17 @@
 package com.nightbeam.core_utilities.platform.services;
 
+import com.nightbeam.core_utilities.energy.EnergyHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public interface IEnergyStorage {
-	boolean canExtractEnergy(LevelAccessor level, BlockPos pos, @Nullable Direction side);
-
-	boolean canReceiveEnergy(LevelAccessor level, BlockPos pos, Direction side);
-
-	int getEnergyStored(LevelAccessor level, BlockPos pos, @Nullable Direction side);
-
-	int getMaxEnergyStored(LevelAccessor level, BlockPos pos, @Nullable Direction side);
-
-	int receiveEnergySimulate(LevelAccessor level, BlockPos pos, Direction side, int amount);
-
-	int receiveEnergy(LevelAccessor level, BlockPos pos, Direction side, int amount);
-
-	int extractEnergy(LevelAccessor level, BlockPos pos, @Nullable Direction side, int amount);
+	/**
+	 * Finds an energy storage at {@code pos} accessed through face {@code side} of that block.
+	 * Works for Core Utilities blocks and for any block exposing the loader's energy API.
+	 */
+	@Nullable
+	EnergyHandler find(Level level, BlockPos pos, @Nullable Direction side);
 }

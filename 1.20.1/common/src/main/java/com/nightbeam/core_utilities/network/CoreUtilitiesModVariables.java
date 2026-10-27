@@ -50,7 +50,6 @@ public class CoreUtilitiesModVariables {
 
 	public static class MapVariables extends SavedData {
 		public static final String DATA_NAME = "core_utilities_mapvars";
-		public double forgeFlow = 0;
 
 		public static MapVariables load(CompoundTag tag) {
 			MapVariables data = new MapVariables();
@@ -59,12 +58,10 @@ public class CoreUtilitiesModVariables {
 		}
 
 		public void read(CompoundTag nbt) {
-			forgeFlow = nbt.getDouble("forgeFlow");
 		}
 
 		@Override
 		public CompoundTag save(CompoundTag nbt) {
-			nbt.putDouble("forgeFlow", forgeFlow);
 			return nbt;
 		}
 

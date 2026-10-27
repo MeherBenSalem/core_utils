@@ -101,6 +101,38 @@ public class FabricPlatformHelper implements IPlatformHelper {
 	}
 
 	@Override
+	public <R, T extends R> java.util.function.Supplier<T> register(net.minecraft.core.Registry<R> registry, String name, java.util.function.Supplier<T> factory) {
+		T value = net.minecraft.core.Registry.register(registry, new ResourceLocation(com.nightbeam.core_utilities.CoreUtilitiesMod.MOD_ID, name), factory.get());
+		return () -> value;
+	}
+
+	@Override
+	public <M extends net.minecraft.world.inventory.AbstractContainerMenu> net.minecraft.world.inventory.MenuType<M> createMenuType(
+			java.util.function.BiFunction<Integer, net.minecraft.world.entity.player.Inventory, M> factory) {
+		return new net.minecraft.world.inventory.MenuType<>(factory::apply, net.minecraft.world.flag.FeatureFlags.VANILLA_SET);
+	}
+
+	@Override
+	public <T extends BlockEntity> net.minecraft.world.level.block.entity.BlockEntityType<T> createBlockEntityType(
+			java.util.function.BiFunction<BlockPos, BlockState, T> factory, net.minecraft.world.level.block.Block... blocks) {
+		return net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder.create(factory::apply, blocks).build();
+	}
+
+	@Override
+	public java.nio.file.Path getConfigDir() {
+		return FabricLoader.getInstance().getConfigDir();
+	}
+
+	@Override
+	public int getBurnTime(ItemStack stack) {
+		if (stack.isEmpty()) {
+			return 0;
+		}
+		Integer time = net.fabricmc.fabric.api.registry.FuelRegistry.INSTANCE.get(stack.getItem());
+		return time == null ? 0 : time;
+	}
+
+	@Override
 	public ItemStackHandlerAccess getBackpackInventory(ItemStack stack) {
 		return new NbtBackpackInventory(stack);
 	}

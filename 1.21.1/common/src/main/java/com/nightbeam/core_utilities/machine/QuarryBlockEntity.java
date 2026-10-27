@@ -58,6 +58,10 @@ public class QuarryBlockEntity extends AreaMachineBlockEntity {
 			}
 			BlockPos target = new BlockPos(worldPosition.getX() - radius + cursor % side, layer, worldPosition.getZ() - radius + cursor / side);
 			scanned++;
+			// leave the column under the quarry standing so the machine never undermines itself
+			if (target.getX() == worldPosition.getX() && target.getZ() == worldPosition.getZ()) {
+				continue;
+			}
 			if (!level.isLoaded(target)) {
 				continue;
 			}

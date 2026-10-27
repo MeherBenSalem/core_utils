@@ -401,7 +401,7 @@ def gen_lang(version):
         old = json.load(f)
     lang = {k: v for k, v in old.items() if not k.startswith(('block.essential_utilities', 'item.essential_utilities', 'item_group.essential_utilities'))}
     for k, v in list(lang.items()):
-        lang[k] = v.replace('Resistence', 'Resistance')
+        lang[k] = v.replace('Resistence', 'Resistance').replace('resistence', 'resistance')
     lang.update(ct.LANG)
     write_json(path, dict(sorted(lang.items())))
 

@@ -65,7 +65,7 @@
   "block.core_utilities.filter_zombie": "Zombie Filter",
   "block.core_utilities.filter_zombie.description_0": "only zombies can pass through",
   "block.core_utilities.fire_res_plate": "Fire Resistance Plate",
-  "block.core_utilities.fire_res_plate.description_0": "affects mobs and players who touch the trap with fire resistence",
+  "block.core_utilities.fire_res_plate.description_0": "affects mobs and players who touch the trap with fire resistance",
   "block.core_utilities.floating_block": "Floating Block",
   "block.core_utilities.floating_block.description_0": "can be placed anywhere",
   "block.core_utilities.geothermal_generator": "Geothermal Generator",

@@ -17,6 +17,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 import textures as tx  # noqa: E402
 import content as ct  # noqa: E402
+import icons  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 NS = 'core_utilities'
@@ -236,22 +237,9 @@ def gen_textures(version):
         save_png(tx.connector_texture(c), os.path.join(blk, f'cable_{tier}_connector.png'))
     save_png(tx.connector_texture((160, 200, 240)), os.path.join(blk, 'pipe_connector.png'))
     save_png(tx.connector_texture((240, 120, 60), extract=True), os.path.join(blk, 'pipe_connector_extract.png'))
-    for name, (kind, color) in ct.ITEM_TEXTURES.items():
-        if kind == 'dust':
-            img = tx.dust(color, sum(map(ord, name)))
-        elif kind == 'ingot':
-            img = tx.ingot(color)
-        elif kind == 'plate':
-            img = tx.plate(color)
-        elif kind == 'circuit':
-            img = tx.circuit(color)
-        elif kind.startswith('upgrade'):
-            img = tx.upgrade(color, kind.split(':')[1])
-        elif kind == 'multimeter':
-            img = tx.multimeter()
-        else:
-            img = tx.guide_book()
-        save_png(img, os.path.join(itm, f'{name}.png'))
+    drawn = icons.icons()
+    for name in ct.ITEM_TEXTURES:
+        save_png(drawn[name], os.path.join(itm, f'{name}.png'))
     save_png(tx.gui_atlas(), os.path.join(base, 'gui', 'machine.png'))
 
 

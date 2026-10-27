@@ -30,7 +30,17 @@ const CHANGELOG = changelog();
 const builds = JARS.map(describe);
 const failures = [];
 
+let published;
 async function modrinth(b) {
+  // a rerun skips versions that are already on Modrinth
+  if (!published) {
+    const res = await fetch(`https://api.modrinth.com/v2/project/${process.env.MODRINTH_ID}/version`, { headers: { 'User-Agent': 'NightBeam publish workflow' } });
+    published = new Set(res.ok ? (await res.json()).map((v) => v.version_number) : []);
+  }
+  if (published.has(`${VERSION}+${b.minecraft}-${b.loader}`)) {
+    console.log(`Modrinth already has ${b.file}, skipped`);
+    return;
+  }
   const data = {
     name: `${VERSION} (${LOADER_NAMES[b.loader]} ${b.minecraft})`,
     version_number: `${VERSION}+${b.minecraft}-${b.loader}`,
@@ -70,9 +80,12 @@ async function cfIds(b) {
   }
   const mc = cfVersions.find((v) => v.typeSlug.startsWith('minecraft') && v.name === b.minecraft);
   const loader = cfVersions.find((v) => v.typeSlug === 'modloader' && v.name === LOADER_NAMES[b.loader]);
+  // the mod is needed on both sides, so every file is tagged Client and Server
+  const env = cfVersions.filter((v) => v.typeSlug === 'environment' && ['Client', 'Server'].includes(v.name));
   if (!mc) throw new Error(`CurseForge has no game version ${b.minecraft}`);
   if (!loader) throw new Error(`CurseForge has no loader ${LOADER_NAMES[b.loader]}`);
-  return [mc.id, loader.id];
+  if (env.length !== 2) throw new Error('CurseForge environment versions Client/Server not found');
+  return [mc.id, loader.id, ...env.map((v) => v.id)];
 }
 
 async function curseforge(b) {

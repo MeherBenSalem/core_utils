@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CCC",
+    "CEC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "core_utilities:cable_advanced"
+    },
+    "E": {
+      "item": "core_utilities:ender_alloy_ingot"
+    }
+  },
+  "result": {
+    "id": "core_utilities:cable_elite",
+    "count": 8
+  }
+}

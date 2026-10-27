@@ -1,91 +1,91 @@
 package com.nightbeam.core_utilities.platform;
 
-import com.nightbeam.core_utilities.block.entity.EnergyBlockEntityBase;
+import com.nightbeam.core_utilities.energy.EnergyHandler;
+import com.nightbeam.core_utilities.energy.EnergyHandlerProvider;
 import com.nightbeam.core_utilities.platform.services.IEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import org.jetbrains.annotations.Nullable;
 
 public class NeoForgeEnergyStorage implements IEnergyStorage {
+	@Override
 	@Nullable
-	private static net.neoforged.neoforge.energy.IEnergyStorage capability(LevelAccessor level, BlockPos pos, @Nullable Direction side) {
-		if (!(level instanceof Level concrete)) {
-			return null;
+	public EnergyHandler find(Level level, BlockPos pos, @Nullable Direction side) {
+		if (level.getBlockEntity(pos) instanceof EnergyHandlerProvider provider) {
+			return provider.getEnergyHandler(side);
 		}
-		return concrete.getCapability(Capabilities.EnergyStorage.BLOCK, pos, side);
+		net.neoforged.neoforge.energy.IEnergyStorage storage = level.getCapability(Capabilities.EnergyStorage.BLOCK, pos, side);
+		return storage == null ? null : wrap(storage);
 	}
 
-	@Override
-	public boolean canExtractEnergy(LevelAccessor level, BlockPos pos, @Nullable Direction side) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.getEnergyBuffer().canExtract();
-		}
-		var storage = capability(level, pos, side);
-		return storage != null && storage.canExtract();
+	public static EnergyHandler wrap(net.neoforged.neoforge.energy.IEnergyStorage storage) {
+		return new EnergyHandler() {
+			@Override
+			public int receiveEnergy(int amount, boolean simulate) {
+				return storage.receiveEnergy(amount, simulate);
+			}
+
+			@Override
+			public int extractEnergy(int amount, boolean simulate) {
+				return storage.extractEnergy(amount, simulate);
+			}
+
+			@Override
+			public int getEnergyStored() {
+				return storage.getEnergyStored();
+			}
+
+			@Override
+			public int getMaxEnergyStored() {
+				return storage.getMaxEnergyStored();
+			}
+
+			@Override
+			public boolean canReceive() {
+				return storage.canReceive();
+			}
+
+			@Override
+			public boolean canExtract() {
+				return storage.canExtract();
+			}
+		};
 	}
 
-	@Override
-	public boolean canReceiveEnergy(LevelAccessor level, BlockPos pos, Direction side) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.getEnergyBuffer().canReceive();
-		}
-		var storage = capability(level, pos, side);
-		return storage != null && storage.canReceive();
-	}
+	/** Exposes one of our handlers as a NeoForge energy capability. */
+	public static net.neoforged.neoforge.energy.IEnergyStorage expose(EnergyHandler handler) {
+		return new net.neoforged.neoforge.energy.IEnergyStorage() {
+			@Override
+			public int receiveEnergy(int amount, boolean simulate) {
+				return handler.receiveEnergy(amount, simulate);
+			}
 
-	@Override
-	public int getEnergyStored(LevelAccessor level, BlockPos pos, @Nullable Direction side) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.getEnergyBuffer().getEnergyStored();
-		}
-		var storage = capability(level, pos, side);
-		return storage != null ? storage.getEnergyStored() : 0;
-	}
+			@Override
+			public int extractEnergy(int amount, boolean simulate) {
+				return handler.extractEnergy(amount, simulate);
+			}
 
-	@Override
-	public int getMaxEnergyStored(LevelAccessor level, BlockPos pos, @Nullable Direction side) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.getEnergyBuffer().getMaxEnergyStored();
-		}
-		var storage = capability(level, pos, side);
-		return storage != null ? storage.getMaxEnergyStored() : 0;
-	}
+			@Override
+			public int getEnergyStored() {
+				return handler.getEnergyStored();
+			}
 
-	@Override
-	public int receiveEnergySimulate(LevelAccessor level, BlockPos pos, Direction side, int amount) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.receiveEnergy(amount, true);
-		}
-		var storage = capability(level, pos, side);
-		return storage != null ? storage.receiveEnergy(amount, true) : 0;
-	}
+			@Override
+			public int getMaxEnergyStored() {
+				return handler.getMaxEnergyStored();
+			}
 
-	@Override
-	public int receiveEnergy(LevelAccessor level, BlockPos pos, Direction side, int amount) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.receiveEnergy(amount, false);
-		}
-		var storage = capability(level, pos, side);
-		return storage != null ? storage.receiveEnergy(amount, false) : 0;
-	}
+			@Override
+			public boolean canExtract() {
+				return handler.canExtract();
+			}
 
-	@Override
-	public int extractEnergy(LevelAccessor level, BlockPos pos, @Nullable Direction side, int amount) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.extractEnergy(amount, false);
-		}
-		var storage = capability(level, pos, side);
-		return storage != null ? storage.extractEnergy(amount, false) : 0;
+			@Override
+			public boolean canReceive() {
+				return handler.canReceive();
+			}
+		};
 	}
 }

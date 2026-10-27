@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CCC",
+    "CEC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "core_utilities:cable"
+    },
+    "E": {
+      "item": "core_utilities:energized_ingot"
+    }
+  },
+  "result": {
+    "id": "core_utilities:cable_advanced",
+    "count": 8
+  }
+}

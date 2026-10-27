@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcb",
+    "bdb"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "b": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "c": {
+      "item": "core_utilities:solar_panel_tier_31"
+    },
+    "d": {
+      "item": "minecraft:redstone_block"
+    }
+  },
+  "result": {
+    "id": "core_utilities:solar_panel_tier_41"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "core_utilities:block/cable_elite_core"
+      }
+    },
+    {
+      "when": {
+        "north": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_arm"
+      }
+    },
+    {
+      "when": {
+        "north": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_endpoint"
+      }
+    },
+    {
+      "when": {
+        "east": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_arm",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "east": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_endpoint",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_arm",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "south": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_endpoint",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_arm",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "west": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_endpoint",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_arm",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "up": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_endpoint",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "down": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_arm",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "down": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/cable_elite_endpoint",
+        "x": 90
+      }
+    }
+  ]
+}

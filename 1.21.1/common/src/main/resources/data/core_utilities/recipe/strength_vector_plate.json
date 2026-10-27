@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond_sword"
+    },
+    {
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "minecraft:redstone_torch"
+    },
+    {
+      "item": "core_utilities:blank_plate"
+    }
+  ],
+  "result": {
+    "id": "core_utilities:strength_plate"
+  }
+}

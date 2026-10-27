@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IHI",
+    "CMC",
+    "IWI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "H": {
+      "item": "minecraft:iron_hoe"
+    },
+    "C": {
+      "item": "core_utilities:basic_circuit"
+    },
+    "M": {
+      "item": "core_utilities:basic_machine_frame"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "id": "core_utilities:crop_harvester"
+  }
+}

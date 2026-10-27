@@ -1,18 +1,26 @@
 package com.nightbeam.core_utilities;
 
-import com.nightbeam.core_utilities.init.CoreUtilitiesModBlockEntitiesForge;
-import com.nightbeam.core_utilities.init.CoreUtilitiesModBlocksForge;
+import com.nightbeam.core_utilities.energy.EnergyHandler;
+import com.nightbeam.core_utilities.energy.EnergyHandlerProvider;
+import com.nightbeam.core_utilities.init.CoreUtilitiesModBlockEntities;
 import com.nightbeam.core_utilities.init.CoreUtilitiesModItemsForge;
 import com.nightbeam.core_utilities.init.CoreUtilitiesModMenusForge;
 import com.nightbeam.core_utilities.init.CoreUtilitiesModTabs;
+import com.nightbeam.core_utilities.machine.MachineBlockEntity;
 import com.nightbeam.core_utilities.neoforge.NeoForgeNetworking;
-import com.nightbeam.core_utilities.procedures.ForgeFlowTimerProcedure;
+import com.nightbeam.core_utilities.platform.NeoForgeEnergyStorage;
+import com.nightbeam.core_utilities.platform.NeoForgePlatformHelper;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.function.Supplier;
 
 @Mod(CoreUtilitiesMod.MOD_ID)
 public class CoreUtilitiesModNeoForge {
@@ -30,12 +39,40 @@ public class CoreUtilitiesModNeoForge {
 
 	public CoreUtilitiesModNeoForge(IEventBus modEventBus) {
 		NeoForge.EVENT_BUS.register(this);
-		CoreUtilitiesModBlocksForge.REGISTRY.register(modEventBus);
-		CoreUtilitiesModBlockEntitiesForge.REGISTRY.register(modEventBus);
+		CoreUtilitiesMod.init();
+		NeoForgePlatformHelper.attachRegisters(modEventBus);
 		CoreUtilitiesModItemsForge.REGISTRY.register(modEventBus);
 		CoreUtilitiesModTabs.REGISTRY.register(modEventBus);
 		CoreUtilitiesModMenusForge.REGISTRY.register(modEventBus);
 		modEventBus.addListener(NeoForgeNetworking::register);
+		modEventBus.addListener(CoreUtilitiesModNeoForge::registerCapabilities);
+	}
+
+	private static void registerCapabilities(RegisterCapabilitiesEvent event) {
+		List<Supplier<? extends BlockEntityType<? extends BlockEntity>>> energyTypes = List.of(
+				CoreUtilitiesModBlockEntities.CABLE, CoreUtilitiesModBlockEntities.SOLAR_PANEL, CoreUtilitiesModBlockEntities.SOLAR_PANEL_TIER_21,
+				CoreUtilitiesModBlockEntities.SOLAR_PANEL_TIER_31, CoreUtilitiesModBlockEntities.SOLAR_PANEL_TIER_41,
+				CoreUtilitiesModBlockEntities.COMBUSTION_GENERATOR, CoreUtilitiesModBlockEntities.GEOTHERMAL_GENERATOR,
+				CoreUtilitiesModBlockEntities.ENERGY_CELL_BASIC, CoreUtilitiesModBlockEntities.ENERGY_CELL_ADVANCED, CoreUtilitiesModBlockEntities.ENERGY_CELL_ELITE,
+				CoreUtilitiesModBlockEntities.ENERGY_CELL_CREATIVE, CoreUtilitiesModBlockEntities.ELECTRIC_FURNACE, CoreUtilitiesModBlockEntities.CRUSHER,
+				CoreUtilitiesModBlockEntities.ALLOY_SMELTER, CoreUtilitiesModBlockEntities.COMPRESSOR, CoreUtilitiesModBlockEntities.QUARRY,
+				CoreUtilitiesModBlockEntities.CROP_HARVESTER, CoreUtilitiesModBlockEntities.BLOCK_BREAKER, CoreUtilitiesModBlockEntities.BLOCK_PLACER,
+				CoreUtilitiesModBlockEntities.MOB_GRINDER);
+		for (Supplier<? extends BlockEntityType<? extends BlockEntity>> type : energyTypes) {
+			event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, type.get(), (entity, side) -> {
+				if (entity instanceof EnergyHandlerProvider provider) {
+					EnergyHandler handler = provider.getEnergyHandler(side);
+					return handler == null ? null : NeoForgeEnergyStorage.expose(handler);
+				}
+				return null;
+			});
+			event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type.get(), (entity, side) -> {
+				if (entity instanceof MachineBlockEntity machine && machine.getContainerSize() > 0) {
+					return side == null ? new InvWrapper(machine) : new SidedInvWrapper(machine, side);
+				}
+				return null;
+			});
+		}
 	}
 
 	public static void queueServerWork(int tick, Runnable action) {
@@ -53,10 +90,5 @@ public class CoreUtilitiesModNeoForge {
 		});
 		actions.forEach(e -> e.getKey().run());
 		workQueue.removeAll(actions);
-	}
-
-	@SubscribeEvent
-	public void onWorldTick(LevelTickEvent.Post event) {
-		ForgeFlowTimerProcedure.execute(event.getLevel());
 	}
 }

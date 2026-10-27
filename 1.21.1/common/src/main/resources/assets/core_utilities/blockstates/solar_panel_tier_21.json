@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "weather=0": {
       "model": "core_utilities:block/solar_panel_tier_21"
+    },
+    "weather=1": {
+      "model": "core_utilities:block/solar_panel_tier_22"
+    },
+    "weather=2": {
+      "model": "core_utilities:block/solar_panel_tier_23"
     }
   }
 }

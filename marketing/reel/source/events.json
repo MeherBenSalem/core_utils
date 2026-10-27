@@ -1,0 +1,22 @@
+{
+ "hook_start": 5.2,
+ "reveal_on": 1.572,
+ "cables_first": 0.77,
+ "cables_last": 1.47,
+ "farm_start": 0.3,
+ "side_clicks": [
+  0.5529,
+  0.9813,
+  1.4094,
+  1.8377,
+  2.266,
+  2.694
+ ],
+ "loop_end": 4.52,
+ "grinder_hits": [
+  0.905,
+  1.905,
+  2.905
+ ],
+ "quarry_place": 1.5
+}

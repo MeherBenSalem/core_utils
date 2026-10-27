@@ -23,3 +23,4 @@ out/
 **/run/
 **/runs/
 __pycache__/
+marketing/reel/*.mp4

@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import textures as tx  # noqa: E402
 import content as ct  # noqa: E402
 import icons  # noqa: E402
+import machines as mt  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 NS = 'core_utilities'
@@ -216,17 +217,19 @@ def gen_textures(version):
         if name.startswith('energy_cell'):
             continue
         acc = tx.ACCENTS[name]
-        save_png(tx.side_texture(sum(map(ord, name)), acc), os.path.join(blk, f'{name}_side.png'))
-        save_png(tx.top_texture(sum(map(ord, name)), acc), os.path.join(blk, f'{name}_top.png'))
-        save_png(tx.bottom_texture(sum(map(ord, name))), os.path.join(blk, f'{name}_bottom.png'))
-        save_png(tx.front_texture(name, 0, False), os.path.join(blk, f'{name}_front.png'))
-        save_png(tx.animate([tx.front_texture(name, f, True) for f in range(4)]), os.path.join(blk, f'{name}_front_on.png'))
+        seed = sum(map(ord, name))
+        save_png(mt.side(acc, seed), os.path.join(blk, f'{name}_side.png'))
+        save_png(mt.top(acc, seed), os.path.join(blk, f'{name}_top.png'))
+        save_png(mt.bottom(acc, seed), os.path.join(blk, f'{name}_bottom.png'))
+        save_png(mt.front(name, acc, 0, False), os.path.join(blk, f'{name}_front.png'))
+        save_png(mt.strip([mt.front(name, acc, f, True) for f in range(4)]), os.path.join(blk, f'{name}_front_on.png'))
         write_json(os.path.join(blk, f'{name}_front_on.png.mcmeta'), anim)
     for tier in tx.TIERS:
-        save_png(tx.cell_side(tier), os.path.join(blk, f'energy_cell_{tier}_side.png'))
-        save_png(tx.cell_front(tier), os.path.join(blk, f'energy_cell_{tier}_front.png'))
-        save_png(tx.cell_top(tier), os.path.join(blk, f'energy_cell_{tier}_top.png'))
-    save_png(tx.frame_texture(True), os.path.join(blk, 'advanced_machine_frame.png'))
+        c = tx.TIERS[tier]
+        save_png(mt.cell(c, 'side', 70 + len(tier)), os.path.join(blk, f'energy_cell_{tier}_side.png'))
+        save_png(mt.cell(c, 'front', 70 + len(tier)), os.path.join(blk, f'energy_cell_{tier}_front.png'))
+        save_png(mt.cell(c, 'top', 70 + len(tier)), os.path.join(blk, f'energy_cell_{tier}_top.png'))
+    save_png(mt.frame(True), os.path.join(blk, 'advanced_machine_frame.png'))
     save_png(tx.steel_block(), os.path.join(blk, 'steel_block.png'))
     save_png(tx.conduit_texture((200, 110, 50), (60, 40, 30), 11), os.path.join(blk, 'cable_basic.png'))
     save_png(tx.conduit_texture((225, 185, 60), (90, 70, 20), 12), os.path.join(blk, 'cable_advanced.png'))

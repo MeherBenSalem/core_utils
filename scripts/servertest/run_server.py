@@ -9,7 +9,13 @@ exception from core_utilities was logged.
 """
 import os, subprocess, sys, time, threading, re, socket, struct
 
-def rcon(cmd, host='127.0.0.1', port=25575, pw='test'):
+
+RCON_PORT = int(os.environ.get('RCON_PORT', '25575'))
+SERVER_PORT = int(os.environ.get('SERVER_PORT', '25565'))
+
+
+def rcon(cmd, host='127.0.0.1', port=None, pw='test'):
+    port = port or RCON_PORT
     s = socket.create_connection((host, port), timeout=30)
     def send(i, t, body):
         b = body.encode() + b'\x00\x00'
@@ -37,7 +43,8 @@ props = os.path.join(rundir, 'server.properties')
 if not os.path.exists(props):
     with open(props, 'w') as f:
         f.write('online-mode=false\nlevel-type=minecraft\\:flat\nspawn-protection=0\nmotd=core_utilities test\n'
-                'enable-rcon=true\nrcon.password=test\nrcon.port=25575\nbroadcast-rcon-to-ops=false\nsync-chunk-writes=false\nview-distance=6\nsimulation-distance=6\ngamemode=creative\n')
+                f'enable-rcon=true\nrcon.password=test\nrcon.port={RCON_PORT}\nserver-port={SERVER_PORT}\nbroadcast-rcon-to-ops=false\n'
+                'sync-chunk-writes=false\nview-distance=6\nsimulation-distance=6\ngamemode=creative\n')
 env = dict(os.environ, JAVA_HOME=jh)
 p = subprocess.Popen(['./gradlew', f':{loader}:runServer', '--no-daemon', '--args=nogui'] if loader == 'fabric' else ['./gradlew', f':{loader}:runServer', '--no-daemon'],
                      cwd=proj, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)

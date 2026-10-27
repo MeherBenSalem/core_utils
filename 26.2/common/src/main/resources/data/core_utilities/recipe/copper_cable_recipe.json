@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bbb",
+    "aaa"
+  ],
+  "key": {
+    "a": "minecraft:blue_dye",
+    "b": "minecraft:copper_ingot"
+  },
+  "result": {
+    "id": "core_utilities:cable",
+    "count": 8
+  }
+}

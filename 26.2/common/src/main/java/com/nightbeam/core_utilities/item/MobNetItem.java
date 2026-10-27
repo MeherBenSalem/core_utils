@@ -1,4 +1,6 @@
 package com.nightbeam.core_utilities.item;
+
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.TooltipFlag;
@@ -17,8 +19,8 @@ import com.nightbeam.core_utilities.procedures.MobNetRightclickedProcedure;
 import com.nightbeam.core_utilities.procedures.MobNetRightclickedOnBlockProcedure;
 
 public class MobNetItem extends Item {
-	public MobNetItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
+	public MobNetItem(ResourceKey<Item> id) {
+		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON).setId(id));
 	}
 
 	@Override

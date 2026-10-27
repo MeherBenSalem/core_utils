@@ -1,6 +1,16 @@
 package com.nightbeam.core_utilities.init;
 
+import com.nightbeam.core_utilities.item.*;
+import com.nightbeam.core_utilities.platform.Services;
+import com.nightbeam.core_utilities.util.Compat;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.block.Block;
+
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class CoreUtilitiesModItems {
@@ -8,7 +18,6 @@ public class CoreUtilitiesModItems {
 	public static Supplier<Item> VECTOR_PLATE_TIER_2;
 	public static Supplier<Item> VECTOR_PLATE_TIER_3;
 	public static Supplier<Item> VECTOR_PLATE_TIER_4;
-	public static Supplier<Item> BLANK_PLATE;
 	public static Supplier<Item> HEALING_PLATE;
 	public static Supplier<Item> SPEED_PLATE;
 	public static Supplier<Item> FIRE_RES_PLATE;
@@ -37,13 +46,13 @@ public class CoreUtilitiesModItems {
 	public static Supplier<Item> DENY_FILTER_VILLAGER;
 	public static Supplier<Item> DENY_FILTER_PET;
 	public static Supplier<Item> DENY_FILTER_ANIMAL;
-	public static Supplier<Item> CONFIGURATION_WRENCH;
-	public static Supplier<Item> SMALL_BACKPACK;
-	public static Supplier<Item> MEDIUM_BACKPACK;
-	public static Supplier<Item> BIG_BACKPACK;
-	public static Supplier<Item> MOB_NET;
 	public static Supplier<Item> FLOATING_BLOCK;
+	public static Supplier<Item> BASIC_MACHINE_FRAME;
 	public static Supplier<Item> CABLE;
+	public static Supplier<Item> CABLE_ADVANCED;
+	public static Supplier<Item> CABLE_ELITE;
+	public static Supplier<Item> ITEM_PIPE;
+	public static Supplier<Item> RAPID_ITEM_PIPE;
 	public static Supplier<Item> CABLE_E;
 	public static Supplier<Item> CABLE_I;
 	public static Supplier<Item> CABLE_L;
@@ -63,7 +72,6 @@ public class CoreUtilitiesModItems {
 	public static Supplier<Item> SOLAR_PANEL;
 	public static Supplier<Item> SOLAR_PANEL_1;
 	public static Supplier<Item> SOLAR_PANEL_2;
-	public static Supplier<Item> BASIC_MACHINE_FRAME;
 	public static Supplier<Item> SOLAR_PANEL_TIER_21;
 	public static Supplier<Item> SOLAR_PANEL_TIER_22;
 	public static Supplier<Item> SOLAR_PANEL_TIER_23;
@@ -73,5 +81,166 @@ public class CoreUtilitiesModItems {
 	public static Supplier<Item> SOLAR_PANEL_TIER_41;
 	public static Supplier<Item> SOLAR_PANEL_TIER_42;
 	public static Supplier<Item> SOLAR_PANEL_TIER_43;
-}
+	public static Supplier<Item> ADVANCED_MACHINE_FRAME;
+	public static Supplier<Item> STEEL_BLOCK;
+	public static Supplier<Item> COMBUSTION_GENERATOR;
+	public static Supplier<Item> GEOTHERMAL_GENERATOR;
+	public static Supplier<Item> ENERGY_CELL_BASIC;
+	public static Supplier<Item> ENERGY_CELL_ADVANCED;
+	public static Supplier<Item> ENERGY_CELL_ELITE;
+	public static Supplier<Item> ENERGY_CELL_CREATIVE;
+	public static Supplier<Item> ELECTRIC_FURNACE;
+	public static Supplier<Item> CRUSHER;
+	public static Supplier<Item> ALLOY_SMELTER;
+	public static Supplier<Item> COMPRESSOR;
+	public static Supplier<Item> QUARRY;
+	public static Supplier<Item> CROP_HARVESTER;
+	public static Supplier<Item> BLOCK_BREAKER;
+	public static Supplier<Item> BLOCK_PLACER;
+	public static Supplier<Item> MOB_GRINDER;
+	public static Supplier<Item> BLANK_PLATE;
+	public static Supplier<Item> CONFIGURATION_WRENCH;
+	public static Supplier<Item> MOB_NET;
+	/** Registered by each loader (the backpack items are loader specific). */
+	public static Supplier<Item> SMALL_BACKPACK;
+	public static Supplier<Item> MEDIUM_BACKPACK;
+	public static Supplier<Item> BIG_BACKPACK;
+	public static Supplier<Item> IRON_DUST;
+	public static Supplier<Item> GOLD_DUST;
+	public static Supplier<Item> COPPER_DUST;
+	public static Supplier<Item> COAL_DUST;
+	public static Supplier<Item> STEEL_INGOT;
+	public static Supplier<Item> ENERGIZED_INGOT;
+	public static Supplier<Item> ENDER_ALLOY_INGOT;
+	public static Supplier<Item> IRON_PLATE;
+	public static Supplier<Item> COPPER_PLATE;
+	public static Supplier<Item> GOLD_PLATE;
+	public static Supplier<Item> STEEL_PLATE;
+	public static Supplier<Item> BASIC_CIRCUIT;
+	public static Supplier<Item> ADVANCED_CIRCUIT;
+	public static Supplier<Item> ELITE_CIRCUIT;
+	public static Supplier<Item> SPEED_UPGRADE;
+	public static Supplier<Item> ENERGY_UPGRADE;
+	public static Supplier<Item> RANGE_UPGRADE;
+	public static Supplier<Item> GUIDE_BOOK;
+	public static Supplier<Item> MULTIMETER;
 
+	/** Every item receives its registry key, 26.x requires it in the item properties. */
+	private static Supplier<Item> register(String name, Function<ResourceKey<Item>, Item> factory) {
+		ResourceKey<Item> id = ResourceKey.create(Registries.ITEM, Compat.id(name));
+		return Services.PLATFORM.register(BuiltInRegistries.ITEM, name, () -> factory.apply(id));
+	}
+
+	private static Supplier<Item> block(String name, Supplier<Block> block) {
+		return register(name, id -> new TooltipBlockItem(block.get(), new Item.Properties().setId(id).useBlockDescriptionPrefix()));
+	}
+
+	public static void register() {
+		VECTOR_PLATE_TIER_1 = block("vector_plate_tier_1", CoreUtilitiesModBlocks.VECTOR_PLATE_TIER_1);
+		VECTOR_PLATE_TIER_2 = block("vector_plate_tier_2", CoreUtilitiesModBlocks.VECTOR_PLATE_TIER_2);
+		VECTOR_PLATE_TIER_3 = block("vector_plate_tier_3", CoreUtilitiesModBlocks.VECTOR_PLATE_TIER_3);
+		VECTOR_PLATE_TIER_4 = block("vector_plate_tier_4", CoreUtilitiesModBlocks.VECTOR_PLATE_TIER_4);
+		HEALING_PLATE = block("healing_plate", CoreUtilitiesModBlocks.HEALING_PLATE);
+		SPEED_PLATE = block("speed_plate", CoreUtilitiesModBlocks.SPEED_PLATE);
+		FIRE_RES_PLATE = block("fire_res_plate", CoreUtilitiesModBlocks.FIRE_RES_PLATE);
+		STRENGTH_PLATE = block("strength_plate", CoreUtilitiesModBlocks.STRENGTH_PLATE);
+		POISON_PLATE = block("poison_plate", CoreUtilitiesModBlocks.POISON_PLATE);
+		WEAKNESS_PLATE = block("weakness_plate", CoreUtilitiesModBlocks.WEAKNESS_PLATE);
+		SLOWNESS_PLATE = block("slowness_plate", CoreUtilitiesModBlocks.SLOWNESS_PLATE);
+		WITHER_PLATE = block("wither_plate", CoreUtilitiesModBlocks.WITHER_PLATE);
+		PLAYER_FILTER = block("player_filter", CoreUtilitiesModBlocks.PLAYER_FILTER);
+		MOB_FILTER = block("mob_filter", CoreUtilitiesModBlocks.MOB_FILTER);
+		NEUTRAL_FILTER = block("neutral_filter", CoreUtilitiesModBlocks.NEUTRAL_FILTER);
+		PROJECTILE_FILTER = block("projectile_filter", CoreUtilitiesModBlocks.PROJECTILE_FILTER);
+		FILTER_ZOMBIE = block("filter_zombie", CoreUtilitiesModBlocks.FILTER_ZOMBIE);
+		FILTER_SKELETON = block("filter_skeleton", CoreUtilitiesModBlocks.FILTER_SKELETON);
+		FILTER_SPIDER = block("filter_spider", CoreUtilitiesModBlocks.FILTER_SPIDER);
+		FILTER_VILLAGER = block("filter_villager", CoreUtilitiesModBlocks.FILTER_VILLAGER);
+		FILTER_PET = block("filter_pet", CoreUtilitiesModBlocks.FILTER_PET);
+		FILTER_ANIMAL = block("filter_animal", CoreUtilitiesModBlocks.FILTER_ANIMAL);
+		DENY_PLAYER_FILTER = block("deny_player_filter", CoreUtilitiesModBlocks.DENY_PLAYER_FILTER);
+		DENY_MOB_FILTER = block("deny_mob_filter", CoreUtilitiesModBlocks.DENY_MOB_FILTER);
+		DENY_NEUTRAL_FILTER = block("deny_neutral_filter", CoreUtilitiesModBlocks.DENY_NEUTRAL_FILTER);
+		DENY_PROJECTILE_FILTER = block("deny_projectile_filter", CoreUtilitiesModBlocks.DENY_PROJECTILE_FILTER);
+		DENY_FILTER_ZOMBIE = block("deny_filter_zombie", CoreUtilitiesModBlocks.DENY_FILTER_ZOMBIE);
+		DENY_FILTER_SKELETON = block("deny_filter_skeleton", CoreUtilitiesModBlocks.DENY_FILTER_SKELETON);
+		DENY_FILTER_SPIDER = block("deny_filter_spider", CoreUtilitiesModBlocks.DENY_FILTER_SPIDER);
+		DENY_FILTER_VILLAGER = block("deny_filter_villager", CoreUtilitiesModBlocks.DENY_FILTER_VILLAGER);
+		DENY_FILTER_PET = block("deny_filter_pet", CoreUtilitiesModBlocks.DENY_FILTER_PET);
+		DENY_FILTER_ANIMAL = block("deny_filter_animal", CoreUtilitiesModBlocks.DENY_FILTER_ANIMAL);
+		FLOATING_BLOCK = block("floating_block", CoreUtilitiesModBlocks.FLOATING_BLOCK);
+		BASIC_MACHINE_FRAME = block("basic_machine_frame", CoreUtilitiesModBlocks.BASIC_MACHINE_FRAME);
+		CABLE = block("cable", CoreUtilitiesModBlocks.CABLE);
+		CABLE_ADVANCED = block("cable_advanced", CoreUtilitiesModBlocks.CABLE_ADVANCED);
+		CABLE_ELITE = block("cable_elite", CoreUtilitiesModBlocks.CABLE_ELITE);
+		ITEM_PIPE = block("item_pipe", CoreUtilitiesModBlocks.ITEM_PIPE);
+		RAPID_ITEM_PIPE = block("rapid_item_pipe", CoreUtilitiesModBlocks.RAPID_ITEM_PIPE);
+		CABLE_E = block("cable_e", CoreUtilitiesModBlocks.CABLE_E);
+		CABLE_I = block("cable_i", CoreUtilitiesModBlocks.CABLE_I);
+		CABLE_L = block("cable_l", CoreUtilitiesModBlocks.CABLE_L);
+		CABLE_LC = block("cable_lc", CoreUtilitiesModBlocks.CABLE_LC);
+		CABLE_LCC = block("cable_lcc", CoreUtilitiesModBlocks.CABLE_LCC);
+		CABLE_LT = block("cable_lt", CoreUtilitiesModBlocks.CABLE_LT);
+		CABLE_LTC = block("cable_ltc", CoreUtilitiesModBlocks.CABLE_LTC);
+		CABLE_T = block("cable_t", CoreUtilitiesModBlocks.CABLE_T);
+		CABLE_TC = block("cable_tc", CoreUtilitiesModBlocks.CABLE_TC);
+		CABLE_TX = block("cable_tx", CoreUtilitiesModBlocks.CABLE_TX);
+		CABLE_TXC = block("cable_txc", CoreUtilitiesModBlocks.CABLE_TXC);
+		CABLE_TXCC = block("cable_txcc", CoreUtilitiesModBlocks.CABLE_TXCC);
+		CABLE_X = block("cable_x", CoreUtilitiesModBlocks.CABLE_X);
+		CABLE_XC = block("cable_xc", CoreUtilitiesModBlocks.CABLE_XC);
+		CABLE_F = block("cable_f", CoreUtilitiesModBlocks.CABLE_F);
+		CABLE_S = block("cable_s", CoreUtilitiesModBlocks.CABLE_S);
+		SOLAR_PANEL = block("solar_panel", CoreUtilitiesModBlocks.SOLAR_PANEL);
+		SOLAR_PANEL_1 = block("solar_panel_1", CoreUtilitiesModBlocks.SOLAR_PANEL_1);
+		SOLAR_PANEL_2 = block("solar_panel_2", CoreUtilitiesModBlocks.SOLAR_PANEL_2);
+		SOLAR_PANEL_TIER_21 = block("solar_panel_tier_21", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_21);
+		SOLAR_PANEL_TIER_22 = block("solar_panel_tier_22", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_22);
+		SOLAR_PANEL_TIER_23 = block("solar_panel_tier_23", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_23);
+		SOLAR_PANEL_TIER_31 = block("solar_panel_tier_31", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_31);
+		SOLAR_PANEL_TIER_32 = block("solar_panel_tier_32", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_32);
+		SOLAR_PANEL_TIER_33 = block("solar_panel_tier_33", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_33);
+		SOLAR_PANEL_TIER_41 = block("solar_panel_tier_41", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_41);
+		SOLAR_PANEL_TIER_42 = block("solar_panel_tier_42", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_42);
+		SOLAR_PANEL_TIER_43 = block("solar_panel_tier_43", CoreUtilitiesModBlocks.SOLAR_PANEL_TIER_43);
+		ADVANCED_MACHINE_FRAME = block("advanced_machine_frame", CoreUtilitiesModBlocks.ADVANCED_MACHINE_FRAME);
+		STEEL_BLOCK = block("steel_block", CoreUtilitiesModBlocks.STEEL_BLOCK);
+		COMBUSTION_GENERATOR = block("combustion_generator", CoreUtilitiesModBlocks.COMBUSTION_GENERATOR);
+		GEOTHERMAL_GENERATOR = block("geothermal_generator", CoreUtilitiesModBlocks.GEOTHERMAL_GENERATOR);
+		ENERGY_CELL_BASIC = block("energy_cell_basic", CoreUtilitiesModBlocks.ENERGY_CELL_BASIC);
+		ENERGY_CELL_ADVANCED = block("energy_cell_advanced", CoreUtilitiesModBlocks.ENERGY_CELL_ADVANCED);
+		ENERGY_CELL_ELITE = block("energy_cell_elite", CoreUtilitiesModBlocks.ENERGY_CELL_ELITE);
+		ENERGY_CELL_CREATIVE = register("energy_cell_creative", id -> new TooltipBlockItem(CoreUtilitiesModBlocks.ENERGY_CELL_CREATIVE.get(), new Item.Properties().rarity(Rarity.EPIC).setId(id).useBlockDescriptionPrefix()));
+		ELECTRIC_FURNACE = block("electric_furnace", CoreUtilitiesModBlocks.ELECTRIC_FURNACE);
+		CRUSHER = block("crusher", CoreUtilitiesModBlocks.CRUSHER);
+		ALLOY_SMELTER = block("alloy_smelter", CoreUtilitiesModBlocks.ALLOY_SMELTER);
+		COMPRESSOR = block("compressor", CoreUtilitiesModBlocks.COMPRESSOR);
+		QUARRY = block("quarry", CoreUtilitiesModBlocks.QUARRY);
+		CROP_HARVESTER = block("crop_harvester", CoreUtilitiesModBlocks.CROP_HARVESTER);
+		BLOCK_BREAKER = block("block_breaker", CoreUtilitiesModBlocks.BLOCK_BREAKER);
+		BLOCK_PLACER = block("block_placer", CoreUtilitiesModBlocks.BLOCK_PLACER);
+		MOB_GRINDER = block("mob_grinder", CoreUtilitiesModBlocks.MOB_GRINDER);
+		BLANK_PLATE = register("blank_plate", id -> new BlankPlateItem(id));
+		CONFIGURATION_WRENCH = register("configuration_wrench", id -> new ConfigurationWrenchItem(id));
+		MOB_NET = register("mob_net", id -> new MobNetItem(id));
+		IRON_DUST = register("iron_dust", id -> new Item(new Item.Properties().setId(id)));
+		GOLD_DUST = register("gold_dust", id -> new Item(new Item.Properties().setId(id)));
+		COPPER_DUST = register("copper_dust", id -> new Item(new Item.Properties().setId(id)));
+		COAL_DUST = register("coal_dust", id -> new Item(new Item.Properties().setId(id)));
+		STEEL_INGOT = register("steel_ingot", id -> new Item(new Item.Properties().setId(id)));
+		ENERGIZED_INGOT = register("energized_ingot", id -> new Item(new Item.Properties().setId(id)));
+		ENDER_ALLOY_INGOT = register("ender_alloy_ingot", id -> new Item(new Item.Properties().setId(id)));
+		IRON_PLATE = register("iron_plate", id -> new Item(new Item.Properties().setId(id)));
+		COPPER_PLATE = register("copper_plate", id -> new Item(new Item.Properties().setId(id)));
+		GOLD_PLATE = register("gold_plate", id -> new Item(new Item.Properties().setId(id)));
+		STEEL_PLATE = register("steel_plate", id -> new Item(new Item.Properties().setId(id)));
+		BASIC_CIRCUIT = register("basic_circuit", id -> new Item(new Item.Properties().setId(id)));
+		ADVANCED_CIRCUIT = register("advanced_circuit", id -> new Item(new Item.Properties().setId(id)));
+		ELITE_CIRCUIT = register("elite_circuit", id -> new Item(new Item.Properties().setId(id)));
+		SPEED_UPGRADE = register("speed_upgrade", id -> new UpgradeItem(id, UpgradeItem.Type.SPEED));
+		ENERGY_UPGRADE = register("energy_upgrade", id -> new UpgradeItem(id, UpgradeItem.Type.ENERGY));
+		RANGE_UPGRADE = register("range_upgrade", id -> new UpgradeItem(id, UpgradeItem.Type.RANGE));
+		GUIDE_BOOK = register("guide_book", GuideBookItem::new);
+		MULTIMETER = register("multimeter", MultimeterItem::new);
+	}
+}

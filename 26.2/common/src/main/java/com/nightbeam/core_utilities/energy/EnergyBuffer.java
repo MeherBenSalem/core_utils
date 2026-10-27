@@ -47,6 +47,30 @@ public class EnergyBuffer {
 		return maxReceive > 0;
 	}
 
+	public void setEnergyStored(int energy) {
+		this.energy = Math.max(0, Math.min(energy, capacity));
+	}
+
+	public int getFreeSpace() {
+		return capacity - energy;
+	}
+
+	/** Adds energy ignoring the per-tick receive limit (used by generators). */
+	public int generate(int amount) {
+		int added = Math.max(0, Math.min(capacity - energy, amount));
+		energy += added;
+		return added;
+	}
+
+	/** Removes energy ignoring the per-tick extract limit (used by machines). */
+	public boolean consume(int amount) {
+		if (amount > energy) {
+			return false;
+		}
+		energy -= amount;
+		return true;
+	}
+
 	public int receiveEnergy(int amount, boolean simulate) {
 		if (!canReceive() || amount <= 0) {
 			return 0;

@@ -4,6 +4,5 @@
     "all": "core_utilities:block/plate",
     "particle": "core_utilities:block/plate",
     "0": "core_utilities:block/plate"
-  },
-  "render_type": "solid"
+  }
 }

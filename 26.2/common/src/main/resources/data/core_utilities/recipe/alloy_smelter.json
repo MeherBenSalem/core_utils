@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IRI",
+    "BMB",
+    "ICI"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone",
+    "B": "minecraft:blast_furnace",
+    "M": "core_utilities:basic_machine_frame",
+    "C": "core_utilities:basic_circuit"
+  },
+  "result": {
+    "id": "core_utilities:alloy_smelter"
+  }
+}

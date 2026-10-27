@@ -2,6 +2,5 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "core_utilities:item/slowness_plate"
-  },
-  "render_type": "translucent"
+  }
 }

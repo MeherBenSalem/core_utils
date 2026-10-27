@@ -14,5 +14,8 @@ public class CoreUtilitiesModFabricClient implements ClientModInitializer {
 		MenuScreens.register(CoreUtilitiesModMenusFabric.getSmallMenu(), SmallBackpackGUIScreen::new);
 		MenuScreens.register(CoreUtilitiesModMenusFabric.getMediumMenu(), MediumBackpackGUIScreen::new);
 		MenuScreens.register(CoreUtilitiesModMenusFabric.getBigMenu(), BigBackpackGUIScreen::new);
+		for (com.nightbeam.core_utilities.machine.MachineSpec spec : com.nightbeam.core_utilities.machine.MachineSpecs.ALL) {
+			MenuScreens.register(spec.menuType(), com.nightbeam.core_utilities.client.MachineScreen::new);
+		}
 	}
 }

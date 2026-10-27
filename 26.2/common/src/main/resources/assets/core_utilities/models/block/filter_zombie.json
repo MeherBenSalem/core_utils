@@ -3,6 +3,5 @@
   "textures": {
     "all": "core_utilities:block/zombie_filter",
     "particle": "core_utilities:block/zombie_filter"
-  },
-  "render_type": "solid"
+  }
 }

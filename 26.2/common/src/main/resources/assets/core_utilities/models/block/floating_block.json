@@ -3,6 +3,5 @@
   "textures": {
     "all": "core_utilities:block/floating_block",
     "particle": "core_utilities:block/floating_block"
-  },
-  "render_type": "solid"
+  }
 }

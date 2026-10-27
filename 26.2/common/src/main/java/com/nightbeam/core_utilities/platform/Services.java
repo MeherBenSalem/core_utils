@@ -1,6 +1,7 @@
 package com.nightbeam.core_utilities.platform;
 
 import com.nightbeam.core_utilities.platform.services.IEnergyStorage;
+import com.nightbeam.core_utilities.platform.services.IItemTransfer;
 import com.nightbeam.core_utilities.platform.services.IPlatformHelper;
 
 import java.util.ServiceLoader;
@@ -8,6 +9,7 @@ import java.util.ServiceLoader;
 public class Services {
 	public static final IPlatformHelper PLATFORM = load(IPlatformHelper.class);
 	public static final IEnergyStorage ENERGY = load(IEnergyStorage.class);
+	public static final IItemTransfer ITEMS = load(IItemTransfer.class);
 
 	public static <T> T load(Class<T> clazz) {
 		return ServiceLoader.load(clazz)

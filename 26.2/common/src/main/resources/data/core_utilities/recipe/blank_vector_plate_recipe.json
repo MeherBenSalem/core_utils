@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "ccc"
+  ],
+  "key": {
+    "a": "minecraft:iron_ingot",
+    "b": "minecraft:redstone",
+    "c": "minecraft:black_dye"
+  },
+  "result": {
+    "id": "core_utilities:blank_plate",
+    "count": 8
+  }
+}

@@ -8,6 +8,5 @@
     "south": "core_utilities:block/solar_panel_sides",
     "west": "core_utilities:block/solar_panel_sides",
     "particle": "core_utilities:block/solar_panel_plug"
-  },
-  "render_type": "solid"
+  }
 }

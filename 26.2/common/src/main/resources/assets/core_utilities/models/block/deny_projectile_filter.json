@@ -3,6 +3,5 @@
   "textures": {
     "all": "core_utilities:block/deny_projectile_filter",
     "particle": "core_utilities:block/deny_projectile_filter"
-  },
-  "render_type": "solid"
+  }
 }

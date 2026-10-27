@@ -4,6 +4,5 @@
     "all": "core_utilities:block/healing_plate",
     "particle": "core_utilities:block/healing_plate",
     "0": "core_utilities:block/healing_plate"
-  },
-  "render_type": "solid"
+  }
 }

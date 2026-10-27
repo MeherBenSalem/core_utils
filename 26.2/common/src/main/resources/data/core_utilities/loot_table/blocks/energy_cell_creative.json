@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "core_utilities:energy_cell_creative",
+          "functions": [
+            {
+              "function": "minecraft:copy_components",
+              "source": "block_entity",
+              "include": [
+                "minecraft:custom_data"
+              ]
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "core_utilities:blocks/energy_cell_creative"
+}

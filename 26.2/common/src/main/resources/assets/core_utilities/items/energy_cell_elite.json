@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "core_utilities:item/energy_cell_elite"
+  }
+}

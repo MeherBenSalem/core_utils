@@ -1,5 +1,7 @@
 package com.nightbeam.core_utilities.block;
 
+import net.minecraft.resources.ResourceKey;
+
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 
 import net.minecraft.world.InteractionResult;
@@ -37,8 +39,8 @@ import com.nightbeam.core_utilities.procedures.FilterSpiderOnBlockRightClickedPr
 public class FilterSpiderBlock extends Block {
 	public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 
-	public FilterSpiderBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1f, 10f).noCollision().noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
+	public FilterSpiderBlock(ResourceKey<Block> id) {
+		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1f, 10f).noCollision().noOcclusion().isRedstoneConductor((bs, br, bp) -> false).setId(id));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 

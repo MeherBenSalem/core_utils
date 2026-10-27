@@ -4,6 +4,5 @@
     "all": "core_utilities:block/strength_plate",
     "particle": "core_utilities:block/strength_plate",
     "0": "core_utilities:block/strength_plate"
-  },
-  "render_type": "solid"
+  }
 }

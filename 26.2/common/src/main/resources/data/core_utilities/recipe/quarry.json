@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SAS",
+    "PMP",
+    "SDS"
+  ],
+  "key": {
+    "S": "core_utilities:steel_plate",
+    "A": "core_utilities:advanced_circuit",
+    "P": "minecraft:piston",
+    "M": "core_utilities:advanced_machine_frame",
+    "D": "minecraft:diamond_pickaxe"
+  },
+  "result": {
+    "id": "core_utilities:quarry"
+  }
+}

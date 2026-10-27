@@ -110,7 +110,11 @@ def legacy_recipe(fmt, data):
         if isinstance(i, list):
             return [conv(x) for x in i]
         if 'tag' in i:
-            return fmt.ingredient('#' + i['tag'])
+            tag = i['tag']
+            if fmt.v26 and tag.startswith('forge:'):
+                # 26.x rejects recipes with unknown tags; our own tag wraps the forge:/c: variants
+                tag = 'core_utilities:' + tag[len('forge:'):]
+            return fmt.ingredient('#' + tag)
         return fmt.ingredient(i['item'])
     if 'key' in data:
         data['key'] = {k: conv(v) for k, v in data['key'].items()}
@@ -369,6 +373,16 @@ def fix_legacy_assets(version):
         if data.get('parent') == 'vector':
             del data['parent']
             write_json(path, data)
+    if version.startswith('26'):
+        # 26.x picks the chunk layer from texture transparency; neither vanilla nor NeoForge reads render_type anymore
+        for mdir in (custom, os.path.join(a, 'models', 'block'), os.path.join(a, 'models', 'item')):
+            for f in os.listdir(mdir):
+                path = os.path.join(mdir, f)
+                with open(path, encoding='utf-8') as fh:
+                    data = json.load(fh)
+                if 'render_type' in data:
+                    del data['render_type']
+                    write_json(path, data)
     tdir = os.path.join(a, 'textures')
     for root, _, files in os.walk(tdir):
         for f in files:

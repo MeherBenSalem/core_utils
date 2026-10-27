@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcb",
+    "bdb"
+  ],
+  "key": {
+    "a": "minecraft:amethyst_shard",
+    "b": "minecraft:diamond",
+    "c": "core_utilities:solar_panel_tier_21",
+    "d": "minecraft:redstone_block"
+  },
+  "result": {
+    "id": "core_utilities:solar_panel_tier_31"
+  }
+}

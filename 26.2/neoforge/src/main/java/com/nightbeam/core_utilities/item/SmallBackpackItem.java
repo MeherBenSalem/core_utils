@@ -1,5 +1,7 @@
 package com.nightbeam.core_utilities.item;
 
+import net.minecraft.resources.ResourceKey;
+
 import com.nightbeam.core_utilities.platform.Services;
 import com.nightbeam.core_utilities.world.inventory.SmallBackpackGUIMenu;
 import net.minecraft.network.FriendlyByteBuf;
@@ -21,8 +23,8 @@ import net.minecraft.world.level.Level;
 import java.util.function.Consumer;
 
 public class SmallBackpackItem extends Item {
-	public SmallBackpackItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
+	public SmallBackpackItem(ResourceKey<Item> id) {
+		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON).setId(id));
 	}
 
 	@Override

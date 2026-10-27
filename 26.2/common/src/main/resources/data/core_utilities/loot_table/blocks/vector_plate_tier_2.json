@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "core_utilities:vector_plate_tier_2"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "core_utilities:blocks/vector_plate_tier_2"
+}

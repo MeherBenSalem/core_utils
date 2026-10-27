@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PPP",
+    "PEP",
+    "PPP"
+  ],
+  "key": {
+    "P": "core_utilities:item_pipe",
+    "E": "core_utilities:energized_ingot"
+  },
+  "result": {
+    "id": "core_utilities:rapid_item_pipe",
+    "count": 8
+  }
+}

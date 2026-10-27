@@ -1,112 +1,157 @@
 package com.nightbeam.core_utilities.platform;
 
-import com.nightbeam.core_utilities.block.entity.EnergyBlockEntityBase;
+import com.nightbeam.core_utilities.energy.EnergyHandler;
+import com.nightbeam.core_utilities.energy.EnergyHandlerProvider;
 import com.nightbeam.core_utilities.platform.services.IEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.transfer.energy.EnergyHandler;
+import net.neoforged.neoforge.transfer.transaction.SnapshotJournal;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
+import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Bridges our {@link EnergyHandler} to the NeoForge 26.x transfer API ({@code transfer.energy.EnergyHandler}), which
+ * replaced the old {@code IEnergyStorage} capability and works with transactions instead of a simulate flag.
+ */
 public class NeoForgeEnergyStorage implements IEnergyStorage {
+	@Override
 	@Nullable
-	private static EnergyHandler capability(LevelAccessor level, BlockPos pos, @Nullable Direction side) {
-		if (!(level instanceof Level concrete)) {
-			return null;
+	public EnergyHandler find(Level level, BlockPos pos, @Nullable Direction side) {
+		if (level.getBlockEntity(pos) instanceof EnergyHandlerProvider provider) {
+			return provider.getEnergyHandler(side);
 		}
-		return concrete.getCapability(Capabilities.Energy.BLOCK, pos, side);
+		net.neoforged.neoforge.transfer.energy.EnergyHandler storage = level.getCapability(Capabilities.Energy.BLOCK, pos, side);
+		return storage == null ? null : wrap(storage);
 	}
 
-	@Override
-	public boolean canExtractEnergy(LevelAccessor level, BlockPos pos, @Nullable Direction side) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.getEnergyBuffer().canExtract();
-		}
-		EnergyHandler storage = capability(level, pos, side);
-		return storage != null && storage.getAmountAsInt() > 0;
-	}
-
-	@Override
-	public boolean canReceiveEnergy(LevelAccessor level, BlockPos pos, Direction side) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.getEnergyBuffer().canReceive();
-		}
-		EnergyHandler storage = capability(level, pos, side);
-		return storage != null && storage.getAmountAsInt() < storage.getCapacityAsInt();
-	}
-
-	@Override
-	public int getEnergyStored(LevelAccessor level, BlockPos pos, @Nullable Direction side) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.getEnergyBuffer().getEnergyStored();
-		}
-		EnergyHandler storage = capability(level, pos, side);
-		return storage != null ? storage.getAmountAsInt() : 0;
-	}
-
-	@Override
-	public int getMaxEnergyStored(LevelAccessor level, BlockPos pos, @Nullable Direction side) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.getEnergyBuffer().getMaxEnergyStored();
-		}
-		EnergyHandler storage = capability(level, pos, side);
-		return storage != null ? storage.getCapacityAsInt() : 0;
-	}
-
-	@Override
-	public int receiveEnergySimulate(LevelAccessor level, BlockPos pos, Direction side, int amount) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.receiveEnergy(amount, true);
-		}
-		EnergyHandler storage = capability(level, pos, side);
-		if (storage == null) {
+	/** Runs one operation in its own transaction, nested in the caller's one if a transaction is already open. */
+	@SuppressWarnings("deprecation")
+	private static int transfer(net.neoforged.neoforge.transfer.energy.EnergyHandler storage, int amount, boolean insert, boolean simulate) {
+		if (amount <= 0) {
 			return 0;
 		}
-		try (Transaction tx = Transaction.openRoot()) {
-			return storage.insert(amount, tx);
+		try (Transaction transaction = Transaction.open(Transaction.getCurrentOpenedTransaction())) {
+			int moved = insert ? storage.insert(amount, transaction) : storage.extract(amount, transaction);
+			if (!simulate) {
+				transaction.commit();
+			}
+			return moved;
 		}
 	}
 
-	@Override
-	public int receiveEnergy(LevelAccessor level, BlockPos pos, Direction side, int amount) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.receiveEnergy(amount, false);
-		}
-		EnergyHandler storage = capability(level, pos, side);
-		if (storage == null) {
-			return 0;
-		}
-		try (Transaction tx = Transaction.openRoot()) {
-			int received = storage.insert(amount, tx);
-			tx.commit();
-			return received;
-		}
+	public static EnergyHandler wrap(net.neoforged.neoforge.transfer.energy.EnergyHandler storage) {
+		return new EnergyHandler() {
+			@Override
+			public int receiveEnergy(int amount, boolean simulate) {
+				return transfer(storage, amount, true, simulate);
+			}
+
+			@Override
+			public int extractEnergy(int amount, boolean simulate) {
+				return transfer(storage, amount, false, simulate);
+			}
+
+			@Override
+			public int getEnergyStored() {
+				return storage.getAmountAsInt();
+			}
+
+			@Override
+			public int getMaxEnergyStored() {
+				return storage.getCapacityAsInt();
+			}
+
+			@Override
+			public boolean canReceive() {
+				return true;
+			}
+
+			@Override
+			public boolean canExtract() {
+				return true;
+			}
+		};
 	}
 
-	@Override
-	public int extractEnergy(LevelAccessor level, BlockPos pos, @Nullable Direction side, int amount) {
-		BlockEntity entity = level.getBlockEntity(pos);
-		if (entity instanceof EnergyBlockEntityBase energyBlock) {
-			return energyBlock.extractEnergy(amount, false);
+	/**
+	 * Exposes one of our handlers as a NeoForge energy capability. Our handlers are not transactional, so transfers
+	 * are simulated while the transaction is open and applied for real when the root transaction commits.
+	 */
+	public static net.neoforged.neoforge.transfer.energy.EnergyHandler expose(EnergyHandler handler) {
+		return new Exposed(handler);
+	}
+
+	private static final class Exposed extends SnapshotJournal<int[]> implements net.neoforged.neoforge.transfer.energy.EnergyHandler {
+		private final EnergyHandler handler;
+		private int pendingInsert;
+		private int pendingExtract;
+
+		Exposed(EnergyHandler handler) {
+			this.handler = handler;
 		}
-		EnergyHandler storage = capability(level, pos, side);
-		if (storage == null) {
-			return 0;
+
+		@Override
+		public long getAmountAsLong() {
+			return Math.max(0L, (long) handler.getEnergyStored() + pendingInsert - pendingExtract);
 		}
-		try (Transaction tx = Transaction.openRoot()) {
-			int extracted = storage.extract(amount, tx);
-			tx.commit();
+
+		@Override
+		public long getCapacityAsLong() {
+			return handler.getMaxEnergyStored();
+		}
+
+		@Override
+		public int insert(int amount, TransactionContext transaction) {
+			if (amount <= 0 || !handler.canReceive()) {
+				return 0;
+			}
+			int accepted = Math.max(0, Math.min(amount, handler.receiveEnergy(pendingInsert + amount, true) - pendingInsert));
+			if (accepted > 0) {
+				updateSnapshots(transaction);
+				pendingInsert += accepted;
+			}
+			return accepted;
+		}
+
+		@Override
+		public int extract(int amount, TransactionContext transaction) {
+			if (amount <= 0 || !handler.canExtract()) {
+				return 0;
+			}
+			int extracted = Math.max(0, Math.min(amount, handler.extractEnergy(pendingExtract + amount, true) - pendingExtract));
+			if (extracted > 0) {
+				updateSnapshots(transaction);
+				pendingExtract += extracted;
+			}
 			return extracted;
+		}
+
+		@Override
+		protected int[] createSnapshot() {
+			return new int[] {pendingInsert, pendingExtract};
+		}
+
+		@Override
+		protected void revertToSnapshot(int[] snapshot) {
+			pendingInsert = snapshot[0];
+			pendingExtract = snapshot[1];
+		}
+
+		@Override
+		protected void onRootCommit(int[] originalState) {
+			int insert = pendingInsert;
+			int extract = pendingExtract;
+			pendingInsert = 0;
+			pendingExtract = 0;
+			if (insert > 0) {
+				handler.receiveEnergy(insert, false);
+			}
+			if (extract > 0) {
+				handler.extractEnergy(extract, false);
+			}
 		}
 	}
 }

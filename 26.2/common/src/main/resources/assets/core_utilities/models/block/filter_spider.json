@@ -3,6 +3,5 @@
   "textures": {
     "all": "core_utilities:block/spider_filter",
     "particle": "core_utilities:block/spider_filter"
-  },
-  "render_type": "solid"
+  }
 }

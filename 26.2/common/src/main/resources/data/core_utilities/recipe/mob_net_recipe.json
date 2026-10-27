@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b",
+    "c"
+  ],
+  "key": {
+    "a": "minecraft:string",
+    "b": "minecraft:ender_eye",
+    "c": "minecraft:stick"
+  },
+  "result": {
+    "id": "core_utilities:mob_net"
+  }
+}

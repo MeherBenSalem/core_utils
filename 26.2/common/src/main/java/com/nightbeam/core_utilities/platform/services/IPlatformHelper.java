@@ -41,6 +41,26 @@ public interface IPlatformHelper {
 
 	ItemStackHandlerAccess getBackpackInventory(ItemStack stack);
 
+	/** Registers an object in a vanilla registry, deferred where the loader requires it. */
+	<R, T extends R> java.util.function.Supplier<T> register(net.minecraft.core.Registry<R> registry, String name, java.util.function.Supplier<T> factory);
+
+	java.nio.file.Path getConfigDir();
+
+	/** Builds a menu type without extra client data (the vanilla constructor is not public outside the loaders). */
+	<M extends net.minecraft.world.inventory.AbstractContainerMenu> net.minecraft.world.inventory.MenuType<M> createMenuType(
+			java.util.function.BiFunction<Integer, net.minecraft.world.entity.player.Inventory, M> factory);
+
+	/** Builds a block entity type (the vanilla factory interface is not public outside the loaders). */
+	<T extends net.minecraft.world.level.block.entity.BlockEntity> net.minecraft.world.level.block.entity.BlockEntityType<T> createBlockEntityType(
+			java.util.function.BiFunction<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, T> factory, net.minecraft.world.level.block.Block... blocks);
+
+	/** Drops cached capability lookups for a block whose exposed faces changed. */
+	default void invalidateCapabilities(net.minecraft.world.level.Level level, net.minecraft.core.BlockPos pos) {
+	}
+
+	/** Furnace burn time in ticks, including fuels added by other mods (26.x keeps fuel values per level). */
+	int getBurnTime(net.minecraft.world.level.Level level, ItemStack stack);
+
 	interface ItemStackHandlerAccess {
 		int getSlots();
 

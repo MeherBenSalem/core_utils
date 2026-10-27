@@ -1,9 +1,29 @@
 package com.nightbeam.core_utilities.init;
 
+import com.nightbeam.core_utilities.block.*;
+import com.nightbeam.core_utilities.conduit.CableTier;
+import com.nightbeam.core_utilities.conduit.EnergyCableBlock;
+import com.nightbeam.core_utilities.conduit.ItemPipeBlock;
+import com.nightbeam.core_utilities.machine.*;
+import com.nightbeam.core_utilities.platform.Services;
+import com.nightbeam.core_utilities.recipe.RecipeKind;
+import com.nightbeam.core_utilities.util.Compat;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class CoreUtilitiesModBlocks {
+	/** Ids of blocks kept only so old worlds load; hidden from creative tabs and recipe viewers. */
+	public static final List<String> LEGACY = new ArrayList<>();
 	public static Supplier<Block> VECTOR_PLATE_TIER_1;
 	public static Supplier<Block> VECTOR_PLATE_TIER_2;
 	public static Supplier<Block> VECTOR_PLATE_TIER_3;
@@ -37,7 +57,12 @@ public class CoreUtilitiesModBlocks {
 	public static Supplier<Block> DENY_FILTER_PET;
 	public static Supplier<Block> DENY_FILTER_ANIMAL;
 	public static Supplier<Block> FLOATING_BLOCK;
+	public static Supplier<Block> BASIC_MACHINE_FRAME;
 	public static Supplier<Block> CABLE;
+	public static Supplier<Block> CABLE_ADVANCED;
+	public static Supplier<Block> CABLE_ELITE;
+	public static Supplier<Block> ITEM_PIPE;
+	public static Supplier<Block> RAPID_ITEM_PIPE;
 	public static Supplier<Block> CABLE_E;
 	public static Supplier<Block> CABLE_I;
 	public static Supplier<Block> CABLE_L;
@@ -57,7 +82,6 @@ public class CoreUtilitiesModBlocks {
 	public static Supplier<Block> SOLAR_PANEL;
 	public static Supplier<Block> SOLAR_PANEL_1;
 	public static Supplier<Block> SOLAR_PANEL_2;
-	public static Supplier<Block> BASIC_MACHINE_FRAME;
 	public static Supplier<Block> SOLAR_PANEL_TIER_21;
 	public static Supplier<Block> SOLAR_PANEL_TIER_22;
 	public static Supplier<Block> SOLAR_PANEL_TIER_23;
@@ -67,5 +91,119 @@ public class CoreUtilitiesModBlocks {
 	public static Supplier<Block> SOLAR_PANEL_TIER_41;
 	public static Supplier<Block> SOLAR_PANEL_TIER_42;
 	public static Supplier<Block> SOLAR_PANEL_TIER_43;
-}
+	public static Supplier<Block> ADVANCED_MACHINE_FRAME;
+	public static Supplier<Block> STEEL_BLOCK;
+	public static Supplier<Block> COMBUSTION_GENERATOR;
+	public static Supplier<Block> GEOTHERMAL_GENERATOR;
+	public static Supplier<Block> ENERGY_CELL_BASIC;
+	public static Supplier<Block> ENERGY_CELL_ADVANCED;
+	public static Supplier<Block> ENERGY_CELL_ELITE;
+	public static Supplier<Block> ENERGY_CELL_CREATIVE;
+	public static Supplier<Block> ELECTRIC_FURNACE;
+	public static Supplier<Block> CRUSHER;
+	public static Supplier<Block> ALLOY_SMELTER;
+	public static Supplier<Block> COMPRESSOR;
+	public static Supplier<Block> QUARRY;
+	public static Supplier<Block> CROP_HARVESTER;
+	public static Supplier<Block> BLOCK_BREAKER;
+	public static Supplier<Block> BLOCK_PLACER;
+	public static Supplier<Block> MOB_GRINDER;
 
+	/** Every block receives its registry key, 26.x requires it in the block properties. */
+	private static Supplier<Block> register(String name, Function<ResourceKey<Block>, Block> factory) {
+		ResourceKey<Block> id = ResourceKey.create(Registries.BLOCK, Compat.id(name));
+		return Services.PLATFORM.register(BuiltInRegistries.BLOCK, name, () -> factory.apply(id));
+	}
+
+	private static Supplier<Block> legacy(String name, Supplier<Block> target, int weather) {
+		LEGACY.add(name);
+		return register(name, id -> new LegacyBlock(id, () -> weather < 0 ? target.get().defaultBlockState() : target.get().defaultBlockState().setValue(SolarPanelBlock.WEATHER, weather)));
+	}
+
+	public static void register() {
+		VECTOR_PLATE_TIER_1 = register("vector_plate_tier_1", id -> new VectorPlateTier1Block(id));
+		VECTOR_PLATE_TIER_2 = register("vector_plate_tier_2", id -> new VectorPlateTier2Block(id));
+		VECTOR_PLATE_TIER_3 = register("vector_plate_tier_3", id -> new VectorPlateTier3Block(id));
+		VECTOR_PLATE_TIER_4 = register("vector_plate_tier_4", id -> new VectorPlateTier4Block(id));
+		HEALING_PLATE = register("healing_plate", id -> new HealingPlateBlock(id));
+		SPEED_PLATE = register("speed_plate", id -> new SpeedPlateBlock(id));
+		FIRE_RES_PLATE = register("fire_res_plate", id -> new FireResPlateBlock(id));
+		STRENGTH_PLATE = register("strength_plate", id -> new StrengthPlateBlock(id));
+		POISON_PLATE = register("poison_plate", id -> new PoisonPlateBlock(id));
+		WEAKNESS_PLATE = register("weakness_plate", id -> new WeaknessPlateBlock(id));
+		SLOWNESS_PLATE = register("slowness_plate", id -> new SlownessPlateBlock(id));
+		WITHER_PLATE = register("wither_plate", id -> new WitherPlateBlock(id));
+		PLAYER_FILTER = register("player_filter", id -> new PlayerFilterBlock(id));
+		MOB_FILTER = register("mob_filter", id -> new MobFilterBlock(id));
+		NEUTRAL_FILTER = register("neutral_filter", id -> new NeutralFilterBlock(id));
+		PROJECTILE_FILTER = register("projectile_filter", id -> new ProjectileFilterBlock(id));
+		FILTER_ZOMBIE = register("filter_zombie", id -> new FilterZombieBlock(id));
+		FILTER_SKELETON = register("filter_skeleton", id -> new FilterSkeletonBlock(id));
+		FILTER_SPIDER = register("filter_spider", id -> new FilterSpiderBlock(id));
+		FILTER_VILLAGER = register("filter_villager", id -> new FilterVillagerBlock(id));
+		FILTER_PET = register("filter_pet", id -> new FilterPetBlock(id));
+		FILTER_ANIMAL = register("filter_animal", id -> new FilterAnimalBlock(id));
+		DENY_PLAYER_FILTER = register("deny_player_filter", id -> new DenyPlayerFilterBlock(id));
+		DENY_MOB_FILTER = register("deny_mob_filter", id -> new DenyMobFilterBlock(id));
+		DENY_NEUTRAL_FILTER = register("deny_neutral_filter", id -> new DenyNeutralFilterBlock(id));
+		DENY_PROJECTILE_FILTER = register("deny_projectile_filter", id -> new DenyProjectileFilterBlock(id));
+		DENY_FILTER_ZOMBIE = register("deny_filter_zombie", id -> new DenyFilterZombieBlock(id));
+		DENY_FILTER_SKELETON = register("deny_filter_skeleton", id -> new DenyFilterSkeletonBlock(id));
+		DENY_FILTER_SPIDER = register("deny_filter_spider", id -> new DenyFilterSpiderBlock(id));
+		DENY_FILTER_VILLAGER = register("deny_filter_villager", id -> new DenyFilterVillagerBlock(id));
+		DENY_FILTER_PET = register("deny_filter_pet", id -> new DenyFilterPetBlock(id));
+		DENY_FILTER_ANIMAL = register("deny_filter_animal", id -> new DenyFilterAnimalBlock(id));
+		FLOATING_BLOCK = register("floating_block", id -> new FloatingBlockBlock(id));
+		BASIC_MACHINE_FRAME = register("basic_machine_frame", id -> new BasicMachineFrameBlock(id));
+		CABLE = register("cable", id -> new EnergyCableBlock(id, CableTier.BASIC));
+		CABLE_ADVANCED = register("cable_advanced", id -> new EnergyCableBlock(id, CableTier.ADVANCED));
+		CABLE_ELITE = register("cable_elite", id -> new EnergyCableBlock(id, CableTier.ELITE));
+		ITEM_PIPE = register("item_pipe", id -> new ItemPipeBlock(id, false));
+		RAPID_ITEM_PIPE = register("rapid_item_pipe", id -> new ItemPipeBlock(id, true));
+		CABLE_E = legacy("cable_e", () -> CABLE.get(), -1);
+		CABLE_I = legacy("cable_i", () -> CABLE.get(), -1);
+		CABLE_L = legacy("cable_l", () -> CABLE.get(), -1);
+		CABLE_LC = legacy("cable_lc", () -> CABLE.get(), -1);
+		CABLE_LCC = legacy("cable_lcc", () -> CABLE.get(), -1);
+		CABLE_LT = legacy("cable_lt", () -> CABLE.get(), -1);
+		CABLE_LTC = legacy("cable_ltc", () -> CABLE.get(), -1);
+		CABLE_T = legacy("cable_t", () -> CABLE.get(), -1);
+		CABLE_TC = legacy("cable_tc", () -> CABLE.get(), -1);
+		CABLE_TX = legacy("cable_tx", () -> CABLE.get(), -1);
+		CABLE_TXC = legacy("cable_txc", () -> CABLE.get(), -1);
+		CABLE_TXCC = legacy("cable_txcc", () -> CABLE.get(), -1);
+		CABLE_X = legacy("cable_x", () -> CABLE.get(), -1);
+		CABLE_XC = legacy("cable_xc", () -> CABLE.get(), -1);
+		CABLE_F = legacy("cable_f", () -> CABLE.get(), -1);
+		CABLE_S = legacy("cable_s", () -> CABLE.get(), -1);
+		SOLAR_PANEL = register("solar_panel", id -> new SolarPanelBlock(id, 1, () -> CoreUtilitiesModBlockEntities.SOLAR_PANEL.get()));
+		SOLAR_PANEL_1 = legacy("solar_panel_1", () -> SOLAR_PANEL.get(), 1);
+		SOLAR_PANEL_2 = legacy("solar_panel_2", () -> SOLAR_PANEL.get(), 2);
+		SOLAR_PANEL_TIER_21 = register("solar_panel_tier_21", id -> new SolarPanelBlock(id, 2, () -> CoreUtilitiesModBlockEntities.SOLAR_PANEL_TIER_21.get()));
+		SOLAR_PANEL_TIER_22 = legacy("solar_panel_tier_22", () -> SOLAR_PANEL_TIER_21.get(), 1);
+		SOLAR_PANEL_TIER_23 = legacy("solar_panel_tier_23", () -> SOLAR_PANEL_TIER_21.get(), 2);
+		SOLAR_PANEL_TIER_31 = register("solar_panel_tier_31", id -> new SolarPanelBlock(id, 3, () -> CoreUtilitiesModBlockEntities.SOLAR_PANEL_TIER_31.get()));
+		SOLAR_PANEL_TIER_32 = legacy("solar_panel_tier_32", () -> SOLAR_PANEL_TIER_31.get(), 1);
+		SOLAR_PANEL_TIER_33 = legacy("solar_panel_tier_33", () -> SOLAR_PANEL_TIER_31.get(), 2);
+		SOLAR_PANEL_TIER_41 = register("solar_panel_tier_41", id -> new SolarPanelBlock(id, 4, () -> CoreUtilitiesModBlockEntities.SOLAR_PANEL_TIER_41.get()));
+		SOLAR_PANEL_TIER_42 = legacy("solar_panel_tier_42", () -> SOLAR_PANEL_TIER_41.get(), 1);
+		SOLAR_PANEL_TIER_43 = legacy("solar_panel_tier_43", () -> SOLAR_PANEL_TIER_41.get(), 2);
+		ADVANCED_MACHINE_FRAME = register("advanced_machine_frame", id -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).strength(3.0f, 6.0f).requiresCorrectToolForDrops().setId(id)));
+		STEEL_BLOCK = register("steel_block", id -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).strength(5.0f, 6.0f).requiresCorrectToolForDrops().setId(id)));
+		COMBUSTION_GENERATOR = register("combustion_generator", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.COMBUSTION_GENERATOR.get(), (pos, state) -> new CombustionGeneratorBlockEntity(CoreUtilitiesModBlockEntities.COMBUSTION_GENERATOR.get(), pos, state, MachineSpecs.COMBUSTION_GENERATOR), "tooltip.core_utilities.combustion_generator"));
+		GEOTHERMAL_GENERATOR = register("geothermal_generator", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.GEOTHERMAL_GENERATOR.get(), (pos, state) -> new GeothermalGeneratorBlockEntity(CoreUtilitiesModBlockEntities.GEOTHERMAL_GENERATOR.get(), pos, state, MachineSpecs.GEOTHERMAL_GENERATOR), "tooltip.core_utilities.geothermal_generator"));
+		ENERGY_CELL_BASIC = register("energy_cell_basic", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.ENERGY_CELL_BASIC.get(), (pos, state) -> new EnergyCellBlockEntity(CoreUtilitiesModBlockEntities.ENERGY_CELL_BASIC.get(), pos, state, MachineSpecs.ENERGY_CELL_BASIC, CellTier.BASIC), "tooltip.core_utilities.energy_cell_basic"));
+		ENERGY_CELL_ADVANCED = register("energy_cell_advanced", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.ENERGY_CELL_ADVANCED.get(), (pos, state) -> new EnergyCellBlockEntity(CoreUtilitiesModBlockEntities.ENERGY_CELL_ADVANCED.get(), pos, state, MachineSpecs.ENERGY_CELL_ADVANCED, CellTier.ADVANCED), "tooltip.core_utilities.energy_cell_advanced"));
+		ENERGY_CELL_ELITE = register("energy_cell_elite", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.ENERGY_CELL_ELITE.get(), (pos, state) -> new EnergyCellBlockEntity(CoreUtilitiesModBlockEntities.ENERGY_CELL_ELITE.get(), pos, state, MachineSpecs.ENERGY_CELL_ELITE, CellTier.ELITE), "tooltip.core_utilities.energy_cell_elite"));
+		ENERGY_CELL_CREATIVE = register("energy_cell_creative", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.ENERGY_CELL_CREATIVE.get(), (pos, state) -> new EnergyCellBlockEntity(CoreUtilitiesModBlockEntities.ENERGY_CELL_CREATIVE.get(), pos, state, MachineSpecs.ENERGY_CELL_CREATIVE, CellTier.CREATIVE), "tooltip.core_utilities.energy_cell_creative"));
+		ELECTRIC_FURNACE = register("electric_furnace", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.ELECTRIC_FURNACE.get(), (pos, state) -> new ProcessingMachineBlockEntity(CoreUtilitiesModBlockEntities.ELECTRIC_FURNACE.get(), pos, state, MachineSpecs.ELECTRIC_FURNACE, RecipeKind.SMELTING, 16), "tooltip.core_utilities.electric_furnace"));
+		CRUSHER = register("crusher", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.CRUSHER.get(), (pos, state) -> new ProcessingMachineBlockEntity(CoreUtilitiesModBlockEntities.CRUSHER.get(), pos, state, MachineSpecs.CRUSHER, RecipeKind.CRUSHING, 24), "tooltip.core_utilities.crusher"));
+		ALLOY_SMELTER = register("alloy_smelter", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.ALLOY_SMELTER.get(), (pos, state) -> new ProcessingMachineBlockEntity(CoreUtilitiesModBlockEntities.ALLOY_SMELTER.get(), pos, state, MachineSpecs.ALLOY_SMELTER, RecipeKind.ALLOYING, 32), "tooltip.core_utilities.alloy_smelter"));
+		COMPRESSOR = register("compressor", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.COMPRESSOR.get(), (pos, state) -> new ProcessingMachineBlockEntity(CoreUtilitiesModBlockEntities.COMPRESSOR.get(), pos, state, MachineSpecs.COMPRESSOR, RecipeKind.COMPRESSING, 24), "tooltip.core_utilities.compressor"));
+		QUARRY = register("quarry", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.QUARRY.get(), (pos, state) -> new QuarryBlockEntity(CoreUtilitiesModBlockEntities.QUARRY.get(), pos, state, MachineSpecs.QUARRY), "tooltip.core_utilities.quarry"));
+		CROP_HARVESTER = register("crop_harvester", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.CROP_HARVESTER.get(), (pos, state) -> new CropHarvesterBlockEntity(CoreUtilitiesModBlockEntities.CROP_HARVESTER.get(), pos, state, MachineSpecs.CROP_HARVESTER), "tooltip.core_utilities.crop_harvester"));
+		BLOCK_BREAKER = register("block_breaker", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.BLOCK_BREAKER.get(), (pos, state) -> new BlockBreakerBlockEntity(CoreUtilitiesModBlockEntities.BLOCK_BREAKER.get(), pos, state, MachineSpecs.BLOCK_BREAKER), "tooltip.core_utilities.block_breaker"));
+		BLOCK_PLACER = register("block_placer", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.BLOCK_PLACER.get(), (pos, state) -> new BlockPlacerBlockEntity(CoreUtilitiesModBlockEntities.BLOCK_PLACER.get(), pos, state, MachineSpecs.BLOCK_PLACER), "tooltip.core_utilities.block_placer"));
+		MOB_GRINDER = register("mob_grinder", id -> new MachineBlock(id, () -> CoreUtilitiesModBlockEntities.MOB_GRINDER.get(), (pos, state) -> new MobGrinderBlockEntity(CoreUtilitiesModBlockEntities.MOB_GRINDER.get(), pos, state, MachineSpecs.MOB_GRINDER), "tooltip.core_utilities.mob_grinder"));
+	}
+}

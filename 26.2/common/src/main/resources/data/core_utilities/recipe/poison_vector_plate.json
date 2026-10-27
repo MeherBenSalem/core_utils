@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:poisonous_potato",
+    "minecraft:golden_apple",
+    "minecraft:redstone_torch",
+    "core_utilities:blank_plate"
+  ],
+  "result": {
+    "id": "core_utilities:poison_plate"
+  }
+}

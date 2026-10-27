@@ -4,6 +4,5 @@
     "all": "core_utilities:block/wither_plate",
     "particle": "core_utilities:block/slowness_plate",
     "0": "core_utilities:block/wither_plate"
-  },
-  "render_type": "solid"
+  }
 }

@@ -3,6 +3,5 @@
   "textures": {
     "all": "core_utilities:block/villager_filter",
     "particle": "core_utilities:block/villager_filter"
-  },
-  "render_type": "solid"
+  }
 }

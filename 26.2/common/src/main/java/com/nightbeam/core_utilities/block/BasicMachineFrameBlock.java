@@ -1,5 +1,7 @@
 package com.nightbeam.core_utilities.block;
 
+import net.minecraft.resources.ResourceKey;
+
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,8 +19,8 @@ import net.minecraft.core.BlockPos;
 public class BasicMachineFrameBlock extends Block {
 	public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 
-	public BasicMachineFrameBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(1f, 10f));
+	public BasicMachineFrameBlock(ResourceKey<Block> id) {
+		super(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(1f, 10f).setId(id));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 

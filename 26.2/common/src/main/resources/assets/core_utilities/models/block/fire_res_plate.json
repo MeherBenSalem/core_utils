@@ -4,6 +4,5 @@
     "all": "core_utilities:block/fire_res_plate",
     "particle": "core_utilities:block/fire_res_plate",
     "0": "core_utilities:block/fire_res_plate"
-  },
-  "render_type": "solid"
+  }
 }

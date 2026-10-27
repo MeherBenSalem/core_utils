@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcd",
+    "aaa"
+  ],
+  "key": {
+    "a": "minecraft:paper",
+    "b": "minecraft:gold_ingot",
+    "c": "#minecraft:planks",
+    "d": "minecraft:ender_pearl"
+  },
+  "result": {
+    "id": "core_utilities:neutral_filter"
+  }
+}

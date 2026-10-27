@@ -83,7 +83,8 @@ Built mod JARs are collected under `all-jars/` when you use the root `buildAll` 
 point `JAVA_HOME_17`, `JAVA_HOME_21` and `JAVA_HOME_25` at the matching JDKs.
 
 Each version's common module has JUnit tests (`./gradlew :common:test`). Add `-PwithJei` to a `runClient` task to
-test with JEI.
+test with JEI. On Forge and NeoForge, `-PquickPlay=host:port` makes `runClient` join that server directly (on Fabric, pass
+`--args="--quickPlayMultiplayer host:port"`).
 
 ## Generated resources
 

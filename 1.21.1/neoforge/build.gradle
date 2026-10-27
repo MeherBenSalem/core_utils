@@ -21,6 +21,7 @@ neoForge {
         }
         client {
             client()
+            if (project.hasProperty('quickPlay')) programArguments.addAll('--quickPlayMultiplayer', project.property('quickPlay'), '--username', 'Tester')
         }
         data {
             data()

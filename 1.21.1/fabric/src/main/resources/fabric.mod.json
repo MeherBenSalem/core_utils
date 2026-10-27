@@ -16,6 +16,9 @@
         ],
         "client": [
             "com.nightbeam.core_utilities.CoreUtilitiesModFabricClient"
+        ],
+        "jei_mod_plugin": [
+            "com.nightbeam.core_utilities.compat.jei.CoreUtilitiesJeiPlugin"
         ]
     },
     "mixins": [
@@ -27,5 +30,8 @@
         "fabric-api": "*",
         "minecraft": "${minecraft_version}",
         "java": ">=${java_version}"
+    },
+    "suggests": {
+        "jei": "*"
     }
 }

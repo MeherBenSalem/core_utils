@@ -34,6 +34,14 @@ public class MachineScreen extends AbstractContainerScreen<MachineMenu> {
 		this.inventoryLabelY = 72;
 	}
 
+	public int left() {
+		return leftPos;
+	}
+
+	public int top() {
+		return topPos;
+	}
+
 	private MachineSpec spec() {
 		return menu.getSpec();
 	}

@@ -354,6 +354,30 @@ def gen_data(version):
         write_json(os.path.join(d, ns, fmt.item_tags, f'{path}.json'), {'replace': False, 'values': values})
 
 
+def fix_legacy_assets(version):
+    """Repairs original assets: invalid 'vector' model parents and non power-of-two textures (which disabled mipmaps)."""
+    from PIL import Image
+    a = os.path.join(res(version), 'assets', NS)
+    custom = os.path.join(a, 'models', 'custom')
+    for f in os.listdir(custom):
+        path = os.path.join(custom, f)
+        with open(path, encoding='utf-8') as fh:
+            data = json.load(fh)
+        if data.get('parent') == 'vector':
+            del data['parent']
+            write_json(path, data)
+    tdir = os.path.join(a, 'textures')
+    for root, _, files in os.walk(tdir):
+        for f in files:
+            if not f.endswith('.png'):
+                continue
+            path = os.path.join(root, f)
+            img = Image.open(path)
+            w, h = img.size
+            if w == h and w & (w - 1) != 0:
+                img.convert('RGBA').resize((64, 64), Image.LANCZOS).save(path, optimize=True)
+
+
 def gen_lang(version):
     path = os.path.join(res(version), 'assets', NS, 'lang', 'en_us.json')
     with open(path, encoding='utf-8') as f:
@@ -372,6 +396,7 @@ def main():
         gen_models(v)
         gen_data(v)
         gen_lang(v)
+        fix_legacy_assets(v)
         print('generated', v)
 
 

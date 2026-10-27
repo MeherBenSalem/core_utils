@@ -36,9 +36,9 @@ public class GuideScreen extends Screen {
 			new Chapter("breaker", () -> CoreUtilitiesModItems.BLOCK_BREAKER.get()),
 			new Chapter("utilities", () -> CoreUtilitiesModItems.VECTOR_PLATE_TIER_2.get()));
 
-	private static final int WIDTH = 300;
-	private static final int HEIGHT = 196;
-	private static final int LIST_WIDTH = 104;
+	private static final int WIDTH = 330;
+	private static final int HEIGHT = 222;
+	private static final int LIST_WIDTH = 112;
 	private static final int ROW = 11;
 	private static int selected;
 	private int scroll;

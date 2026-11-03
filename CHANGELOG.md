@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.1
+
+### Fixed
+- **Medium and Big Backpack crash (Fabric on every version, NeoForge 1.21.1 and 26.2).** Opening a Medium or Big
+  Backpack could crash the game (`IndexOutOfBoundsException` from slot 27). Their storage was created with the
+  Small Backpack's 27 slots while their screens have 54 and 100, so anything past slot 27 was out of range. Each
+  backpack now has its full 27, 54 or 100 slots. Items already in a backpack are kept. Forge 1.20.1 was not affected.
+
 ## 2.0.0
 
 The technology update: power, machines, logistics and automation on every version and loader.

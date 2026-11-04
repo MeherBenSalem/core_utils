@@ -39,7 +39,8 @@ public interface IPlatformHelper {
 		return false;
 	}
 
-	ItemStackHandlerAccess getBackpackInventory(ItemStack stack);
+	/** {@code registries} must be the player's world registries: enchanted items need them to save. */
+	ItemStackHandlerAccess getBackpackInventory(ItemStack stack, net.minecraft.core.HolderLookup.Provider registries);
 
 	/** Registers an object in a vanilla registry, deferred where the loader requires it. */
 	<R, T extends R> java.util.function.Supplier<T> register(net.minecraft.core.Registry<R> registry, String name, java.util.function.Supplier<T> factory);

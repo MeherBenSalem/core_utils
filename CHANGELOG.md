@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.2
+
+### Fixed
+- **Crash when putting an enchanted item in a backpack (Fabric and NeoForge, 1.21.1 and 26.2).** Shift-clicking or
+  dragging an enchanted item (or anything else carrying enchantment data, like an enchanted book) into a Small,
+  Medium or Big Backpack crashed the game with `Can't access registry minecraft:enchantment`. Backpacks saved their
+  contents with Minecraft's built-in registries only, which don't include enchantments; they now use the world's
+  registries. Items already in a backpack are kept. Forge and Fabric 1.20.1 were not affected.
+
 ## 2.0.1
 
 ### Fixed

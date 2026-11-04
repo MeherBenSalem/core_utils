@@ -3,9 +3,7 @@ package com.nightbeam.core_utilities.platform;
 import com.nightbeam.core_utilities.platform.services.IPlatformHelper;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.ContainerHelper;
@@ -18,14 +16,18 @@ public class NbtBackpackInventory implements IPlatformHelper.ItemStackHandlerAcc
 	private final NonNullList<ItemStack> items;
 	private final HolderLookup.Provider registries;
 
-	public NbtBackpackInventory(ItemStack stack) {
-		this(stack, 27);
+	public NbtBackpackInventory(ItemStack stack, HolderLookup.Provider registries) {
+		this(stack, 27, registries);
 	}
 
-	public NbtBackpackInventory(ItemStack stack, int size) {
+	/**
+	 * {@code registries} must be the world's (level.registryAccess()). Built-in registries alone lack the data-driven ones
+	 * such as enchantments, so saving an enchanted item crashed ("Can't access registry minecraft:enchantment").
+	 */
+	public NbtBackpackInventory(ItemStack stack, int size, HolderLookup.Provider registries) {
 		this.stack = stack;
 		this.items = NonNullList.withSize(size, ItemStack.EMPTY);
-		this.registries = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
+		this.registries = registries;
 		load();
 	}
 

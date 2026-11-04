@@ -124,11 +124,11 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 	}
 
 	@Override
-	public ItemStackHandlerAccess getBackpackInventory(ItemStack stack) {
+	public ItemStackHandlerAccess getBackpackInventory(ItemStack stack, net.minecraft.core.HolderLookup.Provider registries) {
 		// Size the inventory for the backpack it belongs to, as the menus (and Forge's capabilities) do. A fixed 27 left
 		// the Medium and Big menus pointing at slots that did not exist (IndexOutOfBounds from slot 27 on) and dropped
 		// anything stored past slot 26 the next time the backpack saved.
-		return new NbtBackpackInventory(stack, backpackSize(stack));
+		return new NbtBackpackInventory(stack, backpackSize(stack), registries);
 	}
 
 	private static int backpackSize(ItemStack stack) {

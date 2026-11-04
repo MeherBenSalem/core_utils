@@ -53,7 +53,7 @@ public class SmallBackpackGUIMenu extends AbstractContainerMenu implements com.n
 		super(CoreUtilitiesModMenus.SMALL_BACKPACK_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
-		this.internal = new NbtBackpackInventory(ItemStack.EMPTY);
+		this.internal = new NbtBackpackInventory(ItemStack.EMPTY, this.world.registryAccess());
 		BlockPos pos = null;
 		if (extraData != null) {
 			pos = extraData.readBlockPos();
@@ -67,13 +67,13 @@ public class SmallBackpackGUIMenu extends AbstractContainerMenu implements com.n
 				byte hand = extraData.readByte();
 				ItemStack itemstack = hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem();
 				this.boundItemMatcher = () -> itemstack == (hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem());
-				this.internal = com.nightbeam.core_utilities.platform.Services.PLATFORM.getBackpackInventory(itemstack);
+				this.internal = com.nightbeam.core_utilities.platform.Services.PLATFORM.getBackpackInventory(itemstack, this.world.registryAccess());
 				this.bound = true;
 			} else if (extraData.readableBytes() == 0) {
 				byte hand = this.entity.getMainHandItem().is(com.nightbeam.core_utilities.init.CoreUtilitiesModItems.SMALL_BACKPACK.get()) ? (byte) 0 : (byte) 1;
 				ItemStack itemstack = hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem();
 				this.boundItemMatcher = () -> itemstack == (hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem());
-				this.internal = com.nightbeam.core_utilities.platform.Services.PLATFORM.getBackpackInventory(itemstack);
+				this.internal = com.nightbeam.core_utilities.platform.Services.PLATFORM.getBackpackInventory(itemstack, this.world.registryAccess());
 				this.bound = true;
 			} else if (extraData.readableBytes() > 1) {
 				extraData.readByte(); // drop padding

@@ -49,7 +49,7 @@ public class BigBackpackGUIMenu extends AbstractContainerMenu implements com.nig
 		super(CoreUtilitiesModMenus.BIG_BACKPACK_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
-		this.internal = new NbtBackpackInventory(ItemStack.EMPTY, 100);
+		this.internal = new NbtBackpackInventory(ItemStack.EMPTY, 100, this.world.registryAccess());
 		BlockPos pos = null;
 		if (extraData != null) {
 			pos = extraData.readBlockPos();
@@ -63,7 +63,7 @@ public class BigBackpackGUIMenu extends AbstractContainerMenu implements com.nig
 				byte hand = extraData.readByte();
 				ItemStack itemstack = hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem();
 				this.boundItemMatcher = () -> itemstack == (hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem());
-				this.internal = com.nightbeam.core_utilities.platform.Services.PLATFORM.getBackpackInventory(itemstack);
+				this.internal = com.nightbeam.core_utilities.platform.Services.PLATFORM.getBackpackInventory(itemstack, this.world.registryAccess());
 				this.bound = true;
 			} else if (extraData.readableBytes() > 1) { // bound to entity
 				extraData.readByte(); // drop padding

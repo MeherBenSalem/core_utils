@@ -1,5 +1,9 @@
 ![Core Utilities 2.0: The Technology Update](https://raw.githubusercontent.com/MeherBenSalem/core_utils/main/marketing/images/banner.png)
 
+**[Discord](https://discord.gg/TJc3CxR4jK) · [The modpack](https://www.curseforge.com/minecraft/modpacks/remnants-ashen-legacy) · [Support NightBeam](https://nightbeam.dev/support) · [NightBeam Pro](https://nightbeam.dev/memberships) · [All projects](https://nightbeam.dev/projects)**
+
+> **Featured in [Remnants: Ashen Legacy](https://www.curseforge.com/minecraft/modpacks/remnants-ashen-legacy)**, NightBeam's story-driven soulslike RPG modpack.
+
 ## Power it. Process it. Pipe it.
 
 **Core Utilities** is a compact technology mod: generators, energy cells, cables, ore processing, a quarry, farms, a mob grinder and item pipes, all on Forge Energy. It runs on **Fabric, Forge and NeoForge** with the same content on every version, works with other tech mods out of the box, and comes with an in-game manual.
@@ -48,7 +52,7 @@ Generators push their energy into any neighbour that accepts it: a cable, a cell
 | Elite Energy Cable | – | 32,768 FE/t per network |
 
 - **Cells keep their charge** when broken. Each face can be set to input or output in the Sides panel.
-- **Cables hold no energy and are never ticked.** Connected cables form one cached network that is rebuilt only when it changes, so a thousand cables cost the same as one.
+- **Cables hold no energy and are never ticked.** Connected cables form one cached network that is rebuilt just when it changes, so a thousand cables cost the same as one.
 - **Fair split:** a network's budget is shared evenly between every receiver, and what one receiver cannot take goes to the others.
 
 ![Cables connecting a network](https://raw.githubusercontent.com/MeherBenSalem/core_utils/main/marketing/images/gifs/cables.gif)
@@ -115,7 +119,7 @@ Dusts smelt back into ingots in a furnace or blast furnace. Every recipe accepts
 
 ![From copper to ender](https://raw.githubusercontent.com/MeherBenSalem/core_utils/main/marketing/images/card-materials.png)
 
-1. **Basic Circuits** need only redstone, copper and iron, so your first generator and machines need no power to build.
+1. **Basic Circuits** need just redstone, copper and iron, so your opening generator and machines need no power to build.
 2. Crush coal and ore, then alloy **Steel**. Press it into **Steel Plates** for the Advanced Machine Frame.
 3. Alloy gold with redstone into **Energized Ingots** for Advanced Circuits, Advanced Cells and Advanced Cable.
 4. Alloy Energized Ingots with Ender Pearls into **Ender Alloy** for Elite Circuits, Elite Cells and Elite Cable.
@@ -125,13 +129,13 @@ Dusts smelt back into ingots in a furnace or blast furnace. Every recipe accepts
 
 ![Every number is yours](https://raw.githubusercontent.com/MeherBenSalem/core_utils/main/marketing/images/card-config.png)
 
-`config/core_utilities.properties` is created on first launch. It holds every generator rate, cable throughput, cell capacity and transfer rate, machine speed and energy multipliers, and the quarry, harvester, grinder and pipe settings. Missing keys are added with their defaults, and your values are kept.
+`config/core_utilities.properties` is created at launch. It holds every generator rate, cable throughput, cell capacity and transfer rate, machine speed and energy multipliers, and the quarry, harvester, grinder and pipe settings. Missing keys are added with their defaults, and your values are kept.
 
 ![Original Utilities](https://raw.githubusercontent.com/MeherBenSalem/core_utils/main/marketing/images/header-utilities.png)
 
 - **Pushing Plates** in four strengths move entities in the direction they face. Sneaking players are not pushed.
 - **Effect Plates** give Speed, Strength, Regeneration, Fire Resistance, Slowness, Weakness, Poison or Wither to whoever steps on them.
-- **Entity Filters** let only one kind of entity through (players, mobs, animals, pets, villagers, zombies, skeletons, spiders, neutral mobs or projectiles), or block only that kind.
+- **Entity Filters** let one kind of entity through (players, mobs, animals, pets, villagers, zombies, skeletons, spiders, neutral mobs or projectiles), or block just that kind.
 - **Backpacks** in three sizes, the **Mob Net** to carry a mob, and the **Floating Block** that can be placed in mid-air.
 
 ![divider](https://raw.githubusercontent.com/MeherBenSalem/core_utils/main/marketing/images/divider.png)
@@ -141,7 +145,7 @@ Dusts smelt back into ingots in a furnace or blast furnace. Every recipe accepts
 - **Works with other tech mods.** Every energy block is a Forge Energy capability on Forge and NeoForge and a Team Reborn Energy storage on Fabric (bundled, nothing to install). Item handlers and the Fabric Transfer API are supported, so hoppers, pipes and storage from other mods connect.
 - **Jade** shows stored energy on Forge and NeoForge.
 - **Older worlds convert.** The 1.x cable shapes and weather solar panels turn into the new blocks when a world loads.
-- **Lightweight.** Cables are never ticked, machines only update their block when they start or stop, and nothing sends packets every tick.
+- **Lightweight.** Cables are never ticked, machines update their block just when they start or stop, and nothing sends packets every tick.
 
 ![Downloads & Compatibility](https://raw.githubusercontent.com/MeherBenSalem/core_utils/main/marketing/images/header-compatibility.png)
 
@@ -162,7 +166,7 @@ Dusts smelt back into ingots in a furnace or blast furnace. Every recipe accepts
 Yes. Core Utilities uses Forge Energy (FE) on Forge and NeoForge and Team Reborn Energy on Fabric, the same systems most tech mods use. Cables connect to their machines and cells, and theirs connect to ours.
 
 **Why is my solar panel not producing?**
-It needs a clear view of the sky, and it only works during the day. Rain halves its output and thunderstorms quarter it. Use the Multimeter to check.
+It needs a clear view of the sky, and it works during the day, not at night. Rain halves its output and thunderstorms quarter it. Use the Multimeter to check.
 
 **My machine has power but does nothing.**
 Check the redstone mode in its GUI, and that its output slots are not full. Turn on auto-eject or connect a pipe to an output face.
@@ -171,7 +175,7 @@ Check the redstone mode in its GUI, and that its output slots are not full. Turn
 Hold the Configuration Wrench and use it on the pipe face that touches the chest. The connector changes to the extract texture.
 
 **Will cables lag my server?**
-No. Cables are never ticked. A network is cached and rebuilt only when you place or break a cable on it.
+No. Cables are never ticked. A network is cached and rebuilt just when you place or break a cable on it.
 
 **I updated from 1.x. What happens to my cables and panels?**
 The old cable shapes become Basic Energy Cables and the old weather variants become the matching solar panel when the world loads.
@@ -216,3 +220,15 @@ The in-game **Core Utilities Manual** · [Feature matrix](https://github.com/Meh
 ---
 
 Core Utilities is licensed under Apache-2.0. The Anton and Montserrat fonts used in this artwork are licensed under the SIL Open Font License 1.1.
+
+---
+
+### More from NightBeam Studio
+
+- **[Remnants: Ashen Legacy](https://www.curseforge.com/minecraft/modpacks/remnants-ashen-legacy)**: the story-driven soulslike RPG modpack built on NightBeam's mods
+- **[Premium server plugins](https://nightbeam.dev/store)**: anti-cheat, ranked PvP, SMP setups and more on BuiltByBit
+- **[NightBeam Pro](https://nightbeam.dev/memberships)**: the model library and NightBeam Forge credits, from $5 a month
+- **[Discord](https://discord.gg/TJc3CxR4jK)**: support, bug reports, suggestions and early looks
+- **[Support NightBeam](https://nightbeam.dev/support)**: help keep every mod free
+
+**Follow:** [YouTube](https://www.youtube.com/@nightbeamstudio) · [Instagram](https://www.instagram.com/nightbeamstudio/) · [X](https://x.com/NightBeamLLC) · [Facebook](https://www.facebook.com/profile.php?id=61574823331471) · [Source and issues](https://github.com/MeherBenSalem/core_utils)

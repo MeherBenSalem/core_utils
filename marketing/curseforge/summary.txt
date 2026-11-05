@@ -1,1 +1,1 @@
-A compact tech mod for Fabric, Forge and NeoForge: solar, combustion and geothermal power, energy cells, lag-free cables, ore doubling, alloys, a quarry, farms, a mob grinder and item pipes. FE and TR Energy compatible.
+A compact tech mod with solar, combustion and geothermal power, lag-free cables, ore doubling, a quarry, farms and item pipes, compatible with FE and TR Energy.

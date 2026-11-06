@@ -1,6 +1,6 @@
 ![Core Utilities 2.0: The Technology Update](https://raw.githubusercontent.com/MeherBenSalem/core_utils/main/marketing/images/banner.png)
 
-**[Discord](https://discord.gg/TJc3CxR4jK) · [Source and issues](https://github.com/MeherBenSalem/core_utils)**
+**[Docs](https://nightbeam.dev/docs/core-utilities) · [Discord](https://discord.gg/TJc3CxR4jK) · [Source and issues](https://github.com/MeherBenSalem/core_utils)**
 
 ## Power it. Process it. Pipe it.
 

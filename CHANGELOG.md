@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.3
+
+### Fixed
+- **A backpack put inside itself disappeared with everything in it (Fabric on every version, NeoForge 1.21.1 and
+  26.2).** Backpacks now refuse backpacks of their own type, as Forge 1.20.1 always did, so a backpack can't be
+  placed or shift-clicked into its own inventory. A smaller backpack still fits in a bigger one.
+
 ## 2.0.2
 
 ### Fixed

@@ -36,6 +36,15 @@ public class NbtBackpackInventory implements IPlatformHelper.ItemStackHandlerAcc
 		tag.put(INVENTORY_KEY, inventory);
 	}
 
+	/**
+	 * Refuses backpacks of this backpack's own type, as Forge 1.20.1 always did. Putting a backpack into its own
+	 * inventory made it vanish with everything in it: the item it was saving into was the one being moved.
+	 */
+	@Override
+	public boolean accepts(ItemStack insert) {
+		return stack.isEmpty() || insert.isEmpty() || insert.getItem() != stack.getItem();
+	}
+
 	@Override
 	public int getSlots() {
 		return items.size();
@@ -54,6 +63,9 @@ public class NbtBackpackInventory implements IPlatformHelper.ItemStackHandlerAcc
 
 	@Override
 	public ItemStack insertItem(int slot, ItemStack insert, boolean simulate) {
+		if (!accepts(insert)) {
+			return insert;
+		}
 		ItemStack existing = items.get(slot);
 		if (!existing.isEmpty() && !ItemStack.isSameItemSameTags(existing, insert)) {
 			return insert;

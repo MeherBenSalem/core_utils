@@ -62,6 +62,11 @@ public interface IPlatformHelper {
 	int getBurnTime(ItemStack stack);
 
 	interface ItemStackHandlerAccess {
+		/** Whether this stack may go in (a backpack refuses backpacks of its own type, so it can't hold itself). */
+		default boolean accepts(net.minecraft.world.item.ItemStack stack) {
+			return true;
+		}
+
 		int getSlots();
 
 		ItemStack getStackInSlot(int slot);

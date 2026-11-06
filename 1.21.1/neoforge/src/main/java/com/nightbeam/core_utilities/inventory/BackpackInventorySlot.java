@@ -17,7 +17,7 @@ public class BackpackInventorySlot extends Slot {
 
 	@Override
 	public boolean mayPlace(ItemStack stack) {
-		return true;
+		return handler.accepts(stack);
 	}
 
 	@Override

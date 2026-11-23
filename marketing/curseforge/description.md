@@ -152,6 +152,7 @@ Dusts smelt back into ingots in a furnace or blast furnace. Every recipe accepts
 | 1.20.1 | Fabric, Forge | 17+ | Fabric API (Fabric) |
 | 1.21.1 | Fabric, NeoForge | 21+ | Fabric API (Fabric) |
 | 26.2 | Fabric, NeoForge | 25+ | Fabric API (Fabric) |
+| 26.3 | Fabric, NeoForge | 25+ | Fabric API (Fabric) |
 
 - Download the file with your loader in its name: `-fabric-`, `-forge-` or `-neoforge-`.
 - Install Core Utilities on **both the server and every client**, at the same version.

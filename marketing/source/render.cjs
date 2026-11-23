@@ -5,13 +5,14 @@ const path = require('path');
 const fs = require('fs');
 const { chromium } = require('playwright');
 
-// The release and the supported Minecraft versions. Adding a version is one line here
+// The release and the supported Minecraft versions. Adding a version is one line here (26.3 added for 2.0.4; rerun the banner target)
 // (plus one row in the compatibility table of curseforge/description.md).
 const RELEASE = { version: '2.0', name: 'The Technology Update' };
 const VERSIONS = [
   { minecraft: '1.20.1', loaders: ['Fabric', 'Forge'] },
   { minecraft: '1.21.1', loaders: ['Fabric', 'NeoForge'] },
   { minecraft: '26.2', loaders: ['Fabric', 'NeoForge'] },
+  { minecraft: '26.3', loaders: ['Fabric', 'NeoForge'] },
 ];
 const LOADERS = ['Fabric', 'Forge', 'NeoForge'].filter((loader) => VERSIONS.some((v) => v.loaders.includes(loader)));
 

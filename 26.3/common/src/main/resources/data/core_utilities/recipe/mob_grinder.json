@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SWS",
+    "AMA",
+    "SSS"
+  ],
+  "key": {
+    "S": "core_utilities:steel_plate",
+    "W": "minecraft:diamond_sword",
+    "A": "core_utilities:advanced_circuit",
+    "M": "core_utilities:advanced_machine_frame"
+  },
+  "result": {
+    "id": "core_utilities:mob_grinder"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " D ",
+    "AEA",
+    " D "
+  ],
+  "key": {
+    "D": "minecraft:diamond",
+    "A": "core_utilities:advanced_circuit",
+    "E": "core_utilities:ender_alloy_ingot"
+  },
+  "result": {
+    "id": "core_utilities:elite_circuit"
+  }
+}

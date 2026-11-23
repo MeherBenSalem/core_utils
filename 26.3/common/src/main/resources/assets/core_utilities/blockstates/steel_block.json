@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "core_utilities:block/steel_block"
+    }
+  }
+}

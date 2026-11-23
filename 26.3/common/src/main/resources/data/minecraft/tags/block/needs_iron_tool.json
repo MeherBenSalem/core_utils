@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "core_utilities:steel_block",
+    "core_utilities:advanced_machine_frame",
+    "core_utilities:quarry",
+    "core_utilities:mob_grinder",
+    "core_utilities:energy_cell_advanced",
+    "core_utilities:energy_cell_elite"
+  ]
+}

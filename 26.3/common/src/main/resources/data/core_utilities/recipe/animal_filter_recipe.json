@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcd",
+    "aaa"
+  ],
+  "key": {
+    "a": "minecraft:paper",
+    "b": "minecraft:beef",
+    "c": "#minecraft:planks",
+    "d": "minecraft:mutton"
+  },
+  "result": {
+    "id": "core_utilities:filter_animal"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "front": "core_utilities:block/alloy_smelter_front",
+    "side": "core_utilities:block/alloy_smelter_side",
+    "top": "core_utilities:block/alloy_smelter_top",
+    "bottom": "core_utilities:block/alloy_smelter_bottom",
+    "particle": "core_utilities:block/alloy_smelter_side"
+  }
+}

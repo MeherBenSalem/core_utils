@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "core_utilities:combustion_generator",
+    "core_utilities:geothermal_generator",
+    "core_utilities:energy_cell_basic",
+    "core_utilities:energy_cell_creative",
+    "core_utilities:electric_furnace",
+    "core_utilities:crusher",
+    "core_utilities:alloy_smelter",
+    "core_utilities:compressor",
+    "core_utilities:crop_harvester",
+    "core_utilities:block_breaker",
+    "core_utilities:block_placer",
+    "core_utilities:basic_machine_frame"
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_core"
+      }
+    },
+    {
+      "when": {
+        "north": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_arm"
+      }
+    },
+    {
+      "when": {
+        "north": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_endpoint"
+      }
+    },
+    {
+      "when": {
+        "north": "extract"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_extract"
+      }
+    },
+    {
+      "when": {
+        "east": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_arm",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "east": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_endpoint",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "east": "extract"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_extract",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_arm",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "south": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_endpoint",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "south": "extract"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_extract",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_arm",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "west": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_endpoint",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "west": "extract"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_extract",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_arm",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "up": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_endpoint",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "up": "extract"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_extract",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "down": "conduit"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_arm",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "down": "endpoint"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_endpoint",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "down": "extract"
+      },
+      "apply": {
+        "model": "core_utilities:block/rapid_item_pipe_extract",
+        "x": 90
+      }
+    }
+  ]
+}

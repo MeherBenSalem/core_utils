@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "core_utilities:block/basic_machine_frame"
+    },
+    "facing=east": {
+      "model": "core_utilities:block/basic_machine_frame",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "core_utilities:block/basic_machine_frame",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "core_utilities:block/basic_machine_frame",
+      "y": 270
+    }
+  }
+}

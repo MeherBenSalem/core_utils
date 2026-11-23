@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a a",
+    "bcb",
+    "a a"
+  ],
+  "key": {
+    "a": "minecraft:string",
+    "b": "minecraft:leather",
+    "c": "minecraft:chest"
+  },
+  "result": {
+    "id": "core_utilities:small_backpack"
+  }
+}

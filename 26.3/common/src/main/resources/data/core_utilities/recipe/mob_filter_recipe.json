@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcd",
+    "aaa"
+  ],
+  "key": {
+    "a": "minecraft:paper",
+    "b": "minecraft:rotten_flesh",
+    "c": "#minecraft:planks",
+    "d": "minecraft:bone"
+  },
+  "result": {
+    "id": "core_utilities:mob_filter"
+  }
+}

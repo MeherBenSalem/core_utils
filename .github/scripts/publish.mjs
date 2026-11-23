@@ -1,8 +1,10 @@
-// Uploads every loader jar in all-jars/ to Modrinth and CurseForge, one release per jar, each tagged with its own
+// Uploads every loader jar in JAR_LIST (the 8 verified convention jars) to Modrinth and CurseForge, one release per jar, each tagged with its own
 // Minecraft version and loader. Jar names follow <mod_id>-<loader>-<minecraft>-<version>.jar (multiloader-common.gradle).
 // The changelog is the section of CHANGELOG.md for this version. Fabric jars declare Fabric API as required.
 //
 // env: VERSION, JAR_LIST (newline separated), MODRINTH_TOKEN, MODRINTH_ID, CURSEFORGE_TOKEN, CURSEFORGE_ID
+// --dry-run: print what would be uploaded (names, loaders, Minecraft versions, dependencies) and exit before any
+// network call; needs only VERSION and JAR_LIST (CI and the publish workflow's verify step use it).
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -29,6 +31,16 @@ function describe(jar) {
 const CHANGELOG = changelog();
 const builds = JARS.map(describe);
 const failures = [];
+
+if (process.argv.includes('--dry-run')) {
+  for (const b of builds) {
+    if (!fs.existsSync(b.jar)) throw new Error(`Missing jar: ${b.jar}`);
+    const deps = b.loader === 'fabric' ? ' (requires Fabric API)' : '';
+    console.log(`would upload ${b.file}: ${VERSION}+${b.minecraft}-${b.loader}, ${LOADER_NAMES[b.loader]} ${b.minecraft}${deps}`);
+  }
+  console.log(`Dry run: ${builds.length} jar(s), changelog ${CHANGELOG.split('\n')[0]}; nothing uploaded`);
+  process.exit(0);
+}
 
 let published;
 async function modrinth(b) {

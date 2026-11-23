@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SAS",
+    "RER",
+    "SRS"
+  ],
+  "key": {
+    "S": "core_utilities:steel_plate",
+    "A": "core_utilities:advanced_circuit",
+    "R": "minecraft:redstone_block",
+    "E": "core_utilities:energy_cell_basic"
+  },
+  "result": {
+    "id": "core_utilities:energy_cell_advanced"
+  }
+}

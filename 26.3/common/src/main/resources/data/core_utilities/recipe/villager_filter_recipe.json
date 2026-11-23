@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcb",
+    "aaa"
+  ],
+  "key": {
+    "a": "minecraft:paper",
+    "b": "minecraft:emerald",
+    "c": "#minecraft:planks"
+  },
+  "result": {
+    "id": "core_utilities:filter_villager"
+  }
+}

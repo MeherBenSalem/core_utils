@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcd",
+    "aaa"
+  ],
+  "key": {
+    "a": "minecraft:paper",
+    "b": "minecraft:furnace",
+    "c": "#minecraft:planks",
+    "d": "minecraft:crafting_table"
+  },
+  "result": {
+    "id": "core_utilities:player_filter"
+  }
+}

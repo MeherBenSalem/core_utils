@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.4
+
+### Added
+- **Minecraft 26.3 is now supported, on Fabric and NeoForge.** Download the file with `26.3` and your loader in its
+  name (Fabric still needs Fabric API). It has everything 2.0.3 has. No gameplay, config or save changes on the other
+  versions.
+
 ## 2.0.3
 
 ### Fixed

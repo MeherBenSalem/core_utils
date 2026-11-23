@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:activator_rail",
+    "core_utilities:blank_plate"
+  ],
+  "result": {
+    "id": "core_utilities:vector_plate_tier_1"
+  }
+}

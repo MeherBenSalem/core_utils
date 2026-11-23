@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "core_utilities:block/filter_animal"
+    },
+    "facing=east": {
+      "model": "core_utilities:block/filter_animal",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "core_utilities:block/filter_animal",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "core_utilities:block/filter_animal",
+      "y": 270
+    }
+  }
+}

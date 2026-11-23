@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "core_utilities:speed_upgrade",
+    "core_utilities:energy_upgrade",
+    "core_utilities:range_upgrade"
+  ]
+}

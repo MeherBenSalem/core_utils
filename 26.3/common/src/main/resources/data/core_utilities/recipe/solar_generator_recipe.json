@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcd",
+    "efe"
+  ],
+  "key": {
+    "a": "minecraft:amethyst_shard",
+    "b": "minecraft:comparator",
+    "c": "core_utilities:basic_machine_frame",
+    "d": "minecraft:repeater",
+    "e": "minecraft:lapis_lazuli",
+    "f": "minecraft:redstone"
+  },
+  "result": {
+    "id": "core_utilities:solar_panel"
+  }
+}

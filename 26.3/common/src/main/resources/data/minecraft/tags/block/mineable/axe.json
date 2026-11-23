@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "core_utilities:player_filter",
+    "core_utilities:mob_filter",
+    "core_utilities:neutral_filter",
+    "core_utilities:projectile_filter",
+    "core_utilities:filter_zombie",
+    "core_utilities:filter_skeleton",
+    "core_utilities:filter_spider",
+    "core_utilities:filter_villager",
+    "core_utilities:filter_pet",
+    "core_utilities:filter_animal",
+    "core_utilities:deny_player_filter",
+    "core_utilities:deny_mob_filter",
+    "core_utilities:deny_neutral_filter",
+    "core_utilities:deny_projectile_filter",
+    "core_utilities:deny_filter_zombie",
+    "core_utilities:deny_filter_skeleton",
+    "core_utilities:deny_filter_spider",
+    "core_utilities:deny_filter_villager",
+    "core_utilities:deny_filter_pet",
+    "core_utilities:deny_filter_animal"
+  ]
+}

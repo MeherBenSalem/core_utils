@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "core_utilities:block/fire_res_plate"
+    },
+    "facing=east": {
+      "model": "core_utilities:block/fire_res_plate",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "core_utilities:block/fire_res_plate",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "core_utilities:block/fire_res_plate",
+      "y": 270
+    }
+  }
+}

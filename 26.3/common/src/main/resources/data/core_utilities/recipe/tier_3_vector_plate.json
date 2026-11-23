@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aba",
+    "aaa"
+  ],
+  "key": {
+    "a": "minecraft:redstone",
+    "b": "core_utilities:vector_plate_tier_2"
+  },
+  "result": {
+    "id": "core_utilities:vector_plate_tier_3"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "efe"
+  ],
+  "key": {
+    "a": "minecraft:blaze_powder",
+    "b": "minecraft:ender_eye",
+    "c": "minecraft:leather",
+    "d": "minecraft:chest",
+    "e": "minecraft:diamond",
+    "f": "minecraft:string"
+  },
+  "result": {
+    "id": "core_utilities:big_backpack"
+  }
+}

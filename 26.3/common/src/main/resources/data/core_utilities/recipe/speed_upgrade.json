@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SRS",
+    "RCR",
+    "SRS"
+  ],
+  "key": {
+    "S": "core_utilities:steel_ingot",
+    "R": "minecraft:redstone",
+    "C": "core_utilities:basic_circuit"
+  },
+  "result": {
+    "id": "core_utilities:speed_upgrade"
+  }
+}

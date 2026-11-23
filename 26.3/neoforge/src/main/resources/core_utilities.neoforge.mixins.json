@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.nightbeam.core_utilities.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": []
+}

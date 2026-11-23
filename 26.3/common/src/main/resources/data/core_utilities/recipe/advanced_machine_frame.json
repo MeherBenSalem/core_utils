@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SCS",
+    "SFS",
+    "SSS"
+  ],
+  "key": {
+    "S": "core_utilities:steel_plate",
+    "C": "core_utilities:advanced_circuit",
+    "F": "core_utilities:basic_machine_frame"
+  },
+  "result": {
+    "id": "core_utilities:advanced_machine_frame"
+  }
+}

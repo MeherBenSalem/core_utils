@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "OGO",
+    "CMC",
+    "OBO"
+  ],
+  "key": {
+    "O": "minecraft:obsidian",
+    "G": "minecraft:glass",
+    "C": "core_utilities:basic_circuit",
+    "M": "core_utilities:basic_machine_frame",
+    "B": "minecraft:bucket"
+  },
+  "result": {
+    "id": "core_utilities:geothermal_generator"
+  }
+}

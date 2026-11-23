@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cac",
+    "ada"
+  ],
+  "key": {
+    "a": "minecraft:string",
+    "b": "minecraft:emerald",
+    "c": "minecraft:chest",
+    "d": "minecraft:leather"
+  },
+  "result": {
+    "id": "core_utilities:medium_backpack"
+  }
+}

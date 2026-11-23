@@ -12,7 +12,9 @@ Thanks for contributing to Core Utilities.
 
 1. Fork the repository and create a branch from `main`.
 2. Make the smallest coherent change that solves the problem.
-3. Build the version root you changed from inside that folder, for example `1.20.1/` or `1.21.1/`.
+3. Build the version root you changed from inside that folder (`1.20.1/`, `1.21.1/`, `26.2/` or `26.3/`; Gradle on
+   Java 21 for 1.20.1 and 1.21.1, Java 25 for 26.x), or all four with `./gradlew buildAll` from the root (the 8 loader
+   jars land in `releases/`). A gameplay change usually belongs in all four.
 4. Update documentation when behavior, configuration, or release steps change.
 5. Open a pull request with a clear summary, verification notes, and any compatibility risks.
 
@@ -22,6 +24,9 @@ Thanks for contributing to Core Utilities.
 - Do not port changes across versions with shared sources or symlinks.
 - Avoid committing generated jars, logs, run directories, secrets, or local IDE files.
 - Strip MCreator-generated boilerplate; write maintainable Java instead.
+- Keep every workspace at the same `version=` as the root `VERSION` file (`./gradlew syncVersion -PmodVersion=x.y.z`),
+  and run `python3 scripts/check_targets.py workspaces` before opening a pull request.
+- Recipes, loot tables and tags come from `scripts/assetgen/gen.py`; change the generator, not the JSON.
 
 ## Reporting issues
 

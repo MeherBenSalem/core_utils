@@ -22,7 +22,7 @@ import machines as mt  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 NS = 'core_utilities'
-VERSIONS = ['1.20.1', '1.21.1', '26.2']
+VERSIONS = ['1.20.1', '1.21.1', '26.2', '26.3']
 
 
 def res(version):
@@ -48,6 +48,9 @@ class Fmt:
         self.v = version
         self.modern = version != '1.20.1'
         self.v26 = version.startswith('26')
+        # 26.3 writes loot conditions and functions as single "condition"/"modifier" objects keyed by "type", and
+        # cooking recipes have no "category"
+        self.v263 = version == '26.3'
         self.recipe_dir = 'recipe' if self.modern else 'recipes'
         self.loot_dir = 'loot_table' if self.modern else 'loot_tables'
         self.block_tags = 'tags/block' if self.modern else 'tags/blocks'
@@ -93,7 +96,7 @@ def shapeless(fmt, ingredients, result, count=1, category='misc'):
 
 
 def cooking(fmt, kind, ingredient, result, xp, time):
-    return {
+    recipe = {
         'type': 'minecraft:' + kind,
         'category': 'misc',
         'ingredient': fmt.ingredient(ingredient),
@@ -101,6 +104,9 @@ def cooking(fmt, kind, ingredient, result, xp, time):
         'experience': xp,
         'cookingtime': time,
     }
+    if fmt.v263:
+        del recipe['category']
+    return recipe
 
 
 def legacy_recipe(fmt, data):
@@ -127,6 +133,11 @@ def legacy_recipe(fmt, data):
 
 def loot_self(fmt, name, drop=None, keep_energy=False):
     entry = {'type': 'minecraft:item', 'name': f'{NS}:{drop or name}'}
+    if fmt.v263:
+        if keep_energy:
+            entry['modifier'] = {'type': 'minecraft:copy_components', 'source': 'block_entity', 'include': ['minecraft:custom_data']}
+        return {'type': 'minecraft:block', 'pools': [{'rolls': 1, 'entries': [entry], 'condition': {'type': 'minecraft:survives_explosion'}}],
+                'random_sequence': f'{NS}:blocks/{name}'}
     if keep_energy:
         if fmt.modern:
             entry['functions'] = [{'function': 'minecraft:copy_components', 'source': 'block_entity', 'include': ['minecraft:custom_data']}]

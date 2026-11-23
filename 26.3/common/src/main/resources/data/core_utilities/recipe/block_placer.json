@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IDI",
+    "CMC",
+    "IRI"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "D": "minecraft:dispenser",
+    "C": "core_utilities:basic_circuit",
+    "M": "core_utilities:basic_machine_frame",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "core_utilities:block_placer"
+  }
+}

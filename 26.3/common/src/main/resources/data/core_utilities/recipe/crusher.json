@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IFI",
+    "PMP",
+    "ICI"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "F": "minecraft:flint",
+    "P": "minecraft:piston",
+    "M": "core_utilities:basic_machine_frame",
+    "C": "core_utilities:basic_circuit"
+  },
+  "result": {
+    "id": "core_utilities:crusher"
+  }
+}

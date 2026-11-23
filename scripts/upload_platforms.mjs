@@ -1,5 +1,5 @@
 /**
- * Upload Core Utilities jars from all-jars/ to Modrinth + CurseForge.
+ * Upload Core Utilities jars from releases/ (filled by ./gradlew buildAll) to Modrinth + CurseForge.
  * Tokens: env vars or NightBeam-Knowledge-Base/secrets/local.env
  *
  * Usage:
@@ -16,7 +16,7 @@ const ROOT = path.join(__dirname, "..");
 const MODRINTH_ID = "uy92hxqE";
 const CURSEFORGE_ID = "1379111";
 const MOD_TITLE = "Core Utilities";
-const JAR_DIR = path.join(ROOT, "all-jars");
+const JAR_DIR = path.join(ROOT, "releases");
 const CURSEFORGE_GAME_ID = 432;
 const RELEASE_STATE_PATH = path.join(ROOT, ".release-upload-state.json");
 
@@ -227,7 +227,7 @@ async function main() {
   const changelog = readChangelog(version, args.changelogFile);
   const state = loadReleaseState();
   const jars = collectJars(version);
-  if (!jars.length) throw new Error(`No core_utilities jars for version ${version} in all-jars/`);
+  if (!jars.length) throw new Error(`No core_utilities jars for version ${version} in releases/`);
   const parsed = jars.map(parseJar);
 
   const { MODRINTH_TOKEN, CURSEFORGE_TOKEN, CURSEFORGE_API_KEY } = process.env;

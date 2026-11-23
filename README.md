@@ -6,13 +6,15 @@ utility blocks: vector and effect plates, entity filters, backpacks and the mob 
 
 ## Supported versions
 
-| Version root | Minecraft | Loaders | Java |
+| Minecraft | Loaders | Java | Folder |
 | --- | --- | --- | --- |
-| `1.20.1/` | 1.20.1 | Fabric, Forge | 17 |
-| `1.21.1/` | 1.21.1 | Fabric, NeoForge | 21 |
-| `26.2/` | 26.2 | Fabric, NeoForge | 25 |
+| 1.20.1 | Fabric, Forge | 17 bytecode (build on 21) | `1.20.1/{common,fabric,forge}` |
+| 1.21.1 | Fabric, NeoForge | 21 | `1.21.1/{common,fabric,neoforge}` |
+| 26.2 | Fabric, NeoForge | 25 | `26.2/{common,fabric,neoforge}` |
+| 26.3 | Fabric, NeoForge | 25 | `26.3/{common,fabric,neoforge}` |
 
-Each version root is an independent Gradle project. Run build commands from the version folder you are working on.
+These are the only supported targets (the NightBeam convention): 8 jars per release, all with the same version.
+Each version root is an independent MultiLoader Gradle workspace with its own wrapper.
 
 ## Features
 
@@ -66,25 +68,35 @@ Ender IO, Powah, Pipez and others, and for the roadmap.
 
 ## Building
 
-Build a specific version from inside that version folder:
-
-```sh
-cd 1.21.1
-./gradlew build
+```bash
+./gradlew buildAll             # every workspace, then the 8 loader jars into releases/
+cd 1.20.1 && ./gradlew build   # Gradle on Java 21 (Java 17 toolchain)
+cd 1.21.1 && ./gradlew build   # Java 21
+cd 26.3 && ./gradlew build     # Java 25 (the same for 26.2)
+cd 26.3 && ./gradlew :common:test   # JUnit tests of the common module
 ```
 
-Build all version roots from the repository root:
+The root build hands the 26.x workspaces `JAVA_HOME_25_X64` (or `-Pjava25Home=<jdk>`) and the others
+`JAVA_HOME_21_X64` (or `-Pjava21Home=<jdk>`); without them each workspace uses the current `JAVA_HOME`.
+Jars land in `<workspace>/<loader>/build/libs/core_utilities-<loader>-<minecraft>-<version>.jar`. Every
+workspace's `gradle.properties` carries the same `version=`, and the root `VERSION` file matches it
+(`./gradlew checkVersions`; set both with `./gradlew syncVersion -PmodVersion=x.y.z`). `python3 scripts/check_targets.py workspaces`
+checks the targets, the shared version and the metadata ranges. Release notes for a version live in
+`patchnotes/<version>.md` and `CHANGELOG.md`.
 
-```sh
-./gradlew buildAll --no-daemon
-```
+Add `-PwithJei` to a `runClient` task to test with JEI. On Forge and NeoForge, `-PquickPlay=host:port` makes
+`runClient` join that server directly (on Fabric, pass `--args="--quickPlayMultiplayer host:port"`).
 
-Built mod JARs are collected under `all-jars/` when you use the root `buildAll` task. When building from the root,
-point `JAVA_HOME_17`, `JAVA_HOME_21` and `JAVA_HOME_25` at the matching JDKs.
+## Releasing
 
-Each version's common module has JUnit tests (`./gradlew :common:test`). Add `-PwithJei` to a `runClient` task to
-test with JEI. On Forge and NeoForge, `-PquickPlay=host:port` makes `runClient` join that server directly (on Fabric, pass
-`--args="--quickPlayMultiplayer host:port"`).
+CI (`.github/workflows/ci.yml`) builds all 8 jars on every push to `main` that touches the build. Publishing to
+Modrinth and CurseForge is `.github/workflows/publish.yml`, run by hand (`version`, `dry_run`, `update_listing`) or by
+a `v*.*.*` tag; it never runs on a plain push. It refuses a second release of the mod on the same day (Africa/Tunis),
+takes the jars from `releases/`, the GitHub Release or a build from source, and fails unless exactly the 8 jars are
+found. The upload itself is `.github/scripts/publish.mjs` (Fabric jars declare Fabric API as required; the notes are
+this version's section of `CHANGELOG.md`). It needs the secrets `MODRINTH_TOKEN`, `CURSEFORGE_TOKEN`,
+`CURSEFORGE_API_KEY` and the variables `MODRINTH_ID`, `CURSEFORGE_ID`. `marketing/modrinth/` is made from the
+CurseForge copy with `python3 tools/make_modrinth_md.py .`.
 
 ## Generated resources
 
@@ -107,7 +119,7 @@ cd 1.21.1
 python3 ../scripts/servertest/run_server.py . neoforge "$JAVA_HOME" neoforge/run ../scripts/servertest/machines.txt test.log
 ```
 
-For 26.2, use `machines_26.txt`, which has the renamed gamerules.
+For 26.x, use `machines_26.txt`, which has the renamed gamerules.
 
 ## Contributing
 

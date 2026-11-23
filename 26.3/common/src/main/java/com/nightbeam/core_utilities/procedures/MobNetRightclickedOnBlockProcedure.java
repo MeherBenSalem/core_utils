@@ -21,7 +21,7 @@ public class MobNetRightclickedOnBlockProcedure {
 		if (EnchantmentHelper.getItemEnchantmentLevel(enchantment, itemstack) != 0) {
 			if (world instanceof ServerLevel level) {
 				level.getServer().getCommands().performPrefixedCommand(
-						new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, level, LevelBasedPermissionSet.GAMEMASTER, "", Component.literal(""), level.getServer(), null).withSuppressedOutput(),
+						new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, level, LevelBasedPermissionSet.GAMEMASTER, Component.literal(""), level.getServer()).withSuppressedOutput(),
 						"summon " + getAnimalTag(itemstack) + " ~ ~ ~");
 			}
 			itemstack.remove(DataComponents.ENCHANTMENTS);

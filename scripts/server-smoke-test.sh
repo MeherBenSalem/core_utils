@@ -218,6 +218,8 @@ for _ in $(seq 1 240); do
   sleep 5
   if grep -q "CU_SMOKE_OK" "$LOG"; then result=ok; break; fi
   if grep -q -E "$CRASH" "$LOG"; then result=crash; break; fi
+  # A smoke function that does not parse never runs: no need to wait for the timeout.
+  if grep -q "Failed to load function" "$LOG"; then result=bad_function; break; fi
   if ! kill -0 $PID 2>/dev/null; then result=exited; break; fi
 done
 sleep 10
@@ -239,9 +241,11 @@ if grep -n "CU_FAILED" "$LOG"; then echo "::error::a command or machine check fa
 oks=$(grep -c "CU_OK " "$LOG")
 echo "Commands OK: $oks of $EXPECTED_OK"
 [ "$oks" -ge "$EXPECTED_OK" ] || { echo "::error::not every command check passed"; fail=1; }
+# (The checkout path is left out: it holds the repository name. NeoForge's deprecation note on the mods.toml
+# logoFile key is metadata, not a load error.)
 # Errors, warnings and exceptions that mention the mod (its id, its name, its package or the smoke pack).
-if grep -n -E "(ERROR|WARN|Exception|Caused by|Failed|Couldn't|Unknown|Errors in)" "$LOG" \
-    | grep -v -E "JAVA_TOOL_OPTIONS|Reference map '[a-z_.]*refmap.json' .* could not be read" \
+if grep -n -E "(ERROR|WARN|Exception|Caused by|Failed|Couldn't|Unknown|Errors in)" "$LOG" | sed "s|$ROOT|<checkout>|g" \
+    | grep -v -E "JAVA_TOOL_OPTIONS|deprecated \`logoFile\`|Reference map '[a-z_.]*refmap.json' .* could not be read" \
     | grep -i -E "$MOD|Core Utilities|com\.nightbeam\.core_utilities|$NS"; then
   echo "::error::error or warning mentioning the mod"; fail=1
 fi

@@ -1,14 +1,13 @@
 # Marketing assets: 2.0 "The Technology Update"
 
-Listing copy and artwork for CurseForge and Modrinth, and the Instagram Reel. Nothing here ships in the mod JARs.
+Listing copy and artwork for CurseForge (NightBeam publishes to CurseForge only), and the Instagram Reel. Nothing here ships in the mod JARs.
 
 ## Listing
 
 | File | Use |
 | --- | --- |
-| [`curseforge/description.md`](curseforge/description.md) | Full project description (Markdown; also works on Modrinth) |
+| [`curseforge/description.md`](curseforge/description.md) | Full project description (Markdown) |
 | [`curseforge/summary.txt`](curseforge/summary.txt) | Short project summary (219 characters) |
-| [`modrinth/description.md`](modrinth/description.md), [`modrinth/summary.txt`](modrinth/summary.txt) | Modrinth copy, made from the CurseForge files with `python3 tools/make_modrinth_md.py .` (the gallery becomes a pointer to the Gallery tab); the publish workflow's `update_listing` sends them |
 | [`../CHANGELOG.md`](../CHANGELOG.md) | File changelog for 2.0.0 |
 | [`reel/`](reel/) | The Instagram Reel's cover, caption and how it was made |
 
@@ -21,7 +20,7 @@ The description leads with the factory overview, then power, storage and cables,
 The supported versions are listed in exactly two places:
 
 1. `VERSIONS` at the top of [`source/render.cjs`](source/render.cjs). Add one line, for example `{ minecraft: '26.4', loaders: ['Fabric', 'NeoForge'] },`. The banner's loader pills and version line are built from it. Then rerun the script for `banner`.
-2. The table under **Downloads & Compatibility** in `curseforge/description.md`. Add one row, then rerun `python3 tools/make_modrinth_md.py .`.
+2. The table under **Downloads & Compatibility** in `curseforge/description.md`. Add one row.
 
 No other copy or artwork names a Minecraft version. A new release name or number goes in `RELEASE` in `render.cjs` and in the first lines of the description.
 

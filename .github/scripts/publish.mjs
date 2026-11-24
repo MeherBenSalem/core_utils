@@ -1,8 +1,11 @@
-// Uploads every loader jar in JAR_LIST (the 8 verified convention jars) to Modrinth and CurseForge, one release per jar, each tagged with its own
+// Uploads every loader jar in JAR_LIST (the 8 verified convention jars) to CurseForge, one release per jar, each tagged with its own
 // Minecraft version and loader. Jar names follow <mod_id>-<loader>-<minecraft>-<version>.jar (multiloader-common.gradle).
 // The changelog is the section of CHANGELOG.md for this version. Fabric jars declare Fabric API as required.
 //
-// env: VERSION, JAR_LIST (newline separated), MODRINTH_TOKEN, MODRINTH_ID, CURSEFORGE_TOKEN, CURSEFORGE_ID
+// NightBeam publishes to CurseForge only (24 Nov 2026); the existing Modrinth project stays up as it is but gets no new
+// versions.
+//
+// env: VERSION, JAR_LIST (newline separated), CURSEFORGE_TOKEN, CURSEFORGE_ID
 // --dry-run: print what would be uploaded (names, loaders, Minecraft versions, dependencies) and exit before any
 // network call; needs only VERSION and JAR_LIST (CI and the publish workflow's verify step use it).
 import fs from 'node:fs';
@@ -11,7 +14,7 @@ import path from 'node:path';
 const VERSION = process.env.VERSION;
 const JARS = process.env.JAR_LIST.split('\n').map((s) => s.trim()).filter(Boolean);
 const LOADER_NAMES = { fabric: 'Fabric', forge: 'Forge', neoforge: 'NeoForge' };
-const FABRIC_API = { modrinth: 'P7dR8mSH', curseforge: 'fabric-api' };
+const FABRIC_API = { curseforge: 'fabric-api' };
 
 function changelog() {
   const text = fs.readFileSync('CHANGELOG.md', 'utf8');
@@ -40,42 +43,6 @@ if (process.argv.includes('--dry-run')) {
   }
   console.log(`Dry run: ${builds.length} jar(s), changelog ${CHANGELOG.split('\n')[0]}; nothing uploaded`);
   process.exit(0);
-}
-
-let published;
-async function modrinth(b) {
-  // a rerun skips versions that are already on Modrinth
-  if (!published) {
-    const res = await fetch(`https://api.modrinth.com/v2/project/${process.env.MODRINTH_ID}/version`, { headers: { 'User-Agent': 'NightBeam publish workflow' } });
-    published = new Set(res.ok ? (await res.json()).map((v) => v.version_number) : []);
-  }
-  if (published.has(`${VERSION}+${b.minecraft}-${b.loader}`)) {
-    console.log(`Modrinth already has ${b.file}, skipped`);
-    return;
-  }
-  const data = {
-    name: `${VERSION} (${LOADER_NAMES[b.loader]} ${b.minecraft})`,
-    version_number: `${VERSION}+${b.minecraft}-${b.loader}`,
-    changelog: CHANGELOG,
-    dependencies: b.loader === 'fabric' ? [{ project_id: FABRIC_API.modrinth, dependency_type: 'required' }] : [],
-    game_versions: [b.minecraft],
-    version_type: 'release',
-    loaders: [b.loader],
-    featured: true,
-    status: 'listed',
-    project_id: process.env.MODRINTH_ID,
-    file_parts: ['file'],
-    primary_file: 'file',
-  };
-  const form = new FormData();
-  form.append('data', JSON.stringify(data));
-  form.append('file', new Blob([fs.readFileSync(b.jar)]), b.file);
-  const res = await fetch('https://api.modrinth.com/v2/version', {
-    method: 'POST', headers: { Authorization: process.env.MODRINTH_TOKEN, 'User-Agent': 'NightBeam publish workflow' }, body: form,
-  });
-  const text = await res.text();
-  if (!res.ok) throw new Error(`Modrinth ${res.status} ${text.slice(0, 400)}`);
-  console.log(`Modrinth OK ${b.file}`);
 }
 
 const CF = 'https://minecraft.curseforge.com/api';
@@ -121,7 +88,7 @@ async function curseforge(b) {
 }
 
 for (const b of builds) {
-  for (const [site, upload] of [['Modrinth', modrinth], ['CurseForge', curseforge]]) {
+  for (const [site, upload] of [['CurseForge', curseforge]]) {
     try {
       await upload(b);
     } catch (e) {

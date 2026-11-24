@@ -90,13 +90,13 @@ Add `-PwithJei` to a `runClient` task to test with JEI. On Forge and NeoForge, `
 ## Releasing
 
 CI (`.github/workflows/ci.yml`) builds all 8 jars on every push to `main` that touches the build. Publishing to
-Modrinth and CurseForge is `.github/workflows/publish.yml`, run by hand (`version`, `dry_run`, `update_listing`) or by
+CurseForge is `.github/workflows/publish.yml`, run by hand (`version`, `dry_run`) or by
 a `v*.*.*` tag; it never runs on a plain push. It refuses a second release of the mod on the same day (Africa/Tunis),
 takes the jars from `releases/`, the GitHub Release or a build from source, and fails unless exactly the 8 jars are
 found. The upload itself is `.github/scripts/publish.mjs` (Fabric jars declare Fabric API as required; the notes are
-this version's section of `CHANGELOG.md`). It needs the secrets `MODRINTH_TOKEN`, `CURSEFORGE_TOKEN`,
-`CURSEFORGE_API_KEY` and the variables `MODRINTH_ID`, `CURSEFORGE_ID`. `marketing/modrinth/` is made from the
-CurseForge copy with `python3 tools/make_modrinth_md.py .`.
+this version's section of `CHANGELOG.md`). It needs the secrets `CURSEFORGE_TOKEN` (upload token) and
+`CURSEFORGE_API_KEY` (Core API key, for the same-day guard) and the variable `CURSEFORGE_ID`. NightBeam publishes to
+CurseForge only; the Modrinth page stays up but gets no new versions.
 
 ## Generated resources
 

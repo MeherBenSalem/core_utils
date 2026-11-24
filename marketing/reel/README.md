@@ -42,7 +42,7 @@ The scripts use absolute scratch paths at the top of each file (`R = ...`); poin
 ## Posting checklist
 
 - Upload the MP4 as a Reel and set `cover.jpg` as the cover. Keep the original audio; a trending track on top would bury the voiceover.
-- Paste `caption.txt`. Put the Modrinth link in your bio before posting, since the caption points there.
+- Paste `caption.txt`. Put the CurseForge link in your bio before posting, since the caption points there.
 - Add alt text, for example: "Minecraft gameplay of a tech mod: a quarry digging a pit, a row of glowing machines, cables, farms and a mob grinder."
 - Pin a first comment asking which machine people would automate first.
 - Cross-post the same file to TikTok and YouTube Shorts.

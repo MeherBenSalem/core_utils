@@ -1,5 +1,7 @@
 /**
- * Upload Core Utilities jars from releases/ (filled by ./gradlew buildAll) to Modrinth + CurseForge.
+ * Upload Core Utilities jars from releases/ (filled by ./gradlew buildAll) to CurseForge.
+ * NightBeam publishes to CurseForge only (24 Nov 2026); the existing Modrinth project stays up as it is but gets no
+ * new versions.
  * Tokens: env vars or NightBeam-Knowledge-Base/secrets/local.env
  *
  * Usage:
@@ -13,7 +15,6 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
 
-const MODRINTH_ID = "uy92hxqE";
 const CURSEFORGE_ID = "1379111";
 const MOD_TITLE = "Core Utilities";
 const JAR_DIR = path.join(ROOT, "releases");
@@ -42,13 +43,11 @@ async function loadEnv() {
 }
 
 function parseArgs(argv) {
-  const out = { curseforgeOnly: false, modrinthOnly: false, dryRun: false };
+  const out = { dryRun: false };
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--version") out.version = argv[++i];
     else if (a === "--changelog-file") out.changelogFile = argv[++i];
-    else if (a === "--curseforge-only") out.curseforgeOnly = true;
-    else if (a === "--modrinth-only") out.modrinthOnly = true;
     else if (a === "--dry-run") out.dryRun = true;
     else throw new Error(`Unknown arg ${a}`);
   }
@@ -120,49 +119,6 @@ async function fetchJson(url, options = {}, allow404 = false) {
   return text ? JSON.parse(text) : null;
 }
 
-async function uploadToModrinth(parsed, version, changelog, token, dryRun, state) {
-  for (const parsedJar of parsed) {
-    const body = {
-      name: `${version} · ${parsedJar.loader} · ${parsedJar.game}`,
-      version_number: `${version}+${parsedJar.loader}-${parsedJar.game}`,
-      changelog,
-      dependencies: [],
-      game_versions: [parsedJar.game],
-      version_type: "release",
-      loaders: [parsedJar.loader],
-      featured: false,
-      status: "listed",
-      project_id: MODRINTH_ID,
-      file_parts: ["file_0"],
-      primary_file: "file_0",
-    };
-    if (hasRecordedUpload(state, "modrinth", version, parsedJar)) {
-      console.log("Modrinth skip", parsedJar.name);
-      continue;
-    }
-    if (dryRun) {
-      console.log("[dry-run] Modrinth", body.version_number, parsedJar.name);
-      continue;
-    }
-    const form = new FormData();
-    form.append("data", JSON.stringify(body));
-    form.append("file_0", new Blob([fs.readFileSync(parsedJar.jar)]), parsedJar.name);
-    const res = await fetch("https://api.modrinth.com/v2/version", {
-      method: "POST",
-      headers: { Authorization: token },
-      body: form,
-    });
-    const text = await res.text();
-    if (!res.ok) throw new Error(`Modrinth ${res.status} ${parsedJar.name} ${text.slice(0, 500)}`);
-    let remoteId = null;
-    try {
-      remoteId = JSON.parse(text).id ?? null;
-    } catch {}
-    recordUpload(state, "modrinth", version, parsedJar, remoteId);
-    console.log("Modrinth OK", body.version_number, parsedJar.name);
-  }
-}
-
 async function uploadToCurseForge(parsed, version, changelog, token, apiKey, dryRun, state) {
   const LOADER_IDS = { fabric: 7499, forge: 7498, neoforge: 10150 };
   const legacyPayload = await fetchJson("https://minecraft.curseforge.com/api/game/versions", {
@@ -230,20 +186,15 @@ async function main() {
   if (!jars.length) throw new Error(`No core_utilities jars for version ${version} in releases/`);
   const parsed = jars.map(parseJar);
 
-  const { MODRINTH_TOKEN, CURSEFORGE_TOKEN, CURSEFORGE_API_KEY } = process.env;
-  if (!MODRINTH_TOKEN || !CURSEFORGE_TOKEN || !CURSEFORGE_API_KEY) {
-    throw new Error("Set MODRINTH_TOKEN, CURSEFORGE_TOKEN, CURSEFORGE_API_KEY");
+  const { CURSEFORGE_TOKEN, CURSEFORGE_API_KEY } = process.env;
+  if (!CURSEFORGE_TOKEN || !CURSEFORGE_API_KEY) {
+    throw new Error("Set CURSEFORGE_TOKEN, CURSEFORGE_API_KEY");
   }
 
   console.log(`Uploading ${MOD_TITLE} ${version} (${parsed.length} jars)`);
   for (const p of parsed) console.log(" ", p.name, "->", p.loader, p.game);
 
-  if (!args.curseforgeOnly) {
-    await uploadToModrinth(parsed, version, changelog, MODRINTH_TOKEN, args.dryRun, state);
-  }
-  if (!args.modrinthOnly) {
-    await uploadToCurseForge(parsed, version, changelog, CURSEFORGE_TOKEN, CURSEFORGE_API_KEY, args.dryRun, state);
-  }
+  await uploadToCurseForge(parsed, version, changelog, CURSEFORGE_TOKEN, CURSEFORGE_API_KEY, args.dryRun, state);
 }
 
 main().catch((e) => {
